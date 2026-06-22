@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://iyt74j0kub2j"]
+
+[ext_resource type="Script" uid="uid://6pewf3npv3db" path="res://npcs/projectiles/hitscan/ent_hitscan.gd" id="1_px3iv"]
+[ext_resource type="Script" uid="uid://2ps0r1uywqmn" path="res://core/damage_info.gd" id="2_hg2i2"]
+[ext_resource type="AudioStream" uid="uid://traaox0d2bvp" path="res://player/inventory/weapons/testing/shotgun_shot.mp3" id="2_px3iv"]
+
+[sub_resource type="Resource" id="Resource_sd8tj"]
+script = ExtResource("2_hg2i2")
+damage = 20.0
+metadata/_custom_type_script = "uid://2ps0r1uywqmn"
+
+[node name="ent_fireball" type="Node3D" unique_id=250097343]
+transform = Transform3D(1.665, 0, 0, 0, 1.665, 0, 0, 0, 1.665, 0, 0, 0)
+script = ExtResource("1_px3iv")
+damage_info = SubResource("Resource_sd8tj")
+
+[node name="Timer" type="Timer" parent="." unique_id=1962551884]
+wait_time = 15.0
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2126793957]
+stream = ExtResource("2_px3iv")
+volume_db = -8.539
+pitch_scale = 0.82
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://dmqtwg515vvqp"]
+
+[ext_resource type="Script" uid="uid://wpaqubdr30jj" path="res://player/character_controller/scripts/player_camera_component.gd" id="1_kqf0l"]
+[ext_resource type="Script" uid="uid://b06kyyqpd315x" path="res://player/inventory/game_feel/weapon_sway.gd" id="2_dq6ss"]
+[ext_resource type="Script" uid="uid://bqh73vh742q4y" path="res://player/character_controller/scenes/gun_camera.gd" id="2_gcs84"]
+[ext_resource type="Resource" uid="uid://c1hjc38orbiye" path="res://player/character_controller/resources/default_config.tres" id="2_yipas"]
+[ext_resource type="Script" uid="uid://dmjsmew3vi2m8" path="res://player/inventory/game_feel/weapon_sway_follower.gd" id="2_yov25"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kbqbr"]
+custom_solver_bias = 1.0
+margin = 0.25
+radius = 0.15
+
+[sub_resource type="Animation" id="Animation_y634p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.319405, -0.316216, -0.558451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_121dv"]
+resource_name = "equip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.319405, -0.43649, -0.334003), Vector3(0.319405, -0.376353, -0.561029), Vector3(0.319405, -0.316216, -0.558451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.411898, 0, 0), Vector3(-0.205949, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3an0c"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.319405, -0.316216, -0.558451), Vector3(0.319405, -0.316216, -0.558451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a0nvw"]
+_data = {
+&"RESET": SubResource("Animation_y634p"),
+&"equip": SubResource("Animation_121dv"),
+&"idle": SubResource("Animation_3an0c")
+}
+
+[node name="Player Camera Component" type="Node3D" unique_id=322983206 node_paths=PackedStringArray("WeaponSway", "animation_player", "camera_arm", "camera_anchor", "camera", "hand")]
+script = ExtResource("1_kqf0l")
+Config = ExtResource("2_yipas")
+WeaponSway = NodePath("Spring Arm/Camera Anchor/Camera/Hand/SwayTarget")
+animation_player = NodePath("Spring Arm/Camera Anchor/Camera/AnimationPlayer")
+camera_arm = NodePath("Spring Arm")
+camera_anchor = NodePath("Spring Arm/Camera Anchor")
+camera = NodePath("Spring Arm/Camera Anchor/Camera")
+hand = NodePath("Spring Arm/Camera Anchor/Camera/Hand/SwayFollower")
+
+[node name="Control" type="SubViewportContainer" parent="." unique_id=172810514]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Control" unique_id=152237873]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="GunCamera" type="Camera3D" parent="Control/SubViewport" unique_id=413878280 node_paths=PackedStringArray("main_camera")]
+cull_mask = 2
+fov = 90.0
+near = 0.001
+script = ExtResource("2_gcs84")
+main_camera = NodePath("../../../Spring Arm/Camera Anchor/Camera")
+
+[node name="Spring Arm" type="SpringArm3D" parent="." unique_id=1330167903]
+shape = SubResource("SphereShape3D_kbqbr")
+spring_length = 0.0
+margin = 0.1
+
+[node name="Camera Anchor" type="Node3D" parent="Spring Arm" unique_id=2051268464]
+
+[node name="Camera" type="Camera3D" parent="Spring Arm/Camera Anchor" unique_id=1594678115]
+cull_mask = 524285
+current = true
+fov = 90.0
+near = 0.001
+
+[node name="Hand" type="Node3D" parent="Spring Arm/Camera Anchor/Camera" unique_id=547596427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.319405, -0.316216, -0.558451)
+
+[node name="SwayTarget" type="Node3D" parent="Spring Arm/Camera Anchor/Camera/Hand" unique_id=1386518475 node_paths=PackedStringArray("Camera")]
+script = ExtResource("2_dq6ss")
+Camera = NodePath("../../../../..")
+sway_speed = 3.0
+recoil_recovery = 1.0
+
+[node name="SwayFollower" type="Node3D" parent="Spring Arm/Camera Anchor/Camera/Hand" unique_id=1552566900 node_paths=PackedStringArray("target_node")]
+script = ExtResource("2_yov25")
+target_node = NodePath("../SwayTarget")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring Arm/Camera Anchor/Camera" unique_id=1759628193]
+libraries/ = SubResource("AnimationLibrary_a0nvw")
+
+[node name="NightLight" type="OmniLight3D" parent="Spring Arm/Camera Anchor/Camera" unique_id=238601866]
+light_color = Color(0.51, 0.429845, 0.3927, 1)
+light_energy = 2.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+light_bake_mode = 0
+omni_attenuation = 1.5

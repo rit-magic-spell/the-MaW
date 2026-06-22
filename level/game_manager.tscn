@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://biahmygxgm8u0"]
+
+[ext_resource type="Script" uid="uid://celafse87bosc" path="res://game_manager.gd" id="1_kxvcf"]
+[ext_resource type="Script" uid="uid://buqgsp2etg80p" path="res://biome_data.gd" id="2_rovxr"]
+[ext_resource type="Resource" uid="uid://d31supjnop0gw" path="res://level/test_biome_data.tres" id="3_bajdb"]
+[ext_resource type="Resource" uid="uid://bcfi5loqeo3b6" path="res://level/test_next_biome_data.tres" id="4_bajdb"]
+
+[node name="GameManager" type="Node3D" unique_id=788522606]
+script = ExtResource("1_kxvcf")
+biomes = Array[String](["TESTING", "TESTING_TWO"])
+biome_level_data = Dictionary[String, ExtResource("2_rovxr")]({
+"TESTING": ExtResource("3_bajdb"),
+"TESTING_TWO": ExtResource("4_bajdb")
+})

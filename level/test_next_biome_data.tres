@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BiomeData" format=3 uid="uid://bcfi5loqeo3b6"]
+
+[ext_resource type="PackedScene" uid="uid://xskuwlosb5of" path="res://level/test_level_three.tscn" id="1_yvk7r"]
+[ext_resource type="Script" uid="uid://buqgsp2etg80p" path="res://biome_data.gd" id="3_3anq2"]
+
+[resource]
+script = ExtResource("3_3anq2")
+levels = Array[PackedScene]([ExtResource("1_yvk7r")])
+metadata/_custom_type_script = "uid://buqgsp2etg80p"

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dphd73b235i6j"]
+
+[ext_resource type="Script" uid="uid://c0nxmxm68te41" path="res://level/entities/scenes/weapon_generic/point_weapon_generic.gd" id="1_3lr11"]
+[ext_resource type="AudioStream" uid="uid://ckh8bubrt5y6p" path="res://level/entities/scenes/weapon_generic/dswpnup.wav" id="2_y1wn8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_avdds"]
+
+[node name="point_weapon" type="Node3D" unique_id=122606986]
+script = ExtResource("1_3lr11")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=393308398]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=866028741]
+shape = SubResource("BoxShape3D_avdds")
+
+[node name="WeaponPickupAudio" type="AudioStreamPlayer3D" parent="." unique_id=1125883060]
+stream = ExtResource("2_y1wn8")
+volume_db = -27.101
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

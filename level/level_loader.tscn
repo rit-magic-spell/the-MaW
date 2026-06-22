@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cmkhuq3wt55xg"]
+
+[ext_resource type="Script" uid="uid://wsaha4sa61d4" path="res://level/level_loader.gd" id="1_rxjac"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_owtjd"]
+size = Vector3(3.5039063, 5.232788, 1)
+
+[node name="LevelLoader" type="Area3D" unique_id=1128884787]
+script = ExtResource("1_rxjac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1038410750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2705078, 0.15252686, 0)
+shape = SubResource("BoxShape3D_owtjd")

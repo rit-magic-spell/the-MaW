@@ -1,0 +1,293 @@
+[gd_scene format=3 uid="uid://gwunh0jnqjjk"]
+
+[ext_resource type="Script" uid="uid://b2tmvn0mswuvb" path="res://player/character_controller/scripts/player.gd" id="1_h6o87"]
+[ext_resource type="PackedScene" uid="uid://copr5bcep1f5b" path="res://player/character_controller/scenes/PlayerInputComponent.tscn" id="1_srod8"]
+[ext_resource type="Resource" uid="uid://c1hjc38orbiye" path="res://player/character_controller/resources/default_config.tres" id="2_5rl8c"]
+[ext_resource type="PackedScene" uid="uid://danln6hwvmnnk" path="res://player/character_controller/scenes/EntityMotionComponent.tscn" id="2_83bak"]
+[ext_resource type="AudioStream" uid="uid://bvv1vumi8bj12" path="res://player/inventory/game_feel/stopwatch_sound.mp3" id="2_uq8h6"]
+[ext_resource type="Script" uid="uid://nyr8dj13jlcs" path="res://player/character_controller/scripts/player_audio_component.gd" id="2_w1dgm"]
+[ext_resource type="AudioStream" uid="uid://cpm0m3iknydub" path="res://player/inventory/game_feel/heartbeat.wav" id="3_hwd2j"]
+[ext_resource type="AudioStream" uid="uid://cdvw2n2pp8bvh" path="res://player/inventory/game_feel/end_stopwatch_sound.mp3" id="3_mm1xe"]
+[ext_resource type="PackedScene" uid="uid://dnqjewyut21cd" path="res://player/character_controller/scenes/EntityBodyComponent.tscn" id="3_st460"]
+[ext_resource type="AudioStream" uid="uid://bqn37dbnhqxaa" path="res://player/inventory/game_feel/punch.wav" id="4_g5g7p"]
+[ext_resource type="PackedScene" uid="uid://cplcfn10tis3v" path="res://player/character_controller/scenes/EntityViewComponent.tscn" id="4_tt081"]
+[ext_resource type="PackedScene" uid="uid://ckopdxb7t1xl2" path="res://player/character_controller/scenes/entity_inventory_component.tscn" id="5_qobfj"]
+[ext_resource type="PackedScene" uid="uid://dmqtwg515vvqp" path="res://player/character_controller/scenes/PlayerCameraComponent.tscn" id="5_yuc8u"]
+[ext_resource type="PackedScene" uid="uid://tpvclehjvudv" path="res://player/character_controller/scenes/PlayerEntityMonitor.tscn" id="7_dwmci"]
+[ext_resource type="AudioStream" uid="uid://cljhxcedbwa8r" path="res://player/character_controller/audio/footstep_boot_2.wav" id="9_ql4hh"]
+[ext_resource type="Script" uid="uid://yh0brd0dlfys" path="res://core/entities/entity_health_component.gd" id="10_4t55l"]
+[ext_resource type="AudioStream" uid="uid://d6ar7owqf3l5" path="res://player/character_controller/audio/footstep_boot_3.wav" id="10_lwfhl"]
+[ext_resource type="AudioStream" uid="uid://b4ej76hyxoupw" path="res://player/inventory/game_feel/use_stopwatch_sound.mp3" id="12_dqe18"]
+[ext_resource type="PackedScene" uid="uid://bbh87padl684k" path="res://ui/options.tscn" id="16_3dnp8"]
+[ext_resource type="Script" uid="uid://56hjnrsgdqdc" path="res://player/character_controller/scenes/player_hud_component.gd" id="16_itf7b"]
+[ext_resource type="FontFile" uid="uid://bbkowaprofby4" path="res://ui/texturina/ttf/Texturina12pt-Regular.ttf" id="17_wseti"]
+[ext_resource type="Texture2D" uid="uid://dpqtc0co4blbo" path="res://ui/temp_progress.png" id="18_wseti"]
+[ext_resource type="Script" uid="uid://dnyk47806lbxm" path="res://player/character_controller/scripts/crosshair_manager.gd" id="20_rlg0r"]
+[ext_resource type="Script" uid="uid://rquen88xvhil" path="res://player/character_controller/scenes/fps_label.gd" id="22_lwfhl"]
+[ext_resource type="Script" uid="uid://dg1j3gvftdoml" path="res://player/character_controller/scripts/player_game_text.gd" id="22_ql4hh"]
+
+[sub_resource type="Theme" id="Theme_3dnp8"]
+default_font = ExtResource("17_wseti")
+
+[sub_resource type="Theme" id="Theme_ql4hh"]
+default_font = ExtResource("17_wseti")
+default_font_size = 0
+
+[node name="Player" type="Node3D" unique_id=1141179041 groups=["player"]]
+script = ExtResource("1_h6o87")
+config = ExtResource("2_5rl8c")
+
+[node name="Player Input Component" parent="." unique_id=881582011 node_paths=PackedStringArray("Body", "Inventory", "Move", "View", "HUD", "Options") instance=ExtResource("1_srod8")]
+Config = ExtResource("2_5rl8c")
+Body = NodePath("../Entity Body Component")
+Inventory = NodePath("../Entity Inventory Component")
+Move = NodePath("../Entity Motion Component")
+View = NodePath("../Entity View Component")
+HUD = NodePath("../Player Hud Component")
+Options = NodePath("../Player Options")
+
+[node name="Entity Motion Component" parent="." unique_id=59509181 node_paths=PackedStringArray("Body", "PlayerInput") instance=ExtResource("2_83bak")]
+Config = ExtResource("2_5rl8c")
+Body = NodePath("../Entity Body Component")
+PlayerInput = NodePath("../Player Input Component")
+
+[node name="Entity Inventory Component" parent="." unique_id=1518415408 node_paths=PackedStringArray("Body", "View", "Camera") instance=ExtResource("5_qobfj")]
+Body = NodePath("../Entity Body Component")
+View = NodePath("../Entity View Component")
+Camera = NodePath("../Player Camera Component")
+
+[node name="Entity Body Component" parent="." unique_id=343144802 node_paths=PackedStringArray("Motion", "Root") instance=ExtResource("3_st460")]
+collision_layer = 2
+collision_mask = 33
+platform_on_leave = 2
+platform_floor_layers = 37
+safe_margin = 0.002
+Config = ExtResource("2_5rl8c")
+Motion = NodePath("../Entity Motion Component")
+Root = NodePath("..")
+
+[node name="Entity View Component" parent="." unique_id=517981283 node_paths=PackedStringArray("Body", "Inventory") instance=ExtResource("4_tt081")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
+Config = ExtResource("2_5rl8c")
+Body = NodePath("../Entity Body Component")
+Inventory = NodePath("../Entity Inventory Component")
+
+[node name="Player Camera Component" parent="." unique_id=744621420 node_paths=PackedStringArray("View", "Body") instance=ExtResource("5_yuc8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
+View = NodePath("../Entity View Component")
+Body = NodePath("../Entity Body Component")
+
+[node name="Player Sounds Component" type="Node3D" parent="Player Camera Component" unique_id=1086126305 node_paths=PackedStringArray("Root")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.711, 0)
+script = ExtResource("2_w1dgm")
+Root = NodePath("../..")
+step_distance = 1.827
+footstep_pitch_min = 1.142
+footstep_pitch_max = 1.384
+
+[node name="TimeSlowAudio" type="AudioStreamPlayer" parent="Player Camera Component/Player Sounds Component" unique_id=1975351295]
+stream = ExtResource("2_uq8h6")
+pitch_scale = 0.78
+
+[node name="HeartbeatAudio" type="AudioStreamPlayer" parent="Player Camera Component/Player Sounds Component" unique_id=144428438]
+stream = ExtResource("3_hwd2j")
+
+[node name="TimeSlowEndAudio" type="AudioStreamPlayer" parent="Player Camera Component/Player Sounds Component" unique_id=1171808483]
+stream = ExtResource("3_mm1xe")
+volume_db = 4.267
+pitch_scale = 0.78
+
+[node name="TimeSlowStartAudio" type="AudioStreamPlayer" parent="Player Camera Component/Player Sounds Component" unique_id=619034610]
+stream = ExtResource("12_dqe18")
+volume_db = 6.465
+pitch_scale = 0.59
+
+[node name="PlayerHurtAudio" type="AudioStreamPlayer" parent="Player Camera Component/Player Sounds Component" unique_id=658963594]
+stream = ExtResource("4_g5g7p")
+max_polyphony = 16
+
+[node name="FootstepJump" type="AudioStreamPlayer3D" parent="Player Camera Component/Player Sounds Component" unique_id=470479909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8833516, 0)
+stream = ExtResource("9_ql4hh")
+volume_db = -26.261
+panning_strength = 0.0
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="FootstepOne" type="AudioStreamPlayer3D" parent="Player Camera Component/Player Sounds Component" unique_id=123970055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8833516, 0)
+stream = ExtResource("9_ql4hh")
+volume_db = -32.0
+panning_strength = 0.0
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="FootstepTwo" type="AudioStreamPlayer3D" parent="Player Camera Component/Player Sounds Component" unique_id=1216543240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8833516, 0)
+stream = ExtResource("10_lwfhl")
+volume_db = -32.0
+panning_strength = 0.0
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="Player Entity Monitor" parent="." unique_id=119479972 node_paths=PackedStringArray("Controls", "View", "Body", "Weapons") instance=ExtResource("7_dwmci")]
+visible = false
+Controls = NodePath("../Player Input Component")
+View = NodePath("../Entity View Component")
+Body = NodePath("../Entity Body Component")
+Weapons = NodePath("../Entity Inventory Component")
+
+[node name="Player Options" parent="." unique_id=989511819 node_paths=PackedStringArray("player") instance=ExtResource("16_3dnp8")]
+visible = false
+player = NodePath("..")
+
+[node name="Player Hud Component" type="Control" parent="." unique_id=343112253]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_itf7b")
+
+[node name="TimeStopRect" type="ColorRect" parent="Player Hud Component" unique_id=1204517648]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.46666667, 0.42745098, 0.78431374, 0.17254902)
+
+[node name="PainFlashRect" type="ColorRect" parent="Player Hud Component" unique_id=309026828]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.81960785, 0, 0, 0.078431375)
+
+[node name="CurrentAmmoLabel" type="RichTextLabel" parent="Player Hud Component" unique_id=1300729772]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.85
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = -0.2800293
+offset_top = 0.4399414
+offset_bottom = 0.11993408
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_3dnp8")
+theme_override_font_sizes/normal_font_size = 48
+text = "9/11"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="FPSLabel" type="RichTextLabel" parent="Player Hud Component" unique_id=2038851734]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.957
+anchor_top = 0.012
+anchor_right = 0.98800004
+anchor_bottom = 0.036000002
+theme = SubResource("Theme_3dnp8")
+text = "1"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("22_lwfhl")
+
+[node name="CurrentHealthLabel" type="RichTextLabel" parent="Player Hud Component" unique_id=971687083]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.85
+anchor_right = 0.25
+anchor_bottom = 0.95
+offset_left = -0.2800293
+offset_top = 0.4399414
+offset_bottom = 0.11993408
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_3dnp8")
+theme_override_font_sizes/normal_font_size = 48
+text = "YUMMY
+"
+scroll_active = false
+
+[node name="GameTextLabel" type="RichTextLabel" parent="Player Hud Component" unique_id=2056258142]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.75
+anchor_right = 0.7
+anchor_bottom = 0.95
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_ql4hh")
+theme_override_font_sizes/normal_font_size = 32
+text = "YUMMY
+"
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("22_ql4hh")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Player Hud Component" unique_id=1839380195]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.083000004
+anchor_bottom = 0.209
+offset_right = 192.63998
+offset_bottom = 192.28
+scale = Vector2(0.25, 0.25)
+max_value = 360.0
+fill_mode = 5
+texture_under = ExtResource("18_wseti")
+texture_progress = ExtResource("18_wseti")
+tint_under = Color(1, 1, 1, 0)
+tint_progress = Color(0.5411765, 0, 0.76862746, 1)
+
+[node name="CrosshairManager" type="Control" parent="Player Hud Component" unique_id=1527021452 node_paths=PackedStringArray("player_hud")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_rlg0r")
+player_hud = NodePath("..")
+
+[node name="TextureRect" type="TextureRect" parent="Player Hud Component/CrosshairManager" unique_id=1523865619]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(36, 36)
+stretch_mode = 2
+
+[node name="EntityHealthComponent" type="Node" parent="." unique_id=197234426]
+script = ExtResource("10_4t55l")
+base_health = 100.0
+max_overheal = 1.0
+metadata/_custom_type_script = "uid://yh0brd0dlfys"
+
+[node name="TimeSlowDelay" type="Timer" parent="." unique_id=1205983590]
+wait_time = 0.1
+one_shot = true
+ignore_time_scale = true

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ne2mfppp8bvq"]
+
+[ext_resource type="Script" uid="uid://bl3uothp45nk5" path="res://level/entities/logic/logic_node.gd" id="1_0l01s"]
+
+[node name="LogicRegister" type="Node3D"]
+script = ExtResource("1_0l01s")

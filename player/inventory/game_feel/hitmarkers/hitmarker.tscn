@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b2hn42bx0an5r"]
+
+[ext_resource type="Texture2D" uid="uid://bh2v4xxc4try0" path="res://player/inventory/game_feel/hitmarkers/hit_mark.png" id="1_rbits"]
+[ext_resource type="Script" uid="uid://qmwvdq8uxoys" path="res://player/inventory/game_feel/hitmarkers/hitmarker.gd" id="2_gsh1n"]
+
+[node name="Hitmarker" type="Sprite3D" unique_id=648895939]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+fixed_size = true
+texture_filter = 0
+texture = ExtResource("1_rbits")
+script = ExtResource("2_gsh1n")

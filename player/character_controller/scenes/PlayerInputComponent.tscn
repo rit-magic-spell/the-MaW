@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://copr5bcep1f5b"]
+
+[ext_resource type="Script" uid="uid://bdll87g8uha27" path="res://player/character_controller/scripts/player_input_component.gd" id="1_4digo"]
+
+[sub_resource type="Curve" id="Curve_nhrsw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[node name="Player Input Component" type="Node" unique_id=412037085]
+script = ExtResource("1_4digo")
+controller_look_curve = SubResource("Curve_nhrsw")
+
+[node name="JumpCooldownTimer" type="Timer" parent="." unique_id=1577190054]
+wait_time = 0.1
+one_shot = true
+
+[node name="BunnyhopTimer" type="Timer" parent="." unique_id=1777772698]
+wait_time = 0.25
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=378578933]
+wait_time = 0.1
+one_shot = true
+
+[node name="EvadeTimer" type="Timer" parent="." unique_id=728461534]
+wait_time = 0.5
+one_shot = true
+
+[node name="DeleteSaveTimer" type="Timer" parent="." unique_id=1764629890]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="JumpCooldownTimer" to="." method="_on_jump_cooldown_timer_timeout"]
+[connection signal="timeout" from="DeleteSaveTimer" to="." method="_on_delete_save_timer_timeout"]

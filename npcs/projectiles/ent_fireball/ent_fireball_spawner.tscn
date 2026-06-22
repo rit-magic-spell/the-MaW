@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o4i7eojjj2fe"]
+
+[ext_resource type="Script" uid="uid://cu45c1nuio4gv" path="res://npcs/projectiles/ent_fireball/ent_fireball_spawner.gd" id="1_0v343"]
+
+[node name="FireballSpawner" type="Node3D"]
+script = ExtResource("1_0v343")

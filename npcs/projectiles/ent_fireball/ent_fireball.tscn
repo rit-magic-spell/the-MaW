@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://bnuwovm5irjs"]
+
+[ext_resource type="Script" uid="uid://bp7y47clunb4i" path="res://npcs/projectiles/ent_fireball/ent_fireball.gd" id="1_ems7f"]
+[ext_resource type="Script" uid="uid://2ps0r1uywqmn" path="res://core/damage_info.gd" id="2_6akyr"]
+[ext_resource type="Texture2D" uid="uid://bsq2uni38d7jg" path="res://npcs/projectiles/ent_fireball/fireball.png" id="2_cugor"]
+[ext_resource type="AudioStream" uid="uid://be0uc57stgjp" path="res://npcs/projectiles/ent_fireball/projectile_riser.wav" id="4_6akyr"]
+
+[sub_resource type="Resource" id="Resource_f61nh"]
+script = ExtResource("2_6akyr")
+damage = 30.0
+damage_type = 1
+metadata/_custom_type_script = "uid://2ps0r1uywqmn"
+
+[sub_resource type="Animation" id="Animation_cugor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ems7f"]
+resource_name = "die"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6akyr"]
+_data = {
+&"RESET": SubResource("Animation_cugor"),
+&"die": SubResource("Animation_ems7f")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cugor"]
+radius = 0.1
+
+[node name="ent_fireball" type="Node3D" unique_id=250097343]
+transform = Transform3D(1.665, 0, 0, 0, 1.665, 0, 0, 0, 1.665, 0, 0, 0)
+script = ExtResource("1_ems7f")
+projectile_speed = 17.0
+damage_info = SubResource("Resource_f61nh")
+
+[node name="Sprite" type="Sprite3D" parent="." unique_id=841147084]
+billboard = 1
+texture = ExtResource("2_cugor")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1050577913]
+libraries/ = SubResource("AnimationLibrary_6akyr")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=311807833]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1340399702]
+shape = SubResource("SphereShape3D_cugor")
+
+[node name="Timer" type="Timer" parent="." unique_id=1962551884]
+wait_time = 15.0
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2126793957]
+stream = ExtResource("4_6akyr")
+autoplay = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

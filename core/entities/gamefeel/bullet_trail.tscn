@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://vnjr40yeluyf"]
+
+[ext_resource type="Script" uid="uid://dfa4354mifp3q" path="res://core/entities/gamefeel/bullet_trail.gd" id="1_2n0vv"]
+
+[sub_resource type="Curve" id="Curve_adbod"]
+_data = [Vector2(0, 0.0546875), 0.0, 0.0, 0, 0, Vector2(0.04833837, 1), 0.0, 0.0, 0, 0, Vector2(0.45921448, 0.3125), -1.6216891, -1.6216891, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_adbod"]
+colors = PackedColorArray(1, 0.9254902, 0.58431375, 0.65882355, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2n0vv"]
+gradient = SubResource("Gradient_adbod")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2y2cy"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+disable_ambient_light = true
+albedo_texture = SubResource("GradientTexture2D_2n0vv")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_texture = SubResource("GradientTexture2D_2n0vv")
+disable_receive_shadows = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_adbod"]
+material = SubResource("StandardMaterial3D_2y2cy")
+radius = 0.03
+section_length = 0.82
+section_rings = 5
+curve = SubResource("Curve_adbod")
+
+[node name="BulletTrail" type="Node3D" unique_id=1058056786]
+script = ExtResource("1_2n0vv")
+
+[node name="BulletTrail" type="MeshInstance3D" parent="." unique_id=973152736]
+transform = Transform3D(-5.7320566e-15, 1.3113416e-07, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, 1.3113416e-07, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("TubeTrailMesh_adbod")

@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7l4svftnoir"]
+
+[ext_resource type="Script" uid="uid://c4eoqt8y75yuw" path="res://npcs/core/healthbar/health_bar_control.gd" id="1_hmg4d"]
+
+[sub_resource type="Theme" id="Theme_32cv0"]
+
+[sub_resource type="Gradient" id="Gradient_hmg4d"]
+colors = PackedColorArray(1, 1, 1, 0.25490198, 1, 1, 1, 0.25490198)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sxrcx"]
+gradient = SubResource("Gradient_hmg4d")
+
+[sub_resource type="Gradient" id="Gradient_32cv0"]
+offsets = PackedFloat32Array(0, 0.9975787)
+colors = PackedColorArray(0.6189331, 8.061901e-07, 2.4065375e-07, 1, 0.8784314, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1r7qf"]
+gradient = SubResource("Gradient_32cv0")
+
+[sub_resource type="Gradient" id="Gradient_380g6"]
+colors = PackedColorArray(1, 0.73749995, 0.25, 0, 1, 0.7372549, 0.2509804, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_258j6"]
+gradient = SubResource("Gradient_380g6")
+
+[sub_resource type="Gradient" id="Gradient_1r7qf"]
+colors = PackedColorArray(1, 0.73749995, 0.25, 1, 1, 0.73749995, 0.25, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5kt8g"]
+gradient = SubResource("Gradient_1r7qf")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0005726, 1)
+theme = SubResource("Theme_32cv0")
+script = ExtResource("1_hmg4d")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.49500003
+anchor_right = 0.7
+anchor_bottom = 0.51900005
+offset_left = 0.6399536
+offset_top = 0.39996338
+offset_right = -0.64001465
+offset_bottom = -0.52008057
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.01
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_sxrcx")
+texture_progress = SubResource("GradientTexture1D_1r7qf")
+
+[node name="PressureBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.532
+anchor_right = 0.5
+anchor_bottom = 0.551
+offset_left = 0.6399536
+offset_top = 0.44000244
+offset_right = 6.1035156e-05
+offset_bottom = -0.08001709
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.01
+value = 100.0
+fill_mode = 1
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_258j6")
+
+[node name="PressureBar2" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.532
+anchor_right = 0.7
+anchor_bottom = 0.551
+offset_top = 0.44000244
+offset_right = -0.64001465
+offset_bottom = -0.08001709
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.01
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_5kt8g")

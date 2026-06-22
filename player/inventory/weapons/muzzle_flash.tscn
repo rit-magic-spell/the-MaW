@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://u86wi4gm7o7v"]
+
+[ext_resource type="Texture2D" uid="uid://dbiwpc5mybwo6" path="res://player/inventory/weapons/temp_weapon_textures/MuzzleFlash.png" id="1_jngd1"]
+[ext_resource type="Script" uid="uid://bcui5888w45ly" path="res://player/inventory/weapons/muzzle_flash.gd" id="2_luvu0"]
+
+[node name="MuzzleFlash" type="Sprite3D" unique_id=35538457]
+transform = Transform3D(0.1, 0, 6.661338e-16, 0, 0.1, 0, -6.661338e-16, 0, 0.1, 0, 0, 0)
+texture = ExtResource("1_jngd1")
+script = ExtResource("2_luvu0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1783420491]
+light_color = Color(0.9999998, 0.7665209, 0.5279868, 1)
+omni_attenuation = 2.0

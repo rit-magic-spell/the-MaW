@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://tpvclehjvudv"]
+
+[ext_resource type="Script" uid="uid://dowuqbq5pfqtx" path="res://player/character_controller/scripts/player_entity_monitor.gd" id="1_rycs3"]
+
+[node name="Player Entity Monitor" type="Control" unique_id=913571801 node_paths=PackedStringArray("GameInfo", "ControlsInfo", "WeaponInfo", "BodyInfo")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.0
+mouse_filter = 2
+script = ExtResource("1_rycs3")
+GameInfo = NodePath("Game/Info")
+ControlsInfo = NodePath("Controls/Info")
+WeaponInfo = NodePath("Weapon Info/Info")
+BodyInfo = NodePath("Body/Info")
+
+[node name="Game" type="Control" parent="." unique_id=1883456787]
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Game" unique_id=232940735]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 20
+text = "Game"
+
+[node name="Info" type="Label" parent="Game" unique_id=1184493505]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 129.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 12
+text = "Rendering FPS: #
+Physics Tick Rate: #
+Physics Frame Time: #"
+
+[node name="Controls" type="Control" parent="." unique_id=1903357442]
+visible = false
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 95.0
+offset_right = 48.0
+offset_bottom = 135.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Controls" unique_id=2052768329]
+layout_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "Controls"
+
+[node name="Info" type="Label" parent="Controls" unique_id=1434108155]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 135.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 12
+text = "Movement Input: (#, #)
+Wish Direction: (#, #, #)
+Wish Speed: #
+Jump Pressed: ?
+Duck Pressed: ?"
+
+[node name="Weapon Info" type="Control" parent="." unique_id=1241957041]
+visible = false
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 280.0
+offset_right = 48.0
+offset_bottom = 320.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Weapon Info" unique_id=94404312]
+layout_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "Weapon Info"
+
+[node name="Info" type="Label" parent="Weapon Info" unique_id=207114013]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 114.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 12
+text = "View Angles: (#, #, #)
+View Offset: #"
+
+[node name="Body" type="Control" parent="." unique_id=335628852]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 425.23
+offset_right = 48.0
+offset_bottom = 465.23
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Body" unique_id=1388389401]
+layout_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "Body
+"
+
+[node name="Info" type="Label" parent="Body" unique_id=1890569983]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 59.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 12
+text = "Velocity: (#, #, #)
+Speed: # m/s (# u/s)
+Ducking: ?
+Ducked: ?"
+
+[node name="Attribution" type="RichTextLabel" parent="." unique_id=1933765207]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -28.0
+offset_right = 262.0
+offset_bottom = -5.0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "GoldSrc Character Controller
+Made by ratmarrow, modified by alchemist under CC0.
+"
+fit_content = true
+
+[node name="TempCrosshair" type="RichTextLabel" parent="." unique_id=490611176]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "( - )"
+horizontal_alignment = 1
+vertical_alignment = 1

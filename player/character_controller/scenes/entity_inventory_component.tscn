@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ckopdxb7t1xl2"]
+
+[ext_resource type="Script" uid="uid://cibglnl6ritrs" path="res://player/character_controller/scripts/entity_inventory_component.gd" id="1_ua74s"]
+[ext_resource type="Script" uid="uid://cn4dvi7gl5xge" path="res://player/character_controller/scripts/entity_loadout_component.gd" id="2_0r6o2"]
+[ext_resource type="Script" uid="uid://cloc0gh04wbje" path="res://player/inventory/weapons/weapon_data.gd" id="2_ripvm"]
+[ext_resource type="Resource" uid="uid://bj7ybj265wup8" path="res://player/inventory/weapons/testing/test_gun_data.tres" id="3_j278j"]
+[ext_resource type="Script" uid="uid://ce8yqwogxfuld" path="res://player/inventory/core/inventory_data.gd" id="3_ripvm"]
+[ext_resource type="Script" uid="uid://w3gf7xqrfnnw" path="res://player/character_controller/scripts/entity_ammo_data.gd" id="8_5hq0c"]
+
+[node name="Entity Inventory Component" type="Node" unique_id=191337961]
+script = ExtResource("1_ua74s")
+debug_weapons = Array[ExtResource("2_ripvm")]([ExtResource("3_j278j")])
+
+[node name="Entity Loadout Component" type="Node" parent="." unique_id=537045157]
+script = ExtResource("2_0r6o2")
+
+[node name="Entity Inventory Data" type="Node" parent="." unique_id=2111133428]
+script = ExtResource("3_ripvm")
+
+[node name="Entity Ammo Data" type="Node" parent="." unique_id=1108716156]
+script = ExtResource("8_5hq0c")
+base_ammo = Dictionary[int, int]({
+0: 100,
+1: 6,
+2: 12,
+3: 100,
+4: 100
+})
+max_ammo = Dictionary[int, int]({
+0: 300,
+1: 24,
+2: 60,
+3: 500,
+4: 500
+})
+
+[node name="SwapToTimer" type="Timer" parent="." unique_id=1423674248]
+wait_time = 0.2
+one_shot = true
+
+[node name="SwapAwayTimer" type="Timer" parent="." unique_id=914880169]
+wait_time = 0.2
+one_shot = true

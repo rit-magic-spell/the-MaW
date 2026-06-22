@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ucu73dwrkwol"]
+
+[ext_resource type="Script" uid="uid://d0u363haoy55t" path="res://level/entities/scenes/debug_text/point_text.gd" id="1_edflx"]
+
+[node name="PointText" type="Node3D" unique_id=542030492]
+script = ExtResource("1_edflx")

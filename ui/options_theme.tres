@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ctdvucxgenq1l"]
+
+[ext_resource type="FontFile" uid="uid://djkwv14ynykxd" path="res://ui/texturina/otf/Texturina-Medium.otf" id="1_nrn70"]
+
+[resource]
+default_font = ExtResource("1_nrn70")

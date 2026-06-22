@@ -1,0 +1,384 @@
+[gd_scene format=3 uid="uid://c06m6g55bmxh0"]
+
+[ext_resource type="Script" uid="uid://j50v2xh1a76r" path="res://npcs/core/npc_base.gd" id="1_mw627"]
+[ext_resource type="Script" uid="uid://bn48muoepa571" path="res://npcs/core/npc_data.gd" id="2_th6lj"]
+[ext_resource type="Script" uid="uid://4s01654o17uc" path="res://npcs/core/npc_world_state.gd" id="3_8cw17"]
+[ext_resource type="Script" uid="uid://yh0brd0dlfys" path="res://core/entities/entity_health_component.gd" id="4_jsf07"]
+[ext_resource type="PackedScene" uid="uid://capsqh12ln5m" path="res://npcs/models/test/test_guy.glb" id="5_udve3"]
+[ext_resource type="Texture2D" uid="uid://u7pgr3n8y6tj" path="res://npcs/models/test/checkerboard.png" id="6_egoeq"]
+[ext_resource type="Script" uid="uid://5rud65r0inqk" path="res://core/hitbox.gd" id="7_xcdhu"]
+[ext_resource type="Script" uid="uid://dfa7rfencxl2f" path="res://npcs/core/ai_sequencer.gd" id="8_78mqj"]
+[ext_resource type="Script" uid="uid://dgd4ar1camccu" path="res://npcs/core/ai_sequence.gd" id="9_s0dpc"]
+[ext_resource type="Script" uid="uid://cvuwcbckasb21" path="res://npcs/core/ai_action.gd" id="10_b5jls"]
+[ext_resource type="Script" uid="uid://dbor0hh63cteu" path="res://npcs/core/ai_conditional.gd" id="11_u17e3"]
+[ext_resource type="Script" uid="uid://c0kgp701ftv83" path="res://npcs/core/ai_behaviour.gd" id="12_ncyku"]
+[ext_resource type="Script" uid="uid://cogsndc507g11" path="res://npcs/behaviours/orientation_behaviour.gd" id="13_v0eh4"]
+[ext_resource type="Script" uid="uid://cnmboy2mq054j" path="res://npcs/behaviours/spawn_entity_behaviour.gd" id="15_7dond"]
+[ext_resource type="AudioStream" uid="uid://d4gpcfwnibnkk" path="res://npcs/scenes/dspodth2.wav" id="16_8cw17"]
+[ext_resource type="Script" uid="uid://cehmly4a8l8oy" path="res://npcs/behaviours/audio_behaviour.gd" id="16_jsf07"]
+[ext_resource type="PackedScene" uid="uid://iyt74j0kub2j" path="res://npcs/projectiles/hitscan/ent_hitscan.tscn" id="16_th6lj"]
+[ext_resource type="AudioStream" uid="uid://fidlyneln0fp" path="res://npcs/scenes/dspodth3.wav" id="17_jsf07"]
+
+[sub_resource type="Resource" id="Resource_ot1wt"]
+script = ExtResource("2_th6lj")
+npc_name = "Test Guy"
+max_speed = 8.0
+metadata/_custom_type_script = "uid://bn48muoepa571"
+
+[sub_resource type="Resource" id="Resource_6k50y"]
+script = ExtResource("3_8cw17")
+metadata/_custom_type_script = "uid://4s01654o17uc"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_id0kk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rr6n"]
+albedo_texture = ExtResource("6_egoeq")
+uv1_scale = Vector3(5.65, 5.65, 5.65)
+texture_filter = 0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sphua"]
+radius = 35.93213
+height = 121.864746
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tc1vx"]
+radius = 17.796387
+height = 43.9599
+
+[sub_resource type="Resource" id="Resource_a31wx"]
+script = ExtResource("11_u17e3")
+check_variable = 10
+sequence_name = "Shoot"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_rqfsd"]
+script = ExtResource("13_v0eh4")
+metadata/_custom_type_script = "uid://cogsndc507g11"
+
+[sub_resource type="Resource" id="Resource_mw627"]
+script = ExtResource("15_7dond")
+entity_scene = ExtResource("16_th6lj")
+spawn_location = 2
+optional_position = NodePath("../../../test_guy/Armature/Skeleton3D/Gun/Marker3D")
+metadata/_custom_type_script = "uid://cnmboy2mq054j"
+
+[sub_resource type="Resource" id="Resource_tc1vx"]
+script = ExtResource("13_v0eh4")
+metadata/_custom_type_script = "uid://cogsndc507g11"
+
+[sub_resource type="Resource" id="Resource_th6lj"]
+script = ExtResource("15_7dond")
+entity_scene = ExtResource("16_th6lj")
+spawn_location = 2
+optional_position = NodePath("../../../test_guy/Armature/Skeleton3D/Gun/Marker3D")
+metadata/_custom_type_script = "uid://cnmboy2mq054j"
+
+[sub_resource type="Resource" id="Resource_ui2et"]
+script = ExtResource("11_u17e3")
+check_variable = 10
+sequence_name = "StopShoot"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_sphua"]
+script = ExtResource("15_7dond")
+entity_scene = ExtResource("16_th6lj")
+spawn_location = 2
+optional_position = NodePath("../../../test_guy/Armature/Skeleton3D/Gun/Marker3D")
+metadata/_custom_type_script = "uid://cnmboy2mq054j"
+
+[sub_resource type="Resource" id="Resource_3rr6n"]
+script = ExtResource("11_u17e3")
+check_variable = 10
+sequence_name = "Idle"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_eixbv"]
+script = ExtResource("13_v0eh4")
+metadata/_custom_type_script = "uid://cogsndc507g11"
+
+[sub_resource type="Resource" id="Resource_u3cpq"]
+script = ExtResource("11_u17e3")
+check_variable = 10
+sequence_name = "Dead"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_udve3"]
+script = ExtResource("16_jsf07")
+audio_stream_player_path = NodePath("../../../DeathSound")
+metadata/_custom_type_script = "uid://cehmly4a8l8oy"
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_udve3"]
+streams_count = 2
+stream_0/stream = ExtResource("16_8cw17")
+stream_1/stream = ExtResource("17_jsf07")
+
+[node name="NPCBase" type="CharacterBody3D" unique_id=1275474838 node_paths=PackedStringArray("animation_player", "ai_sequencer", "entity_health", "visibility_notifier", "nav_agent")]
+collision_layer = 4
+script = ExtResource("1_mw627")
+animation_player = NodePath("test_guy/AnimationPlayer")
+ai_sequencer = NodePath("AISequencer")
+entity_health = NodePath("EntityHealthComponent")
+visibility_notifier = NodePath("VisibleOnScreenNotifier3D")
+starting_sequence = "Idle"
+npc_data = SubResource("Resource_ot1wt")
+world_state = SubResource("Resource_6k50y")
+nav_agent = NodePath("NavigationAgent3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=812890510]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1184136364]
+shape = SubResource("CapsuleShape3D_id0kk")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=311571248]
+aabb = AABB(-0.4828859, -1, -0.5138605, 0.9657718, 2, 1.027721)
+
+[node name="EntityHealthComponent" type="Node" parent="." unique_id=1262848003]
+script = ExtResource("4_jsf07")
+base_health = 150.0
+metadata/_custom_type_script = "uid://yh0brd0dlfys"
+
+[node name="test_guy" parent="." unique_id=677172487 instance=ExtResource("5_udve3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="test_guy/Armature" parent_id_path=PackedInt32Array(677172487, 737921951) index="0" unique_id=611930587]
+bones/0/position = Vector3(0.31149027, 0.26392868, -92.656685)
+bones/0/rotation = Quaternion(-0.7495365, -0.022400767, 0.058185324, 0.6590203)
+bones/1/rotation = Quaternion(0.002314426, 0.01901105, -0.014762871, 0.9997077)
+bones/2/rotation = Quaternion(0.012738031, 0.0072538853, -0.0049252915, 0.99988043)
+bones/3/rotation = Quaternion(0.012726903, 0.0070789945, -0.004682039, 0.999883)
+bones/4/rotation = Quaternion(0.064096406, 0.0460004, 0.017161246, 0.9967353)
+bones/5/rotation = Quaternion(0.026296936, -0.093356915, 0.0192434, 0.9950993)
+bones/7/rotation = Quaternion(-0.66662407, -0.3207378, 0.56501424, -0.36537445)
+bones/8/position = Vector3(0.2684062, 12.583462, 1.7169778)
+bones/8/rotation = Quaternion(0.2630141, 0.05019667, -0.028613968, 0.9630603)
+bones/9/position = Vector3(-0.009127085, 24.938297, -0.9080814)
+bones/9/rotation = Quaternion(0.0553141, 0.012118384, 0.68147516, 0.7296473)
+bones/10/position = Vector3(6.3331313e-06, 24.810036, 8.138082e-06)
+bones/10/rotation = Quaternion(-0.036996093, -0.8662436, -0.10902912, 0.48617485)
+bones/11/position = Vector3(-2.9847064, 3.3283427, 1.0679812)
+bones/11/rotation = Quaternion(0.14056683, 0.014922116, 0.35505912, 0.92409486)
+bones/12/position = Vector3(-0.72155714, 3.605641, 1.734816e-05)
+bones/12/rotation = Quaternion(0.015815694, -0.0097902855, 0.095610686, 0.99524504)
+bones/13/position = Vector3(0.031679153, 3.6687229, 5.883937e-06)
+bones/13/rotation = Quaternion(-0.13265082, -0.001163939, 0.118635274, 0.9840366)
+bones/14/position = Vector3(0.68987954, 2.8474472, 6.1988853e-06)
+bones/15/position = Vector3(-3.535617, 10.290469, 0.08334736)
+bones/15/rotation = Quaternion(0.52791464, -0.02453067, 0.012456352, 0.84885174)
+bones/16/rotation = Quaternion(0.5349982, -0.0012642265, -0.078119345, 0.84123284)
+bones/17/position = Vector3(-0.017050266, 3.3127735, 1.5099549e-06)
+bones/17/rotation = Quaternion(0.2955039, 0.0017331265, -0.040275224, 0.9544907)
+bones/18/position = Vector3(-0.018881798, 2.6933856, -9.953983e-06)
+bones/19/position = Vector3(-1.0240014, 11.065638, -0.07199597)
+bones/19/rotation = Quaternion(0.5620375, 0.0050729443, -0.04081922, 0.8260883)
+bones/20/position = Vector3(0.02277255, 3.4865239, 5.9478043e-07)
+bones/20/rotation = Quaternion(0.5267846, -0.0007259171, -0.07443059, 0.84673357)
+bones/21/rotation = Quaternion(0.25780094, 0.0009469028, -0.034645695, 0.96557623)
+bones/22/position = Vector3(-0.01133883, 2.7830932, 4.3958426e-06)
+bones/23/position = Vector3(1.2978228, 11.329338, -0.13836639)
+bones/23/rotation = Quaternion(0.61642796, 0.012842058, -0.067615114, 0.7843978)
+bones/24/position = Vector3(-0.0075142384, 2.7489102, -7.788508e-06)
+bones/24/rotation = Quaternion(0.41568092, 0.0013762059, -0.06046192, 0.9074976)
+bones/25/position = Vector3(-0.010815144, 2.6704013, -6.8395166e-06)
+bones/25/rotation = Quaternion(0.3598467, -0.0008591139, -0.0463458, 0.9318593)
+bones/26/position = Vector3(0.018321753, 2.32057, -1.1473894e-05)
+bones/27/position = Vector3(3.2617917, 9.493998, -0.110239595)
+bones/27/rotation = Quaternion(0.6333316, 0.019984327, -0.07795199, 0.7696851)
+bones/28/position = Vector3(0.005949557, 2.7528617, -6.1249466e-06)
+bones/28/rotation = Quaternion(0.3805719, 0.0010270476, -0.06001131, 0.9228015)
+bones/29/rotation = Quaternion(0.23146605, -7.028365e-05, -0.024232885, 0.9725411)
+bones/30/position = Vector3(0.01715231, 1.7931167, -1.6093254e-06)
+bones/31/rotation = Quaternion(0.6877393, -0.3144266, 0.5028169, 0.41871932)
+bones/32/position = Vector3(-0.99432075, 12.567105, 1.6563107)
+bones/32/rotation = Quaternion(0.25097492, -0.17927738, -0.08861795, 0.9471104)
+bones/33/position = Vector3(1.257079, 24.9098, -0.8060627)
+bones/33/rotation = Quaternion(0.050138578, -0.013136947, -0.7675272, 0.6389175)
+bones/34/rotation = Quaternion(0.24339278, 0.28339648, 0.15036519, 0.91533417)
+bones/35/rotation = Quaternion(0.38987157, -0.2498928, -0.17451037, 0.86896497)
+bones/36/position = Vector3(0.77018803, 3.679318, -1.634847e-05)
+bones/36/rotation = Quaternion(-0.2363391, -0.11981167, 0.036272217, 0.9635732)
+bones/37/position = Vector3(-0.21632072, 3.5749779, 7.5214357e-06)
+bones/37/rotation = Quaternion(-0.22656113, -0.02580614, 0.32812095, 0.9167011)
+bones/38/position = Vector3(-0.5538523, 2.7362897, 9.685755e-07)
+bones/39/rotation = Quaternion(0.10319938, 0.0030519045, -0.050290093, 0.9933839)
+bones/40/position = Vector3(-0.02413316, 3.366282, 8.825373e-07)
+bones/40/rotation = Quaternion(0.45182577, 0.00084706675, 0.05054881, 0.89067256)
+bones/41/position = Vector3(0.0084088445, 3.1519623, 5.508441e-07)
+bones/41/rotation = Quaternion(0.57030416, -0.0024099385, 0.059666865, 0.81926024)
+bones/42/position = Vector3(0.015710473, 2.5567737, -1.2040139e-05)
+bones/43/position = Vector3(0.85986996, 11.955032, -0.18190645)
+bones/43/rotation = Quaternion(0.4505719, -0.0010658372, 0.020444501, 0.89250535)
+bones/44/position = Vector3(-0.0005269982, 3.0702674, 1.246799e-06)
+bones/44/rotation = Quaternion(0.76875246, -0.0027748495, 0.080963306, 0.6343949)
+bones/45/position = Vector3(0.025171876, 3.1992958, 1.0945564e-05)
+bones/45/rotation = Quaternion(0.7119689, 0.0015493967, 0.066287994, 0.6990735)
+bones/46/position = Vector3(-0.024661124, 2.135966, -6.418671e-06)
+bones/47/rotation = Quaternion(0.51361793, -0.028318089, 0.07656825, 0.85412645)
+bones/48/position = Vector3(0.003105104, 2.5134041, 5.4069715e-06)
+bones/48/rotation = Quaternion(0.55610186, -0.001237595, 0.05961744, 0.82897234)
+bones/49/position = Vector3(0.007868171, 2.3470619, 5.5847167e-06)
+bones/49/rotation = Quaternion(0.44519782, 0.00093980564, 0.042575862, 0.894419)
+bones/50/position = Vector3(-0.010970473, 1.6138885, -1.4036894e-05)
+bones/51/position = Vector3(-3.0382466, 9.039024, -0.17475292)
+bones/51/rotation = Quaternion(0.5849709, -0.031898525, 0.08598569, 0.80585235)
+bones/52/position = Vector3(-0.003119111, 2.9849637, -7.2118564e-07)
+bones/52/rotation = Quaternion(0.4805826, -0.00076019403, 0.055706583, 0.875178)
+bones/53/position = Vector3(0.012049973, 2.5731509, -1.2221304e-05)
+bones/53/rotation = Quaternion(0.3329399, -6.159068e-06, 0.03248053, 0.9423885)
+bones/54/position = Vector3(-0.008942885, 1.9042985, 1.0311604e-05)
+bones/55/rotation = Quaternion(0.10603663, 0.07402035, 0.9911999, -0.028286371)
+bones/56/rotation = Quaternion(-0.14621209, -0.06204077, 0.039454576, 0.9865173)
+bones/57/rotation = Quaternion(0.43598258, -0.041301996, -0.027160194, 0.8985966)
+bones/58/rotation = Quaternion(0.32459652, -0.012905849, 0.0044295206, 0.9457542)
+bones/60/rotation = Quaternion(-0.13352063, -0.04257615, 0.98887795, 0.049798828)
+bones/61/rotation = Quaternion(-0.22966261, 0.07362633, -0.055037614, 0.96891963)
+bones/62/rotation = Quaternion(0.6101303, 0.10283337, 0.047506005, 0.7841616)
+bones/63/rotation = Quaternion(0.34309787, 0.0139287915, -0.0038989189, 0.93918836)
+
+[node name="Ch15" parent="test_guy/Armature/Skeleton3D" index="0" unique_id=1240082235]
+material_override = SubResource("StandardMaterial3D_3rr6n")
+
+[node name="Gun" type="BoneAttachment3D" parent="test_guy/Armature/Skeleton3D" index="1" unique_id=1827728870]
+transform = Transform3D(0.30654052, 0.86955667, 0.3871742, 0.27101108, 0.3101905, -0.9112273, -0.9124612, 0.38425675, -0.14057317, -12.991844, 20.82362, -117.53481)
+bone_name = "mixamorig_RightHand"
+bone_idx = 34
+
+[node name="CSGBox3D" type="CSGBox3D" parent="test_guy/Armature/Skeleton3D/Gun" unique_id=550477159]
+transform = Transform3D(0.99976987, 0.0096483445, -0.01928991, -0.012564752, 0.9874926, -0.15718669, 0.01753141, 0.15739302, 0.98738074, 3.2196121, 10.656941, 1.1480083)
+size = Vector3(7.439209, 4.465393, 3.9962158)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="test_guy/Armature/Skeleton3D/Gun/CSGBox3D" unique_id=198834039]
+transform = Transform3D(0.9999995, 8.8475645e-08, -2.9802322e-08, 5.5879354e-08, 0.9999997, -1.1175871e-08, -4.4703484e-08, 5.5879354e-08, 0.9999999, 4.949623, 19.422287, -1.4305115e-06)
+size = Vector3(3.297058, 43.30995, 3.9962158)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="test_guy/Armature/Skeleton3D/Gun/CSGBox3D" unique_id=64362785]
+transform = Transform3D(0.9999996, 1.15484e-07, 4.4703484e-08, 2.7008355e-08, 0.999999, -2.6077032e-08, -2.9802322e-08, 2.1606684e-07, 0.99999994, 2.6143456, 23.78115, 4.2915344e-06)
+size = Vector3(2.191185, 16.642551, 3.9962158)
+
+[node name="Marker3D" type="Marker3D" parent="test_guy/Armature/Skeleton3D/Gun" unique_id=545292908]
+transform = Transform3D(30.536598, 83.36776, 21.38818, 82.05686, -35.047493, 19.454035, 25.96726, 12.712847, -86.62674, 8.669205, 51.73574, 7.638792)
+
+[node name="Body" type="BoneAttachment3D" parent="test_guy/Armature/Skeleton3D" index="2" unique_id=964000649]
+transform = Transform3D(0.99679005, -0.014190758, -0.078792155, 0.07646018, -0.1230517, 0.98945045, -0.023736557, -0.99229884, -0.121571705, -0.046093106, -2.0909452, -103.30641)
+bone_name = "mixamorig_Spine"
+bone_idx = 1
+
+[node name="Hitbox" type="Area3D" parent="test_guy/Armature/Skeleton3D/Body" unique_id=787360120]
+script = ExtResource("7_xcdhu")
+metadata/_custom_type_script = "uid://5rud65r0inqk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="test_guy/Armature/Skeleton3D/Body/Hitbox" unique_id=1115194238]
+transform = Transform3D(1, -4.656613e-10, -1.4901161e-08, -3.7252903e-09, 1, 1.6391277e-07, 0, 1.4901161e-08, 0.99999774, -9.536743e-07, -12.222413, -4.7683716e-06)
+shape = SubResource("CapsuleShape3D_sphua")
+
+[node name="Head" type="BoneAttachment3D" parent="test_guy/Armature/Skeleton3D" index="3" unique_id=931336495]
+transform = Transform3D(0.987504, -0.07394112, -0.13917127, 0.14661267, 0.107157424, 0.98337275, -0.057798445, -0.9914888, 0.116659015, -0.3833233, -3.4720697, -152.71835)
+bone_name = "mixamorig_Head"
+bone_idx = 5
+
+[node name="Hitbox" type="Area3D" parent="test_guy/Armature/Skeleton3D/Head" unique_id=461806455]
+script = ExtResource("7_xcdhu")
+damage_multiplier = 2.0
+metadata/_custom_type_script = "uid://5rud65r0inqk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="test_guy/Armature/Skeleton3D/Head/Hitbox" unique_id=700980550]
+transform = Transform3D(1, 2.2752542e-06, -6.4075937e-07, -2.2752542e-06, 1, -3.7252935e-08, 6.407593e-07, 3.725439e-08, 1, -0.13001895, 7.0433655, 3.8019943)
+shape = SubResource("CapsuleShape3D_tc1vx")
+
+[node name="AISequencer" type="Node" parent="." unique_id=1480342578 node_paths=PackedStringArray("npc_owner")]
+script = ExtResource("8_78mqj")
+npc_owner = NodePath("..")
+global_interrupts = Dictionary[int, String]({
+7: "Death"
+})
+metadata/_custom_type_script = "uid://dfa7rfencxl2f"
+
+[node name="Idle" type="Node" parent="AISequencer" unique_id=1886208438]
+script = ExtResource("9_s0dpc")
+custom_interrupts = Dictionary[int, String]({
+10: "StartShoot"
+})
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="Idle" type="Node" parent="AISequencer/Idle" unique_id=1388847820]
+script = ExtResource("10_b5jls")
+animation = "Idle"
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="StartShoot" type="Node" parent="AISequencer" unique_id=549233793]
+script = ExtResource("9_s0dpc")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="AimUp" type="Node" parent="AISequencer/StartShoot" unique_id=331047386]
+script = ExtResource("10_b5jls")
+speed_multiplier = 1.5
+animation = "DownToAim"
+conditions = Array[ExtResource("11_u17e3")]([SubResource("Resource_a31wx")])
+behaviours = Array[ExtResource("12_ncyku")]([SubResource("Resource_rqfsd")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Shoot" type="Node" parent="AISequencer" unique_id=226844791]
+script = ExtResource("9_s0dpc")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="Shoot" type="Node" parent="AISequencer/Shoot" unique_id=951664497]
+script = ExtResource("10_b5jls")
+speed_multiplier = 1.5
+animation = "Fire"
+behaviours = Array[ExtResource("12_ncyku")]([SubResource("Resource_mw627"), SubResource("Resource_tc1vx")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Shoot2" type="Node" parent="AISequencer/Shoot" unique_id=279676976]
+script = ExtResource("10_b5jls")
+speed_multiplier = 1.5
+animation = "Fire"
+behaviours = Array[ExtResource("12_ncyku")]([SubResource("Resource_th6lj"), SubResource("Resource_tc1vx")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Shoot3" type="Node" parent="AISequencer/Shoot" unique_id=1042622730]
+script = ExtResource("10_b5jls")
+speed_multiplier = 1.5
+animation = "Fire"
+conditions = Array[ExtResource("11_u17e3")]([SubResource("Resource_ui2et")])
+behaviours = Array[ExtResource("12_ncyku")]([SubResource("Resource_sphua"), SubResource("Resource_tc1vx")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="StopShoot" type="Node" parent="AISequencer" unique_id=1188824307]
+script = ExtResource("9_s0dpc")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="AimDown" type="Node" parent="AISequencer/StopShoot" unique_id=569254039]
+script = ExtResource("10_b5jls")
+animation = "AimToDown"
+conditions = Array[ExtResource("11_u17e3")]([SubResource("Resource_3rr6n")])
+behaviours = Array[ExtResource("12_ncyku")]([SubResource("Resource_eixbv")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Death" type="Node" parent="AISequencer" unique_id=1056492310]
+script = ExtResource("9_s0dpc")
+interrupt_filter_mode = 0
+interrupt_filter = Array[int]([14])
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="Death" type="Node" parent="AISequencer/Death" unique_id=1231707788]
+script = ExtResource("10_b5jls")
+speed_multiplier = 2.5
+animation = "Death"
+conditions = Array[ExtResource("11_u17e3")]([SubResource("Resource_u3cpq")])
+behaviours = Array[ExtResource("12_ncyku")]([SubResource("Resource_udve3")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Dead" type="Node" parent="AISequencer" unique_id=1677191686]
+script = ExtResource("9_s0dpc")
+interrupt_filter_mode = 0
+interrupt_filter = Array[int]([14])
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="Dead" type="Node" parent="AISequencer/Dead" unique_id=381120343]
+script = ExtResource("10_b5jls")
+animation = "Dead"
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="." unique_id=2134475441]
+stream = SubResource("AudioStreamRandomizer_udve3")
+volume_db = -5.212
+
+[editable path="test_guy"]

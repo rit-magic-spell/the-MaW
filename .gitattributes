@@ -1,0 +1,63 @@
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
+<<<<<<< HEAD
+# --- Godot Project LFS Rules ---
+=======
+# --- Godot Project LFS Rules ---
+>>>>>>> 15af6092f0df114a9884b2e477da2273f34faf39
+# Images / Textures
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.bmp filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.svg filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
+=======
+>>>>>>> 15af6092f0df114a9884b2e477da2273f34faf39
+# Normal maps / special texture formats
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.ktx filter=lfs diff=lfs merge=lfs -text
+*.basis filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
+=======
+>>>>>>> 15af6092f0df114a9884b2e477da2273f34faf39
+# Audio
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.flac filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
+=======
+>>>>>>> 15af6092f0df114a9884b2e477da2273f34faf39
+# Video / Cutscenes
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.webm filter=lfs diff=lfs merge=lfs -text
+*.ogv filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
+=======
+>>>>>>> 15af6092f0df114a9884b2e477da2273f34faf39
+# 3D Assets
+*.glb filter=lfs diff=lfs merge=lfs -text
+*.gltf filter=lfs diff=lfs merge=lfs -text
+*.dae filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
+=======
+>>>>>>> 15af6092f0df114a9884b2e477da2273f34faf39
+# Other large binary files (e.g., Photoshop files, zips of raw art, etc.)
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.xcf filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.blend* filter=lfs diff=lfs merge=lfs -text
+*.blend1 filter=lfs diff=lfs merge=lfs -text
+*.blend2 filter=lfs diff=lfs merge=lfs -text
+=======
+>>>>>>> 15af6092f0df114a9884b2e477da2273f34faf39
+.zip filter=lfs diff=lfs merge=lfs -text
+.tar.gz filter=lfs diff=lfs merge=lfs -text

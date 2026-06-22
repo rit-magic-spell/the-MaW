@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://doyfww2vtw5bw"]
+
+[ext_resource type="Texture2D" uid="uid://b353b2i2r30k8" path="res://core/entities/gamefeel/bullet_holes/bullet_holes_wood.tga" id="1_2octc"]
+[ext_resource type="Script" uid="uid://pdvv0mtnntrp" path="res://core/entities/gamefeel/bullet_holes/wall_hit_sprite.gd" id="2_lolw0"]
+
+[node name="BulletHitSprite" type="Sprite3D" unique_id=1472582855]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_2octc")
+hframes = 4
+vframes = 4
+region_rect = Rect2(0, 0, 256, 256)
+script = ExtResource("2_lolw0")
+
+[node name="Timer" type="Timer" parent="." unique_id=1309143468]
+wait_time = 120.0
+autostart = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

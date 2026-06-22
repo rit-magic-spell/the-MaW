@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EntityConfig" format=3 uid="uid://c1hjc38orbiye"]
+
+[ext_resource type="Script" uid="uid://cr25kx72mlmei" path="res://player/character_controller/scripts/entity_config.gd" id="1_dk8f7"]
+
+[resource]
+script = ExtResource("1_dk8f7")
+MAX_SPEED = 7.5
+JUMP_HEIGHT = 1.6
+STEP_HEIGHT = 0.6
+HULL_STANDING_BOUNDS = Vector3(0.813, 1.626, 0.813)
+HULL_DUCKING_BOUNDS = Vector3(0.813, 0.813, 0.813)
+DUCKING_SPEED_MULTIPLIER = 0.8
+BUNNYHOP_CAP_MODE = 1
+SPEED_THRESHOLD_FACTOR = 1.25

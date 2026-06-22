@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://x4khndexy2ry"]
+
+[ext_resource type="Script" uid="uid://dilovgqneklyr" path="res://level/entities/scenes/lever/point_lever_relay.gd" id="1_bih28"]
+[ext_resource type="PackedScene" uid="uid://dg5ol0gqceblq" path="res://level/entities/scenes/lever/lever.fbx" id="1_hatds"]
+[ext_resource type="Material" uid="uid://cowyaqtwkaffx" path="res://level/entities/scenes/lever/lever_material.tres" id="2_qk630"]
+[ext_resource type="Script" uid="uid://bo5vk1la15q8y" path="res://level/entities/scenes/lever/special_lever_config.gd" id="4_bih28"]
+[ext_resource type="AudioStream" uid="uid://di71qgiijei2y" path="res://level/entities/scenes/lever/switch_on.mp3" id="4_t3i0e"]
+[ext_resource type="AudioStream" uid="uid://c0ws0kb02wsqj" path="res://level/entities/scenes/lever/switch_off.mp3" id="5_t3i0e"]
+
+[sub_resource type="Animation" id="Animation_qk630"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Armature/Skeleton3D:Bone.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071068, 7.659772e-17, 7.695694e-17, 0.7071067)
+
+[sub_resource type="Animation" id="Animation_bih28"]
+resource_name = "lever_unuse"
+length = 0.3
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Armature/Skeleton3D:Bone.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.63866705, 8.371233e-17, -6.915071e-17, 0.7694832, 0.13333333, 1, 0.6035956, 8.641612e-17, 6.574066e-17, 0.7972906, 0.3, 1, 0.7071068, 7.659772e-17, 7.695694e-17, 0.7071067)
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UseTrigger")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_lever_pushed"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kprv1"]
+resource_name = "lever_use"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Armature/Skeleton3D:Bone.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071068, 7.659772e-17, 7.695694e-17, 0.7071067, 0.10000001, 1, 0.6035956, 8.641612e-17, 6.574066e-17, 0.7972906, 0.23333333, 1, -0.63866705, 8.371233e-17, -6.915071e-17, 0.7694832)
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UseTrigger")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_lever_pulled"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bh2kq"]
+resource_name = "lever_used"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Armature/Skeleton3D:Bone.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071068, 7.659772e-17, 7.695694e-17, 0.7071067, 0.10000001, 1, 0.6035956, 8.641612e-17, 6.574066e-17, 0.7972906, 0.23333333, 1, -0.63866705, 8.371233e-17, -6.915071e-17, 0.7694832)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bh2kq"]
+_data = {
+&"RESET": SubResource("Animation_qk630"),
+&"lever_unuse": SubResource("Animation_bih28"),
+&"lever_use": SubResource("Animation_kprv1"),
+&"lever_used": SubResource("Animation_bh2kq")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qk630"]
+size = Vector3(0.36240196, 0.5177002, 0.18554688)
+
+[node name="point_lever" type="Node3D" unique_id=1728137849]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_bih28")
+
+[node name="lever" parent="." unique_id=1392336509 instance=ExtResource("1_hatds")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Armature" parent="lever" index="0" unique_id=1643235278]
+transform = Transform3D(8, 0, 0, 0, -3.496911e-07, 8, 0, -8, -3.496911e-07, 0, 0, 0)
+
+[node name="Skeleton3D" parent="lever/Armature" index="0" unique_id=203650207]
+bones/1/scale = Vector3(1, 0.99999976, 0.99999976)
+
+[node name="Cylinder_002" parent="lever/Armature/Skeleton3D" index="0" unique_id=314686421]
+transform = Transform3D(1, -2.1760371e-14, -2.3841842e-07, 7.500965e-09, -0.99950504, 0.03146144, -2.383004e-07, -0.031461444, -0.999505, -0.008835231, 0.009483717, 4.5812303e-05)
+bone_idx = 0
+
+[node name="Cylinder_002" parent="lever/Armature/Skeleton3D/Cylinder_002" index="0" unique_id=900130214]
+material_override = ExtResource("2_qk630")
+
+[node name="Cylinder_003" parent="lever/Armature/Skeleton3D" index="1" unique_id=2122298814]
+transform = Transform3D(1, -2.1760371e-14, -2.3841842e-07, 7.500965e-09, -0.99950504, 0.03146144, -2.383004e-07, -0.031461444, -0.999505, -0.008835231, 0.009483717, 4.5812303e-05)
+bone_idx = 0
+
+[node name="Cylinder_001" parent="lever/Armature/Skeleton3D" index="2" unique_id=1656324511]
+transform = Transform3D(1, -5.0799467e-19, 2.1715902e-16, 2.1715908e-16, -1.1920926e-07, -0.9999997, 5.080345e-19, 0.9999997, -1.1920926e-07, -0.008835231, 0.009483717, 4.5812296e-05)
+bone_idx = 1
+
+[node name="Cylinder_001" parent="lever/Armature/Skeleton3D/Cylinder_001" index="0" unique_id=1660380015]
+material_override = ExtResource("2_qk630")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1182142208]
+libraries/ = SubResource("AnimationLibrary_bh2kq")
+
+[node name="UseTrigger" type="Area3D" parent="." unique_id=307425814]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_bih28")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UseTrigger" unique_id=1921603872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014028549, -0.004211426, -0.103515625)
+shape = SubResource("BoxShape3D_qk630")
+
+[node name="SwitchSound" type="AudioStreamPlayer3D" parent="." unique_id=1535478753]
+stream = ExtResource("4_t3i0e")
+volume_db = -30.0
+
+[node name="SwitchActiveSound" type="AudioStreamPlayer3D" parent="." unique_id=262583700]
+stream = ExtResource("5_t3i0e")
+volume_db = -30.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1347502096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6365284e-08, 0, 0.4953972)
+omni_range = 0.7587299
+omni_shadow_mode = 0
+
+[editable path="lever"]

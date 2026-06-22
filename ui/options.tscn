@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://bbh87padl684k"]
+
+[ext_resource type="FontFile" uid="uid://djkwv14ynykxd" path="res://ui/texturina/otf/Texturina-Medium.otf" id="1_usno6"]
+[ext_resource type="Script" uid="uid://ck0graoms6o3" path="res://ui/options.gd" id="1_vg7j1"]
+[ext_resource type="Theme" uid="uid://ctdvucxgenq1l" path="res://ui/options_theme.tres" id="2_dnk7n"]
+[ext_resource type="Script" uid="uid://7p4fw31blsaj" path="res://ui/sensitivity_control.gd" id="2_vg7j1"]
+
+[node name="Player Options" type="Control" unique_id=2046191917]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vg7j1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1962322014]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.40600002
+anchor_top = 0.22200002
+anchor_right = 0.59400004
+anchor_bottom = 0.80300003
+offset_left = 0.47998047
+offset_top = 0.23997498
+offset_right = -0.48010254
+offset_bottom = -0.24005127
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28, 0.28, 0.28, 0.7607843)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1803824419]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.56700003
+offset_bottom = 259.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer" unique_id=550978509]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme = ExtResource("2_dnk7n")
+theme_override_fonts/normal_font = ExtResource("1_usno6")
+theme_override_font_sizes/normal_font_size = 46
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/VBoxContainer" unique_id=455070232]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+
+[node name="SensitivityLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/Control" unique_id=1095064943]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.50600004
+offset_bottom = 0.039993286
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_usno6")
+theme_override_font_sizes/normal_font_size = 46
+text = "Sensitivity"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/VBoxContainer/Control" unique_id=552455380]
+layout_mode = 1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_vg7j1")
+
+[node name="SensitivitySlider" type="HSlider" parent="ColorRect/VBoxContainer/Control/Control" unique_id=908485328]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.76000005
+anchor_bottom = 1.0
+offset_left = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.1
+max_value = 15.0
+step = 0.1
+value = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/Control/Control" unique_id=748322794]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.76900005
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsText" type="RichTextLabel" parent="ColorRect/VBoxContainer" unique_id=477746408]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+theme = ExtResource("2_dnk7n")
+text = "WASD - Movement
+SPACE - Jump
+Left Mouse - Fire
+Right Mouse - Alt Fire
+R - Reload
+E - Use
+F - Stopwatch
+1/2/3 - Select Weapon
+Scroll Up / Down - Select Weapon"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="ColorRect/VBoxContainer" unique_id=1238121392]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_dnk7n")
+theme_override_font_sizes/font_size = 32
+text = "CONTINUE"
+
+[node name="Quit" type="Button" parent="ColorRect/VBoxContainer" unique_id=1123007782]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_dnk7n")
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+
+[connection signal="value_changed" from="ColorRect/VBoxContainer/Control/Control/SensitivitySlider" to="ColorRect/VBoxContainer/Control/Control" method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
