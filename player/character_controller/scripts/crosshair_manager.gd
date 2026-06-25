@@ -2,15 +2,16 @@ extends Control
 
 class_name CrosshairManager
 
-const CROSSHAIR_EMPTY = preload("uid://myxjhynyfjdq")
-const CROSSHAIR_SHOTGUN = preload("uid://dsexxp71mwmhm")
-const CROSSHAIR_THOMPSON = preload("uid://yuh17uih1k2n")
-const CROSSHAIR_REVOLVER = preload("uid://yuh17uih1k2n")
+const CROSSHAIR_EMPTY = preload("res://player/inventory/weapons/crosshairs/crosshair_empty.png")
+const CROSSHAIR_SHOTGUN = preload("res://player/inventory/weapons/crosshairs/crosshair_shotgun.png")
+const CROSSHAIR_THOMPSON = preload("res://player/inventory/weapons/crosshairs/crosshair_thompson.png")
+const CROSSHAIR_REVOLVER = preload("res://player/inventory/weapons/crosshairs/crosshair_revolver.png")
 @onready var texture_rect: TextureRect = $TextureRect
 @export var player_hud: PlayerHUD
 
 var crosshair_scale := 1.0
 var default_crosshair_scale = 1.0
+
 
 
 enum CROSSHAIR
