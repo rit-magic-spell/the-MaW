@@ -117,7 +117,7 @@ aabb = AABB(-0.4828859, -1, -0.5138605, 0.9657718, 2, 1.027721)
 
 [node name="EntityHealthComponent" type="Node" parent="." unique_id=1262848003]
 script = ExtResource("2_id0kk")
-base_health = 150.0
+base_health = 60.0
 metadata/_custom_type_script = "uid://yh0brd0dlfys"
 
 [node name="ItemDropController" parent="." unique_id=1087251144 instance=ExtResource("3_u3cpq")]
@@ -129,7 +129,7 @@ ExtResource("7_j3nhx"): 0.5
 [node name="test_guy" parent="." unique_id=677172487 instance=ExtResource("3_4d03q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="test_guy/Armature" parent_id_path=PackedInt32Array(677172487, 659209187) index="0" unique_id=406653671]
+[node name="Skeleton3D" parent="test_guy/Armature" parent_id_path=PackedInt32Array(677172487, 291720418) index="0" unique_id=783089972]
 bones/0/position = Vector3(0.31149027, 0.26392868, -92.656685)
 bones/0/rotation = Quaternion(-0.7495365, -0.022400767, 0.058185324, 0.6590203)
 bones/1/rotation = Quaternion(0.002314426, 0.01901105, -0.014762871, 0.9997077)
@@ -223,7 +223,7 @@ bones/61/rotation = Quaternion(-0.22966261, 0.07362633, -0.055037614, 0.96891963
 bones/62/rotation = Quaternion(0.6101303, 0.10283337, 0.047506005, 0.7841616)
 bones/63/rotation = Quaternion(0.34309787, 0.0139287915, -0.0038989189, 0.93918836)
 
-[node name="Ch15" parent="test_guy/Armature/Skeleton3D" index="0" unique_id=1122438928]
+[node name="Ch15" parent="test_guy/Armature/Skeleton3D" index="0" unique_id=1193027448]
 material_override = SubResource("StandardMaterial3D_3rr6n")
 
 [node name="Gun" type="BoneAttachment3D" parent="test_guy/Armature/Skeleton3D" index="1" unique_id=1827728870]

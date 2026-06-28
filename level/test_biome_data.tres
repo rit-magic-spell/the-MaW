@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://buqgsp2etg80p" path="res://biome_data.gd" id="1_08dq7"]
 [ext_resource type="PackedScene" uid="uid://yi0jr4cbvxip" path="res://level/test_level.tscn" id="1_f6fxf"]
+[ext_resource type="PackedScene" uid="uid://drcqtep0tpa2d" path="res://level/DENNYFIRST.tscn" id="1_p72ku"]
 [ext_resource type="PackedScene" uid="uid://f18nt6fbryh" path="res://level/test_level_two.tscn" id="2_e8fp2"]
 
 [resource]
 script = ExtResource("1_08dq7")
-levels = Array[PackedScene]([ExtResource("1_f6fxf"), ExtResource("2_e8fp2")])
+levels = Array[PackedScene]([ExtResource("1_p72ku"), ExtResource("1_f6fxf"), ExtResource("2_e8fp2")])
 metadata/_custom_type_script = "uid://buqgsp2etg80p"
