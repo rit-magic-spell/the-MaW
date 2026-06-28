@@ -4,15 +4,23 @@
 [ext_resource type="Script" uid="uid://dfa7rfencxl2f" path="res://npcs/core/ai_sequencer.gd" id="1_ke5bj"]
 [ext_resource type="Script" uid="uid://dgd4ar1camccu" path="res://npcs/core/ai_sequence.gd" id="2_fh1rl"]
 [ext_resource type="Script" uid="uid://cvuwcbckasb21" path="res://npcs/core/ai_action.gd" id="3_5i7nu"]
-[ext_resource type="Script" uid="uid://ca8qocwfrg1sk" path="res://npcs/item_drop_controller.gd" id="5_5i7nu"]
+[ext_resource type="Script" uid="uid://yh0brd0dlfys" path="res://core/entities/entity_health_component.gd" id="6_adtge"]
+[ext_resource type="PackedScene" uid="uid://c8ca7m3dy5d6p" path="res://npcs/scenes/item_drop_component.tscn" id="6_ljjod"]
+[ext_resource type="Script" uid="uid://cloc0gh04wbje" path="res://player/inventory/weapons/weapon_data.gd" id="7_g2tjt"]
+[ext_resource type="Resource" uid="uid://by80mm7fbrav7" path="res://player/inventory/weapons/testing/test_shotgun_data.tres" id="8_d4o03"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yyc73"]
 
-[node name="NPCBase" type="CharacterBody3D" unique_id=193092592]
+[node name="NPCBase" type="CharacterBody3D" unique_id=193092592 node_paths=PackedStringArray("entity_health")]
 script = ExtResource("1_fh1rl")
+entity_health = NodePath("EntityHealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=267128995]
 shape = SubResource("CapsuleShape3D_yyc73")
+
+[node name="EntityHealthComponent" type="Node" parent="." unique_id=817145421]
+script = ExtResource("6_adtge")
+metadata/_custom_type_script = "uid://yh0brd0dlfys"
 
 [node name="AISequencer" type="Node" parent="." unique_id=1479951572]
 script = ExtResource("1_ke5bj")
@@ -23,5 +31,7 @@ script = ExtResource("2_fh1rl")
 [node name="AIAction" type="Node" parent="AISequencer/AISequence" unique_id=473841030]
 script = ExtResource("3_5i7nu")
 
-[node name="ItemDropController" type="Node3D" parent="." unique_id=552393163]
-script = ExtResource("5_5i7nu")
+[node name="ItemDropController" parent="." unique_id=1087251144 instance=ExtResource("6_ljjod")]
+loot_table = Dictionary[ExtResource("7_g2tjt"), float]({
+ExtResource("8_d4o03"): 0.5
+})
