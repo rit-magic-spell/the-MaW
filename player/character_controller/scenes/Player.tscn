@@ -4,24 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://copr5bcep1f5b" path="res://player/character_controller/scenes/PlayerInputComponent.tscn" id="1_srod8"]
 [ext_resource type="Resource" uid="uid://c1hjc38orbiye" path="res://player/character_controller/resources/default_config.tres" id="2_5rl8c"]
 [ext_resource type="PackedScene" uid="uid://danln6hwvmnnk" path="res://player/character_controller/scenes/EntityMotionComponent.tscn" id="2_83bak"]
-[ext_resource type="AudioStream" uid="uid://bvv1vumi8bj12" path="res://player/inventory/game_feel/stopwatch_sound.mp3" id="2_uq8h6"]
+[ext_resource type="AudioStream" uid="uid://ik0uttbvljsr" path="res://player/inventory/game_feel/stopwatch_sound.mp3" id="2_uq8h6"]
 [ext_resource type="Script" uid="uid://nyr8dj13jlcs" path="res://player/character_controller/scripts/player_audio_component.gd" id="2_w1dgm"]
-[ext_resource type="AudioStream" uid="uid://cpm0m3iknydub" path="res://player/inventory/game_feel/heartbeat.wav" id="3_hwd2j"]
-[ext_resource type="AudioStream" uid="uid://cdvw2n2pp8bvh" path="res://player/inventory/game_feel/end_stopwatch_sound.mp3" id="3_mm1xe"]
+[ext_resource type="AudioStream" uid="uid://b3iahl3tsyn3f" path="res://player/inventory/game_feel/heartbeat.wav" id="3_hwd2j"]
+[ext_resource type="AudioStream" uid="uid://b8bxtjusy1vp6" path="res://player/inventory/game_feel/end_stopwatch_sound.mp3" id="3_mm1xe"]
 [ext_resource type="PackedScene" uid="uid://dnqjewyut21cd" path="res://player/character_controller/scenes/EntityBodyComponent.tscn" id="3_st460"]
-[ext_resource type="AudioStream" uid="uid://bqn37dbnhqxaa" path="res://player/inventory/game_feel/punch.wav" id="4_g5g7p"]
+[ext_resource type="AudioStream" uid="uid://bbju03y1sqa0l" path="res://player/inventory/game_feel/punch.wav" id="4_g5g7p"]
 [ext_resource type="PackedScene" uid="uid://cplcfn10tis3v" path="res://player/character_controller/scenes/EntityViewComponent.tscn" id="4_tt081"]
 [ext_resource type="PackedScene" uid="uid://ckopdxb7t1xl2" path="res://player/character_controller/scenes/entity_inventory_component.tscn" id="5_qobfj"]
 [ext_resource type="PackedScene" uid="uid://dmqtwg515vvqp" path="res://player/character_controller/scenes/PlayerCameraComponent.tscn" id="5_yuc8u"]
 [ext_resource type="PackedScene" uid="uid://tpvclehjvudv" path="res://player/character_controller/scenes/PlayerEntityMonitor.tscn" id="7_dwmci"]
-[ext_resource type="AudioStream" uid="uid://cljhxcedbwa8r" path="res://player/character_controller/audio/footstep_boot_2.wav" id="9_ql4hh"]
+[ext_resource type="AudioStream" uid="uid://6smo0dsy0xh" path="res://player/character_controller/audio/footstep_boot_2.wav" id="9_ql4hh"]
 [ext_resource type="Script" uid="uid://yh0brd0dlfys" path="res://core/entities/entity_health_component.gd" id="10_4t55l"]
-[ext_resource type="AudioStream" uid="uid://d6ar7owqf3l5" path="res://player/character_controller/audio/footstep_boot_3.wav" id="10_lwfhl"]
-[ext_resource type="AudioStream" uid="uid://b4ej76hyxoupw" path="res://player/inventory/game_feel/use_stopwatch_sound.mp3" id="12_dqe18"]
+[ext_resource type="AudioStream" uid="uid://b04moiq5a0yul" path="res://player/character_controller/audio/footstep_boot_3.wav" id="10_lwfhl"]
+[ext_resource type="AudioStream" uid="uid://ducwbkxh70tyn" path="res://player/inventory/game_feel/use_stopwatch_sound.mp3" id="12_dqe18"]
 [ext_resource type="PackedScene" uid="uid://bbh87padl684k" path="res://ui/options.tscn" id="16_3dnp8"]
 [ext_resource type="Script" uid="uid://56hjnrsgdqdc" path="res://player/character_controller/scenes/player_hud_component.gd" id="16_itf7b"]
-[ext_resource type="FontFile" uid="uid://bbkowaprofby4" path="res://ui/texturina/ttf/Texturina12pt-Regular.ttf" id="17_wseti"]
-[ext_resource type="Texture2D" uid="uid://dpqtc0co4blbo" path="res://ui/temp_progress.png" id="18_wseti"]
+[ext_resource type="FontFile" uid="uid://dab7cj8j871v2" path="res://ui/texturina/ttf/Texturina12pt-Regular.ttf" id="17_wseti"]
+[ext_resource type="Texture2D" uid="uid://ynyttwa0xn6n" path="res://ui/temp_progress.png" id="18_wseti"]
 [ext_resource type="Script" uid="uid://dnyk47806lbxm" path="res://player/character_controller/scripts/crosshair_manager.gd" id="20_rlg0r"]
 [ext_resource type="Script" uid="uid://rquen88xvhil" path="res://player/character_controller/scenes/fps_label.gd" id="22_lwfhl"]
 [ext_resource type="Script" uid="uid://dg1j3gvftdoml" path="res://player/character_controller/scripts/player_game_text.gd" id="22_ql4hh"]
@@ -280,6 +280,35 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(36, 36)
 stretch_mode = 2
+
+[node name="PrimaryWeaponIcon" type="ColorRect" parent="Player Hud Component" unique_id=1531747746]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -412.0
+offset_top = -270.0
+offset_right = -312.0
+offset_bottom = -170.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SecondaryWeaponIcon" type="ColorRect" parent="Player Hud Component" unique_id=1503075935]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -270.0
+offset_right = -160.0
+offset_bottom = -170.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.9962341, 0.72767234, 0, 1)
 
 [node name="EntityHealthComponent" type="Node" parent="." unique_id=197234426]
 script = ExtResource("10_4t55l")
