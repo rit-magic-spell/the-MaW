@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://by80mm7fbrav7"]
+
+[ext_resource type="Script" uid="uid://2ps0r1uywqmn" path="res://core/damage_info.gd" id="1_4hwsj"]
+[ext_resource type="Script" uid="uid://cloc0gh04wbje" path="res://player/inventory/weapons/weapon_data.gd" id="2_kkx0k"]
+[ext_resource type="PackedScene" uid="uid://b3puy5kbi4ai7" path="res://player/inventory/weapons/testing/test_shotgun.tscn" id="3_onb30"]
+
+[sub_resource type="Resource" id="Resource_hch1t"]
+script = ExtResource("1_4hwsj")
+damage = 15.0
+metadata/_custom_type_script = "uid://2ps0r1uywqmn"
+
+[sub_resource type="Resource" id="Resource_tjdnq"]
+script = ExtResource("1_4hwsj")
+damage = 5.0
+metadata/_custom_type_script = "uid://2ps0r1uywqmn"
+
+[resource]
+script = ExtResource("2_kkx0k")
+weapon_scene = ExtResource("3_onb30")
+max_ammo = 999
+current_ammo = 999
+base_spread_deg = 3.5
+alt_spread_deg = 1.0
+base_pellet_count = 8
+base_damage_info = SubResource("Resource_tjdnq")
+alt_damage_info = SubResource("Resource_hch1t")
+recoil_vertical = 0.5
+recoil_horizontal = 0.25
+recoil_hand_kick = 0.125
+metadata/_custom_type_script = "uid://cloc0gh04wbje"
