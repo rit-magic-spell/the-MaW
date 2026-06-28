@@ -1,6 +1,10 @@
 extends Node
 
+
 class_name EntityLoadoutComponent
+
+signal swapped_to(weapon:Weapon)
+signal swapped_away(weapon:Weapon)
 
 @export var Body: EntityBodyComponent
 @export var View : EntityViewComponent
@@ -207,6 +211,8 @@ func on_swap_to():
 		
 	print("[LOADOUT] - Enabling current weapon after swap [%s]" % get_current_weapon().name)
 	get_current_weapon().enable_weapon()
+	
+	swapped_to.emit(get_current_weapon())
 
 func on_swap_away():
 	if queued_next_slot == INVALID_SLOT:
@@ -230,6 +236,9 @@ func on_swap_away():
 		return
 	
 	_setup_weapon(new_weapon)
+	
+	swapped_away.emit(old_weapon)
+	
 #endregion
 
 func reset_all_weapons():

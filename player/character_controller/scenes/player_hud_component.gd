@@ -15,8 +15,24 @@ class_name PlayerHUD
 @onready var crosshair_manager: CrosshairManager = $CrosshairManager
 @onready var game_text_manager: GameTextManager = $GameTextLabel
 
+@onready var primary_weapon_icon: ColorRect = $PrimaryWeaponIcon
+@onready var secondary_weapon_icon: ColorRect = $SecondaryWeaponIcon
+
+## Default primary weapon icon
+var _pw_icon_default:ColorRect
+## Default secondary weapon icon
+var _sw_icon_default:ColorRect
+## Tween weapon swap
+var _weapon_swap_tween:Tween
+
+
 func _ready():
 	entity_health_component.on_taken_damage.connect(update_rect)
+	entity_inventory_component.entity_loadout_component.swapped_away.connect(_on_weapon_swapped_away)
+	
+	_pw_icon_default = primary_weapon_icon.duplicate()
+	_sw_icon_default = secondary_weapon_icon.duplicate()
+	
 
 # TODO - This is TEMPORARY
 # I swear to god if this makes it to production I will scream
@@ -51,3 +67,31 @@ func update_rect(damage_info: DamageInfo):
 	pain_flash_rect.color.a += 0.2
 	if pain_flash_rect.color.a > 0.5:
 		pain_flash_rect.color.a = 0.5
+		
+
+func update_weapon_icons(weapon:Weapon) -> void:
+	var slot_idx:int = entity_inventory_component.entity_loadout_component.slot_idx
+	
+	# Swap icon color
+	primary_weapon_icon.color = _pw_icon_default.color if slot_idx == 0 else _sw_icon_default.color
+	secondary_weapon_icon.color = _sw_icon_default.color if slot_idx == 0 else _pw_icon_default.color
+	
+	# Create tween
+	if _weapon_swap_tween:
+		_weapon_swap_tween.kill()
+	_weapon_swap_tween = create_tween().set_parallel()
+	
+	# Swap icon sizes
+	var pw_scale:Vector2 = _pw_icon_default.scale if slot_idx == 0 else _sw_icon_default.scale
+	var sw_scale:Vector2 = _sw_icon_default.scale if slot_idx == 0 else _pw_icon_default.scale
+	var weapon_swap_time:float = entity_inventory_component.entity_loadout_component.swap_away_timer.wait_time
+	
+	_weapon_swap_tween.tween_property(primary_weapon_icon, "scale", pw_scale, weapon_swap_time).\
+	set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	_weapon_swap_tween.tween_property(secondary_weapon_icon, "scale", sw_scale, weapon_swap_time).\
+	set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+
+
+func _on_weapon_swapped_away(weapon:Weapon) -> void:
+	# Weapons switched
+	update_weapon_icons(weapon)
