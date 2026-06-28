@@ -23,3 +23,4 @@ shape = SubResource("SphereShape3D_bbmc0")
 shape = SubResource("BoxShape3D_bbmc0")
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]

@@ -49,13 +49,14 @@ func has_item(item_data: ItemData, check_equipped_items = true):
 	
 	return in_storage or in_equipment
 
-func _try_equip_weapon(weapon_data: WeaponData):
+func _try_equip_weapon(weapon_data: WeaponData) -> bool:
 	var next_empty_slot = entity_loadout_component.get_empty_slot()
 	if next_empty_slot == EntityLoadoutComponent.INVALID_SLOT:
 		print("[INVENTORY] - Failed to equip weapon [%s], full inventory!" % [weapon_data.item_name])
-		return
+		return false
 	print("[INVENTORY] - Equipping weapon [%s] in slot [%s]" % [weapon_data.item_name, next_empty_slot])
 	entity_loadout_component.equip_weapon(weapon_data, next_empty_slot)
+	return true
 
 func clear_inventory():
 	var items = entity_inventory_data.get_items_from_category(EntityInventoryData.ITEM_CATEGORY.ALL)

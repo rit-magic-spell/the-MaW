@@ -25,10 +25,9 @@ func try_drop_item():
 	if dropped:
 		return
 	
-	var roll = randf()
 	for weapon_data in loot_table:
 		var chance = loot_table[weapon_data]
-		if roll < chance:
+		if randf() < chance:
 			spawn_item(weapon_data)
 			return
 

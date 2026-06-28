@@ -47,9 +47,11 @@ var reload_input : bool
 @export var can_evade = false
 @export var evade_accel_multiplier = 1.0
 
-
 var scroll_hack_enabled = false
 var body_floor_snap = 0.0
+
+var active_pickup: WeaponPickup 
+
 func _ready() -> void:
 	Input.set_use_accumulated_input(false) # Disable accumulated input for precise inputs.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # Capture the mouse.
@@ -177,6 +179,8 @@ func handle_use_input():
 			var hit_obj = trace_result.hit_collider
 			if hit_obj.has_method("interact"):
 				trace_result.hit_collider.interact(Body.Root)
+		elif active_pickup:
+			active_pickup.confirm_pickup(Body.Root)
 
 func handle_jumpduck_input():
 	var stay_on_ground = not jump_cooldown_timer.is_stopped() and has_jumped
