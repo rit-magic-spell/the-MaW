@@ -58,6 +58,10 @@ movie_writer/movie_file="/media/games/GameDevelopment/DarkPortalStuff/Videos/pre
 
 enabled=PackedStringArray()
 
+[filesystem]
+
+import/blender/enabled=false
+
 [func_godot]
 
 model_point_class_save_path="models/"
