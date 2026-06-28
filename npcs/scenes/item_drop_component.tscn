@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c8ca7m3dy5d6p"]
+
+[ext_resource type="Script" uid="uid://ca8qocwfrg1sk" path="res://npcs/item_drop_controller.gd" id="1_h5vqo"]
+
+[node name="ItemDropController" type="Node3D" unique_id=1087251144]
+script = ExtResource("1_h5vqo")

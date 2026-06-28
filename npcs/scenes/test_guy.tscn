@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://dfa7rfencxl2f" path="res://npcs/core/ai_sequencer.gd" id="2_4d03q"]
 [ext_resource type="Script" uid="uid://yh0brd0dlfys" path="res://core/entities/entity_health_component.gd" id="2_id0kk"]
 [ext_resource type="Script" uid="uid://bn48muoepa571" path="res://npcs/core/npc_data.gd" id="2_o2kkh"]
-[ext_resource type="PackedScene" uid="uid://capsqh12ln5m" path="res://npcs/models/test/test_guy.glb" id="3_4d03q"]
-[ext_resource type="Script" uid="uid://4s01654o17uc" path="res://npcs/core/npc_world_state.gd" id="3_cacvh"]
+[ext_resource type="PackedScene" uid="uid://dcx6b1jq2odbc" path="res://npcs/models/test/test_guy.glb" id="3_4d03q"]
+[ext_resource type="PackedScene" uid="uid://c8ca7m3dy5d6p" path="res://npcs/scenes/item_drop_component.tscn" id="3_u3cpq"]
+[ext_resource type="Script" uid="uid://cloc0gh04wbje" path="res://player/inventory/weapons/weapon_data.gd" id="5_ip880"]
 [ext_resource type="Script" uid="uid://dgd4ar1camccu" path="res://npcs/core/ai_sequence.gd" id="5_ju8yk"]
 [ext_resource type="Script" uid="uid://cvuwcbckasb21" path="res://npcs/core/ai_action.gd" id="6_28x3m"]
-[ext_resource type="Texture2D" uid="uid://u7pgr3n8y6tj" path="res://npcs/models/test/checkerboard.png" id="6_cacvh"]
+[ext_resource type="Texture2D" uid="uid://wirul7wf80v1" path="res://npcs/models/test/checkerboard.png" id="6_cacvh"]
+[ext_resource type="Resource" uid="uid://bj7ybj265wup8" path="res://player/inventory/weapons/testing/test_machinegun_data.tres" id="6_j3nhx"]
+[ext_resource type="Resource" uid="uid://by80mm7fbrav7" path="res://player/inventory/weapons/testing/test_shotgun_data.tres" id="7_j3nhx"]
 [ext_resource type="Script" uid="uid://5rud65r0inqk" path="res://core/hitbox.gd" id="7_sphua"]
 [ext_resource type="Script" uid="uid://dbor0hh63cteu" path="res://npcs/core/ai_conditional.gd" id="10_ot1wt"]
 [ext_resource type="Script" uid="uid://c0kgp701ftv83" path="res://npcs/core/ai_behaviour.gd" id="11_a31wx"]
@@ -16,18 +19,14 @@
 [ext_resource type="Script" uid="uid://cnmboy2mq054j" path="res://npcs/behaviours/spawn_entity_behaviour.gd" id="12_ui2et"]
 [ext_resource type="Script" uid="uid://cogsndc507g11" path="res://npcs/behaviours/orientation_behaviour.gd" id="14_3rr6n"]
 [ext_resource type="Script" uid="uid://cehmly4a8l8oy" path="res://npcs/behaviours/audio_behaviour.gd" id="16_tc1vx"]
-[ext_resource type="AudioStream" uid="uid://d4gpcfwnibnkk" path="res://npcs/scenes/dspodth2.wav" id="17_eixbv"]
+[ext_resource type="AudioStream" uid="uid://0cyvu04hocmq" path="res://npcs/scenes/dspodth2.wav" id="17_eixbv"]
 [ext_resource type="AudioStream" uid="uid://fidlyneln0fp" path="res://npcs/scenes/dspodth3.wav" id="18_u3cpq"]
 
-[sub_resource type="Resource" id="Resource_ot1wt"]
+[sub_resource type="Resource" id="Resource_j3nhx"]
 script = ExtResource("2_o2kkh")
 npc_name = "Test Guy"
 max_speed = 8.0
 metadata/_custom_type_script = "uid://bn48muoepa571"
-
-[sub_resource type="Resource" id="Resource_6k50y"]
-script = ExtResource("3_cacvh")
-metadata/_custom_type_script = "uid://4s01654o17uc"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_id0kk"]
 
@@ -97,17 +96,16 @@ streams_count = 2
 stream_0/stream = ExtResource("17_eixbv")
 stream_1/stream = ExtResource("18_u3cpq")
 
-[node name="NPCBase" type="CharacterBody3D" unique_id=1275474838 node_paths=PackedStringArray("animation_player", "ai_sequencer", "entity_health", "visibility_notifier", "nav_agent")]
+[node name="NPCBase" type="CharacterBody3D" unique_id=1275474838 node_paths=PackedStringArray("animation_player", "ai_sequencer", "entity_health", "item_dropper", "visibility_notifier")]
 collision_layer = 4
 script = ExtResource("1_k6s4q")
 animation_player = NodePath("test_guy/AnimationPlayer")
 ai_sequencer = NodePath("AISequencer")
 entity_health = NodePath("EntityHealthComponent")
+item_dropper = NodePath("ItemDropController")
 visibility_notifier = NodePath("VisibleOnScreenNotifier3D")
 starting_sequence = "Idle"
-npc_data = SubResource("Resource_ot1wt")
-world_state = SubResource("Resource_6k50y")
-nav_agent = NodePath("NavigationAgent3D")
+npc_data = SubResource("Resource_j3nhx")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=812890510]
 
@@ -122,10 +120,16 @@ script = ExtResource("2_id0kk")
 base_health = 150.0
 metadata/_custom_type_script = "uid://yh0brd0dlfys"
 
+[node name="ItemDropController" parent="." unique_id=1087251144 instance=ExtResource("3_u3cpq")]
+loot_table = Dictionary[ExtResource("5_ip880"), float]({
+ExtResource("6_j3nhx"): 0.5,
+ExtResource("7_j3nhx"): 0.5
+})
+
 [node name="test_guy" parent="." unique_id=677172487 instance=ExtResource("3_4d03q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="test_guy/Armature" parent_id_path=PackedInt32Array(677172487, 737921951) index="0" unique_id=611930587]
+[node name="Skeleton3D" parent="test_guy/Armature" parent_id_path=PackedInt32Array(677172487, 659209187) index="0" unique_id=406653671]
 bones/0/position = Vector3(0.31149027, 0.26392868, -92.656685)
 bones/0/rotation = Quaternion(-0.7495365, -0.022400767, 0.058185324, 0.6590203)
 bones/1/rotation = Quaternion(0.002314426, 0.01901105, -0.014762871, 0.9997077)
@@ -219,7 +223,7 @@ bones/61/rotation = Quaternion(-0.22966261, 0.07362633, -0.055037614, 0.96891963
 bones/62/rotation = Quaternion(0.6101303, 0.10283337, 0.047506005, 0.7841616)
 bones/63/rotation = Quaternion(0.34309787, 0.0139287915, -0.0038989189, 0.93918836)
 
-[node name="Ch15" parent="test_guy/Armature/Skeleton3D" index="0" unique_id=1240082235]
+[node name="Ch15" parent="test_guy/Armature/Skeleton3D" index="0" unique_id=1122438928]
 material_override = SubResource("StandardMaterial3D_3rr6n")
 
 [node name="Gun" type="BoneAttachment3D" parent="test_guy/Armature/Skeleton3D" index="1" unique_id=1827728870]

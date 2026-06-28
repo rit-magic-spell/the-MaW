@@ -6,6 +6,7 @@ class_name NPCBase
 @export var animation_player: AnimationPlayer
 @export var ai_sequencer: AISequencer
 @export var entity_health: EntityHealthComponent
+@export var item_dropper: ItemDropComponent
 @export var visibility_notifier: VisibleOnScreenNotifier3D
 
 @export var starting_sequence: String
@@ -59,6 +60,11 @@ func _ready():
 	
 	entity_health.on_taken_damage.connect(handle_damage)
 	entity_health.on_death.connect(handle_death)
+	
+	if not item_dropper:
+		push_warning("NPC [%s] has no item dropper assigned!" % name)
+	else:
+		item_dropper.setup_item_drop(self)
 	
 	SaveManager.save_requested.connect(save_entity_state)
 	SaveManager.load_requested.connect(load_entity_state)
