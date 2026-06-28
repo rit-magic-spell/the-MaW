@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bjq8rvcf6a6be" path="res://player/inventory/weapons/weapon_state.gd" id="3_1fxcc"]
 [ext_resource type="Script" uid="uid://d3apx1v5sf6vf" path="res://player/inventory/weapons/weapon_transition.gd" id="4_18u8q"]
 [ext_resource type="AudioStream" uid="uid://traaox0d2bvp" path="res://player/inventory/weapons/testing/shotgun_shot.mp3" id="5_1fxcc"]
-[ext_resource type="AudioStream" uid="uid://djove1ydabctx" path="res://player/inventory/weapons/testing/thompson_shot.mp3" id="6_ix40b"]
 
 [sub_resource type="Resource" id="Resource_1fxcc"]
 script = ExtResource("4_18u8q")
@@ -13,22 +12,10 @@ target_state = "Fire"
 conditions = Array[int]([0])
 metadata/_custom_type_script = "uid://d3apx1v5sf6vf"
 
-[sub_resource type="Resource" id="Resource_ix40b"]
-script = ExtResource("4_18u8q")
-target_state = "AltFire"
-conditions = Array[int]([2])
-metadata/_custom_type_script = "uid://d3apx1v5sf6vf"
-
 [sub_resource type="Resource" id="Resource_0e78j"]
 script = ExtResource("4_18u8q")
 target_state = "Idle"
 conditions = Array[int]([10, 1])
-metadata/_custom_type_script = "uid://d3apx1v5sf6vf"
-
-[sub_resource type="Resource" id="Resource_18u8q"]
-script = ExtResource("4_18u8q")
-target_state = "Idle"
-conditions = Array[int]([10])
 metadata/_custom_type_script = "uid://d3apx1v5sf6vf"
 
 [sub_resource type="Animation" id="Animation_1e0qo"]
@@ -92,7 +79,7 @@ _data = {
 &"RESET": SubResource("Animation_18u8q")
 }
 
-[node name="TestGun" type="Node3D" unique_id=428133305 node_paths=PackedStringArray("animation_player")]
+[node name="TestShotgun" type="Node3D" unique_id=428133305 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_1e0qo")
 animation_player = NodePath("AnimationPlayer")
 
@@ -106,7 +93,7 @@ metadata/_custom_type_script = "uid://c6nyntbc5rgi5"
 script = ExtResource("3_1fxcc")
 animation_name = "Idle"
 animation_time = 0.1
-transitions = Array[ExtResource("4_18u8q")]([SubResource("Resource_1fxcc"), SubResource("Resource_ix40b")])
+transitions = Array[ExtResource("4_18u8q")]([SubResource("Resource_1fxcc")])
 metadata/_custom_type_script = "uid://bjq8rvcf6a6be"
 
 [node name="Fire" type="Node" parent="StateMachine" unique_id=476545018 node_paths=PackedStringArray("state_stream_player")]
@@ -118,25 +105,26 @@ transitions = Array[ExtResource("4_18u8q")]([SubResource("Resource_0e78j")])
 behaviours = Array[int]([0, 9])
 metadata/_custom_type_script = "uid://bjq8rvcf6a6be"
 
-[node name="AltFire" type="Node" parent="StateMachine" unique_id=135816251 node_paths=PackedStringArray("state_stream_player")]
-script = ExtResource("3_1fxcc")
-animation_name = "Idle"
-animation_time = 0.08
-state_stream_player = NodePath("../../AltFire")
-transitions = Array[ExtResource("4_18u8q")]([SubResource("Resource_18u8q")])
-behaviours = Array[int]([1])
-metadata/_custom_type_script = "uid://bjq8rvcf6a6be"
-
 [node name="Body" type="CSGCombiner3D" parent="." unique_id=242269946]
 layers = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Body" unique_id=1058612457]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0028015971, 0.11202812, -0.30622005)
-size = Vector3(0.106847644, 0.09404373, 0.4743557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037063807, 0.11202812, -0.30622005)
+size = Vector3(0.13266894, 0.09404373, 0.4743557)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Body" unique_id=1071337272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.169, -0.30972552)
+operation = 2
+size = Vector3(0.043665282, 0.032055855, 0.48180676)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Body" unique_id=1500962457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05286409, -0.30972552)
+operation = 2
+size = Vector3(0.043665282, 0.032055855, 0.48180676)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Body" unique_id=1295689000]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0042819977, 0.020572662, -0.0054626465)
-size = Vector3(0.107601166, 0.27695465, 0.13812256)
+transform = Transform3D(1, 0, 0, 0, 0.7943086, 0.6075145, 0, -0.6075145, 0.7943086, -0.0042819977, 0.009560884, -0.025622346)
+size = Vector3(0.107601166, 0.28138447, 0.10031128)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=757758958]
 libraries/ = SubResource("AnimationLibrary_18u8q")
@@ -145,8 +133,3 @@ libraries/ = SubResource("AnimationLibrary_18u8q")
 stream = ExtResource("5_1fxcc")
 volume_db = -13.551
 pitch_scale = 0.95
-
-[node name="AltFire" type="AudioStreamPlayer" parent="." unique_id=509651372]
-stream = ExtResource("6_ix40b")
-volume_db = -10.501
-max_polyphony = 8

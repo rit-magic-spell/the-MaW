@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cibglnl6ritrs" path="res://player/character_controller/scripts/entity_inventory_component.gd" id="1_ua74s"]
 [ext_resource type="Script" uid="uid://cn4dvi7gl5xge" path="res://player/character_controller/scripts/entity_loadout_component.gd" id="2_0r6o2"]
 [ext_resource type="Script" uid="uid://cloc0gh04wbje" path="res://player/inventory/weapons/weapon_data.gd" id="2_ripvm"]
-[ext_resource type="Resource" uid="uid://bj7ybj265wup8" path="res://player/inventory/weapons/testing/test_gun_data.tres" id="3_j278j"]
+[ext_resource type="Resource" uid="uid://bj7ybj265wup8" path="res://player/inventory/weapons/testing/test_machinegun_data.tres" id="3_j278j"]
 [ext_resource type="Script" uid="uid://ce8yqwogxfuld" path="res://player/inventory/core/inventory_data.gd" id="3_ripvm"]
 [ext_resource type="Script" uid="uid://w3gf7xqrfnnw" path="res://player/character_controller/scripts/entity_ammo_data.gd" id="8_5hq0c"]
 

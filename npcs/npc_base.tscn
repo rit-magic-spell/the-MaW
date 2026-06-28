@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dfa7rfencxl2f" path="res://npcs/core/ai_sequencer.gd" id="1_ke5bj"]
 [ext_resource type="Script" uid="uid://dgd4ar1camccu" path="res://npcs/core/ai_sequence.gd" id="2_fh1rl"]
 [ext_resource type="Script" uid="uid://cvuwcbckasb21" path="res://npcs/core/ai_action.gd" id="3_5i7nu"]
+[ext_resource type="Script" uid="uid://ca8qocwfrg1sk" path="res://npcs/item_drop_controller.gd" id="5_5i7nu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yyc73"]
 
@@ -21,3 +22,6 @@ script = ExtResource("2_fh1rl")
 
 [node name="AIAction" type="Node" parent="AISequencer/AISequence" unique_id=473841030]
 script = ExtResource("3_5i7nu")
+
+[node name="ItemDropController" type="Node3D" parent="." unique_id=552393163]
+script = ExtResource("5_5i7nu")

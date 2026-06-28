@@ -13,7 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://cplcfn10tis3v" path="res://player/character_controller/scenes/EntityViewComponent.tscn" id="4_tt081"]
 [ext_resource type="PackedScene" uid="uid://ckopdxb7t1xl2" path="res://player/character_controller/scenes/entity_inventory_component.tscn" id="5_qobfj"]
 [ext_resource type="PackedScene" uid="uid://dmqtwg515vvqp" path="res://player/character_controller/scenes/PlayerCameraComponent.tscn" id="5_yuc8u"]
+[ext_resource type="Script" uid="uid://cloc0gh04wbje" path="res://player/inventory/weapons/weapon_data.gd" id="6_dsn5b"]
 [ext_resource type="PackedScene" uid="uid://tpvclehjvudv" path="res://player/character_controller/scenes/PlayerEntityMonitor.tscn" id="7_dwmci"]
+[ext_resource type="Resource" uid="uid://bj7ybj265wup8" path="res://player/inventory/weapons/testing/test_machinegun_data.tres" id="7_fn7fl"]
+[ext_resource type="Resource" uid="uid://by80mm7fbrav7" path="res://player/inventory/weapons/testing/test_shotgun_data.tres" id="8_jmyrf"]
 [ext_resource type="AudioStream" uid="uid://6smo0dsy0xh" path="res://player/character_controller/audio/footstep_boot_2.wav" id="9_ql4hh"]
 [ext_resource type="Script" uid="uid://yh0brd0dlfys" path="res://core/entities/entity_health_component.gd" id="10_4t55l"]
 [ext_resource type="AudioStream" uid="uid://b04moiq5a0yul" path="res://player/character_controller/audio/footstep_boot_3.wav" id="10_lwfhl"]
@@ -55,6 +58,7 @@ PlayerInput = NodePath("../Player Input Component")
 Body = NodePath("../Entity Body Component")
 View = NodePath("../Entity View Component")
 Camera = NodePath("../Player Camera Component")
+debug_weapons = Array[ExtResource("6_dsn5b")]([ExtResource("7_fn7fl"), ExtResource("8_jmyrf")])
 
 [node name="Entity Body Component" parent="." unique_id=343144802 node_paths=PackedStringArray("Motion", "Root") instance=ExtResource("3_st460")]
 collision_layer = 2
@@ -168,14 +172,15 @@ color = Color(0.81960785, 0, 0, 0.078431375)
 
 [node name="CurrentAmmoLabel" type="RichTextLabel" parent="Player Hud Component" unique_id=1300729772]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.75
-anchor_top = 0.85
-anchor_right = 0.95
-anchor_bottom = 0.95
-offset_left = -0.2800293
-offset_top = 0.4399414
-offset_bottom = 0.11993408
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = -170.0
+offset_right = -160.0
+offset_bottom = -69.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = SubResource("Theme_3dnp8")
@@ -288,12 +293,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -412.0
-offset_top = -270.0
-offset_right = -312.0
-offset_bottom = -170.0
+offset_left = -372.0
+offset_top = -265.0
+offset_right = -302.0
+offset_bottom = -195.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(1.6, 1.6)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="SecondaryWeaponIcon" type="ColorRect" parent="Player Hud Component" unique_id=1503075935]
 layout_mode = 1
@@ -302,13 +309,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -260.0
-offset_top = -270.0
-offset_right = -160.0
-offset_bottom = -170.0
+offset_left = -254.0
+offset_top = -267.0
+offset_right = -184.0
+offset_bottom = -197.0
 grow_horizontal = 0
 grow_vertical = 0
-color = Color(0.9962341, 0.72767234, 0, 1)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0.46, 0.46, 0.46, 1)
 
 [node name="EntityHealthComponent" type="Node" parent="." unique_id=197234426]
 script = ExtResource("10_4t55l")
