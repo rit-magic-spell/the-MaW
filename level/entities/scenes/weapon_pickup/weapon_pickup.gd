@@ -43,8 +43,10 @@ func confirm_pickup(player: Player):
 	player.entity_inventory.add_item(weapon_data)
 	
 	var loadout = player.entity_inventory.entity_loadout_component
-	if loadout.has_weapon_equipped(weapon_data.get_item_id()):
-		return
-	
-	loadout.dequip_weapon(loadout.slot_idx)
-	player.entity_inventory._try_equip_weapon(weapon_data)
+	var empty_slot = loadout.get_empty_slot()
+	if empty_slot != EntityLoadoutComponent.INVALID_SLOT:
+		player.entity_inventory._try_equip_weapon(weapon_data)
+		loadout.select_weapon(empty_slot)
+	else:
+		loadout.equip_weapon(weapon_data, loadout.slot_idx)
+	queue_free()
