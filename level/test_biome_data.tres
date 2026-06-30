@@ -7,5 +7,5 @@
 
 [resource]
 script = ExtResource("1_08dq7")
-levels = Array[PackedScene]([ExtResource("1_p72ku"), ExtResource("1_f6fxf"), ExtResource("2_e8fp2")])
+levels = Array[PackedScene]([ExtResource("1_f6fxf"), ExtResource("1_p72ku"), ExtResource("2_e8fp2")])
 metadata/_custom_type_script = "uid://buqgsp2etg80p"

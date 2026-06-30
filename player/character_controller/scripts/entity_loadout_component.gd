@@ -47,13 +47,13 @@ enum WeaponAddResult
 ## with weapon data that already exists in the internal inventory.
 ## Not doing so could have funky consequences!!
 func equip_weapon(weapon_data: WeaponData, desired_slot: int):
-	print("[LOADOUT] - Equipping [%s] in slot [%s]" % [weapon_data.item_name, desired_slot])
+	#print("[INVENTORY] - Equipping [%s] in slot [%s]" % [weapon_data.item_name, desired_slot])
 	var weapon: Weapon = weapon_data.weapon_scene.instantiate()
 	add_child(weapon)
 	
 	if current_equipped_weapons[desired_slot]:
 		var old_wep = current_equipped_weapons[desired_slot]
-		print("[LOADOUT] - Dequipping [%s] in slot [%s]" % [old_wep.name, desired_slot])
+		#print("[INVENTORY] - Dequipping [%s] in slot [%s]" % [old_wep.name, desired_slot])
 		dequip_weapon(desired_slot)
 		
 	current_equipped_weapons[desired_slot] = weapon
@@ -165,27 +165,27 @@ func _set_slot(new_slot_idx: int):
 	
 	new_slot_idx %= len(current_equipped_weapons)
 	
-	print("[LOADOUT] - Switching to slot [%s]" % new_slot_idx)
+	#print("[INVENTORY] - Switching to slot [%s]" % new_slot_idx)
 	var old_weapon: Weapon = current_equipped_weapons[slot_idx]
 
 	queued_next_slot = new_slot_idx
 	if old_weapon and old_weapon.is_weapon_valid() and swap_away_timer.is_stopped():
 		if old_weapon.get_current_restrictions().get("lock_weapon_switching", false):
-			print("[LOADOUT] - Not allowed to swap away from [%s], cancelling" % old_weapon.name)
+			#print("[INVENTORY] - Not allowed to swap away from [%s], cancelling" % old_weapon.name)
 			return
-		print("[LOADOUT] - Starting swap away timer for weapon [%s]" % old_weapon.name)
+		#print("[INVENTORY] - Starting swap away timer for weapon [%s]" % old_weapon.name)
 		swap_away_timer.wait_time = old_weapon.get_weapon_data().dequip_time
 		Camera.play_dequip_animation(old_weapon.get_weapon_data().dequip_time)
 		swap_away_timer.start()
 	else:
 		# If you don't have a weapon in the old slot
 		# Just jump straight to equipping a weapon.
-		print("[LOADOUT] - No weapon equipped currently, starting equip timer")
+		#print("[INVENTORY] - No weapon equipped currently, starting equip timer")
 		on_swap_away()
 	
 
 func _setup_weapon(weapon: Weapon):
-	print("[LOADOUT] - Setting up weapon [%s]" % [weapon.name])
+	#print("[INVENTORY] - Setting up weapon [%s]" % [weapon.name])
 	weapon.View = View
 	weapon.Camera = Camera
 	weapon.Body = Body
@@ -209,7 +209,7 @@ func on_swap_to():
 	if not get_current_weapon():
 		return
 		
-	print("[LOADOUT] - Enabling current weapon after swap [%s]" % get_current_weapon().name)
+	#print("[INVENTORY] - Enabling current weapon after swap [%s]" % get_current_weapon().name)
 	get_current_weapon().enable_weapon()
 	
 	swapped_to.emit(get_current_weapon())
@@ -218,10 +218,10 @@ func on_swap_away():
 	if queued_next_slot == INVALID_SLOT:
 		return
 	
-	print("[LOADOUT] - Swapping to queued slot [%s]" % queued_next_slot)
+	#print("[INVENTORY] - Swapping to queued slot [%s]" % queued_next_slot)
 	var old_weapon: Weapon = get_current_weapon()
 	if old_weapon:
-		print("[LOADOUT] - Disabling old weapon [%s]" % old_weapon.name)
+		#print("[INVENTORY] - Disabling old weapon [%s]" % old_weapon.name)
 		old_weapon.visible = false
 		old_weapon.disable_weapon()
 		
@@ -230,7 +230,7 @@ func on_swap_away():
 	var new_weapon = get_current_weapon()
 	
 	if new_weapon == null or not new_weapon.is_weapon_valid():
-		print("[LOADOUT] - New weapon [%s] was invalid!" % new_weapon.name if new_weapon else "NULL")
+		#print("[INVENTORY] - New weapon [%s] was invalid!" % new_weapon.name if new_weapon else "NULL")
 		var hud = Body.Root.player_hud
 		hud.crosshair_manager.update_crosshair(CrosshairManager.CROSSHAIR.EMPTY)
 		return
@@ -242,7 +242,7 @@ func on_swap_away():
 #endregion
 
 func reset_all_weapons():
-	print("[LOADOUT] - Resetting all weapons")
+	#print("[INVENTORY] - Resetting all weapons")
 	for weapon in current_equipped_weapons:
 		if not weapon or not weapon.is_weapon_valid():
 			return
@@ -257,7 +257,7 @@ func reset_all_weapons():
 
 #region Entity State
 func get_entity_state() -> Dictionary:
-	print("[LOADOUT] - Collecting loadout state")
+	#print("[INVENTORY] - Collecting loadout state")
 	var state = {}
 	state["current_slot_idx"] = slot_idx
 	for idx in range(MAX_EQUIPPED_WEAPONS):
@@ -267,14 +267,14 @@ func get_entity_state() -> Dictionary:
 		var slot_weapon = current_equipped_weapons[idx]
 		if slot_weapon and slot_weapon.is_weapon_valid():
 			
-			print("[LOADOUT] - Saving weapon [%s] to slot [%s]" % [slot_weapon.name, state_slot_name])
+			#print("[INVENTORY] - Saving weapon [%s] to slot [%s]" % [slot_weapon.name, state_slot_name])
 			state[state_slot_name] = slot_weapon.get_weapon_data().get_item_id()
 
 	return state
 
 
 func set_entity_state(state_dict):
-	print("[LOADOUT] - Restoring loadout state")
+	#print("[INVENTORY] - Restoring loadout state")
 	for idx in range(MAX_EQUIPPED_WEAPONS):
 		if current_equipped_weapons[idx]:
 			current_equipped_weapons[idx].queue_free()
@@ -288,7 +288,7 @@ func set_entity_state(state_dict):
 		if not weapon_data:
 			push_error("Failed to load weapon with id [%s]! It should be in the inventory already right?" % weapon_id)
 			continue
-		print("[LOADOUT] - Equipping weapon [%s] to slot [%s]" % [weapon_data.item_name, state_slot_name])
+		#print("[INVENTORY] - Equipping weapon [%s] to slot [%s]" % [weapon_data.item_name, state_slot_name])
 		equip_weapon(weapon_data, idx)
 	
 	var temp_slot_idx = state_dict.get("current_slot_idx", 0)

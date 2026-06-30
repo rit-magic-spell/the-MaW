@@ -1,0 +1,1203 @@
+[gd_scene format=3 uid="uid://bjyvwd3nvxksd"]
+
+[ext_resource type="Script" uid="uid://j50v2xh1a76r" path="res://npcs/core/npc_base.gd" id="1_f3u1n"]
+[ext_resource type="Script" uid="uid://bn48muoepa571" path="res://npcs/core/npc_data.gd" id="2_oy07j"]
+[ext_resource type="PackedScene" uid="uid://biex7idin7ly" path="res://Animation/Infected/GDT_AnimationMaya.fbx" id="2_sg5nm"]
+[ext_resource type="Script" uid="uid://yh0brd0dlfys" path="res://core/entities/entity_health_component.gd" id="2_wpx5v"]
+[ext_resource type="Script" uid="uid://dfa7rfencxl2f" path="res://npcs/core/ai_sequencer.gd" id="4_210r2"]
+[ext_resource type="Script" uid="uid://dgd4ar1camccu" path="res://npcs/core/ai_sequence.gd" id="5_oy07j"]
+[ext_resource type="Script" uid="uid://cvuwcbckasb21" path="res://npcs/core/ai_action.gd" id="6_fnwbb"]
+[ext_resource type="Script" uid="uid://dbor0hh63cteu" path="res://npcs/core/ai_conditional.gd" id="8_fnwbb"]
+[ext_resource type="Script" uid="uid://dafkx45rgy8e" path="res://npcs/core/ai_conditional_group.gd" id="9_csmbi"]
+[ext_resource type="Script" uid="uid://c0kgp701ftv83" path="res://npcs/core/ai_behaviour.gd" id="9_s2n2p"]
+[ext_resource type="Script" uid="uid://cv8k687vecut6" path="res://npcs/behaviours/movement_behaviour.gd" id="10_ydmoe"]
+[ext_resource type="Script" uid="uid://cogsndc507g11" path="res://npcs/behaviours/orientation_behaviour.gd" id="12_ydmoe"]
+
+[sub_resource type="Resource" id="Resource_fnwbb"]
+script = ExtResource("2_oy07j")
+max_speed = 8.0
+metadata/_custom_type_script = "uid://bn48muoepa571"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ex0cn"]
+
+[sub_resource type="Resource" id="Resource_csmbi"]
+script = ExtResource("8_fnwbb")
+check_variable = 10
+sequence_name = "Walk; WalkAlt"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_5hi1v"]
+script = ExtResource("8_fnwbb")
+check_value = 1.8
+sequence_name = "AttackLeft;AttackRight"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_buxye"]
+script = ExtResource("10_ydmoe")
+movement_percent = 0.25
+metadata/_custom_type_script = "uid://cv8k687vecut6"
+
+[sub_resource type="Resource" id="Resource_inoo4"]
+script = ExtResource("12_ydmoe")
+orientation_mode = 1
+metadata/_custom_type_script = "uid://cogsndc507g11"
+
+[sub_resource type="Resource" id="Resource_avslv"]
+script = ExtResource("8_fnwbb")
+check_num_comparison = 1
+check_value = 8.0
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_tx2wy"]
+script = ExtResource("8_fnwbb")
+check_variable = 9
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_moq73"]
+Resource = null
+resource_path = "res://npcs/scenes/npc_infected_melee.tscn::Resource_moq73"
+resource_scene_unique_id = "Resource_moq73"
+script = ExtResource("9_csmbi")
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_avslv"), SubResource("Resource_tx2wy")])
+sequence_name = "StartRun"
+last_comp_value = true
+sequence_candidates = []
+metadata/_custom_type_script = "uid://dafkx45rgy8e"
+
+[sub_resource type="Resource" id="Resource_fkjs5"]
+script = ExtResource("8_fnwbb")
+check_variable = 10
+sequence_name = "Walk;WalkAlt"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_s2n2p"]
+script = ExtResource("8_fnwbb")
+check_value = 3.0
+sequence_name = "AttackLeft; AttackRight"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_ydmoe"]
+script = ExtResource("8_fnwbb")
+check_variable = 10
+sequence_name = "Run"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_a6snv"]
+script = ExtResource("10_ydmoe")
+metadata/_custom_type_script = "uid://cv8k687vecut6"
+
+[sub_resource type="Resource" id="Resource_fdbbv"]
+script = ExtResource("12_ydmoe")
+orientation_mode = 1
+metadata/_custom_type_script = "uid://cogsndc507g11"
+
+[sub_resource type="Resource" id="Resource_42sqg"]
+script = ExtResource("8_fnwbb")
+check_value = 6.0
+sequence_name = "Walk; WalkAlt"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_em4by"]
+script = ExtResource("8_fnwbb")
+check_variable = 10
+sequence_name = "Run"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_y7gj2"]
+script = ExtResource("8_fnwbb")
+check_variable = 10
+sequence_name = "StartWalk"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[sub_resource type="Resource" id="Resource_5l2qt"]
+script = ExtResource("8_fnwbb")
+check_variable = 10
+sequence_name = "StartWalk"
+metadata/_custom_type_script = "uid://dbor0hh63cteu"
+
+[node name="InfectedMelee" type="CharacterBody3D" unique_id=523822679 node_paths=PackedStringArray("animation_player", "ai_sequencer", "entity_health", "visibility_notifier")]
+script = ExtResource("1_f3u1n")
+animation_player = NodePath("GDT_AnimationMaya/AnimationPlayer")
+ai_sequencer = NodePath("AISequencer")
+entity_health = NodePath("EntityHealthComponent")
+visibility_notifier = NodePath("VisibleOnScreenNotifier3D")
+starting_sequence = "Idle"
+npc_data = SubResource("Resource_fnwbb")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=902282903]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=915339238]
+visible = false
+shape = SubResource("CapsuleShape3D_ex0cn")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=1045519738]
+aabb = AABB(-0.4828859, -1, -0.5138605, 0.9657718, 2, 1.027721)
+
+[node name="EntityHealthComponent" type="Node" parent="." unique_id=1600157617]
+script = ExtResource("2_wpx5v")
+base_health = 150.0
+metadata/_custom_type_script = "uid://yh0brd0dlfys"
+
+[node name="GDT_AnimationMaya" parent="." unique_id=1485594788 instance=ExtResource("2_sg5nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="spine_C0_root" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root" parent_id_path=PackedInt32Array(1485594788, 1462992619) index="1" unique_id=889085915]
+transform = Transform3D(-2.1733657e-08, -0.49720812, -2.1733657e-08, 0, -2.1733657e-08, 0.49720812, -0.49720812, 2.1733657e-08, 9.500083e-16, -3.0531133e-18, 0.006501933, -1.1093357e-33)
+
+[node name="shoulder_L0_root" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest" parent_id_path=PackedInt32Array(1485594788, 1038132853) index="0" unique_id=901829156]
+transform = Transform3D(0.21002944, 0.08962346, -1.0038877, 0.07611139, -1.0239351, -0.07548953, -1.0050025, -0.058815345, -0.2155135, 0.0018135257, 0.0028765753, 0.006602861)
+
+[node name="finger_L3_blade" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_L0_root/shoulder_L0_tip/arm_L0_root/arm_L0_elbow/arm_L0_wrist/arm_L0_eff/meta_L0_root/meta_L0_0_loc/meta_L0_1_loc/meta_L0_2_loc/finger_L3_root" parent_id_path=PackedInt32Array(1485594788, 801496503) index="1" unique_id=1315393313]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, -3.5527136e-17, 0, 0)
+
+[node name="finger_L2_blade" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_L0_root/shoulder_L0_tip/arm_L0_root/arm_L0_elbow/arm_L0_wrist/arm_L0_eff/meta_L0_root/meta_L0_0_loc/meta_L0_1_loc/finger_L2_root" parent_id_path=PackedInt32Array(1485594788, 372923064) index="1" unique_id=721073014]
+transform = Transform3D(0.999914, -8.7415266e-08, -0.013104213, -8.742277e-08, -1, 1.2246466e-16, -0.0131042125, 1.1456067e-09, -0.99991405, 3.5527136e-17, 0, 1.7763568e-17)
+
+[node name="finger_L1_blade" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_L0_root/shoulder_L0_tip/arm_L0_root/arm_L0_elbow/arm_L0_wrist/arm_L0_eff/meta_L0_root/meta_L0_0_loc/finger_L1_root" parent_id_path=PackedInt32Array(1485594788, 1455679485) index="1" unique_id=980652310]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 3.5527136e-17, 7.105427e-17, -5.689893e-18)
+
+[node name="arm_L0_upvcrv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_L0_root/shoulder_L0_tip/arm_L0_root/arm_L0_elbow" parent_id_path=PackedInt32Array(1485594788, 1279884271) index="1" unique_id=1680892585]
+transform = Transform3D(0.0017837682, 6.193079e-05, 0.00058210327, -0.00051311456, 0.0010639847, 0.0014591637, -0.00028176783, -0.0015455127, 0.0010278646, 0.116839, 0.018107349, -0.15243632)
+
+[node name="arm_L0_upv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_L0_root/shoulder_L0_tip/arm_L0_root" parent_id_path=PackedInt32Array(1485594788, 1627850949) index="2" unique_id=1120421649]
+transform = Transform3D(0.60460305, -0.52075326, 0.60271984, -0.69749695, -0.7115404, 0.08490139, 0.38464686, -0.4717269, -0.7934233, 0.040381256, 0.05897161, 0.0052005835)
+
+[node name="shoulder_R0_root" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest" parent_id_path=PackedInt32Array(1485594788, 1038132853) index="2" unique_id=1098476031]
+transform = Transform3D(-0.21002947, -0.08962348, 1.0038877, 0.07611139, -1.0239353, -0.07548952, -1.0050025, -0.058815353, -0.2155135, -0.0018135261, 0.0028765753, 0.006602861)
+
+[node name="finger_R3_blade" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_R0_root/shoulder_R0_tip/arm_R0_root/arm_R0_elbow/arm_R0_wrist/arm_R0_eff/meta_R0_root/meta_R0_0_loc/meta_R0_1_loc/meta_R0_2_loc/finger_R3_root" parent_id_path=PackedInt32Array(1485594788, 1488414027) index="1" unique_id=1944190733]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, -7.105427e-17, 0)
+
+[node name="finger_R2_blade" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_R0_root/shoulder_R0_tip/arm_R0_root/arm_R0_elbow/arm_R0_wrist/arm_R0_eff/meta_R0_root/meta_R0_0_loc/meta_R0_1_loc/finger_R2_root" parent_id_path=PackedInt32Array(1485594788, 265209835) index="1" unique_id=1217447649]
+transform = Transform3D(0.999914, -8.7415266e-08, -0.013104213, -8.742277e-08, -1, 1.2246466e-16, -0.0131042125, 1.1456067e-09, -0.99991405, 0, 0, 0)
+
+[node name="finger_R1_blade" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_R0_root/shoulder_R0_tip/arm_R0_root/arm_R0_elbow/arm_R0_wrist/arm_R0_eff/meta_R0_root/meta_R0_0_loc/finger_R1_root" parent_id_path=PackedInt32Array(1485594788, 2092058580) index="1" unique_id=1769359329]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 3.5527136e-17, 7.105427e-17, 4.440892e-18)
+
+[node name="arm_R0_upvcrv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_R0_root/shoulder_R0_tip/arm_R0_root/arm_R0_elbow" parent_id_path=PackedInt32Array(1485594788, 1921314371) index="1" unique_id=1172082787]
+transform = Transform3D(-0.0014107222, 0.00016053501, -0.0012282898, -0.001207841, -0.00059118523, 0.0013100526, 0.00027475765, -0.001774609, -0.00054753874, 0.09663673, 0.021822026, -0.1689981)
+
+[node name="arm_R0_upv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/spine_C0_spineBase/spine_C0_spineTop/spine_C0_chest/shoulder_R0_root/shoulder_R0_tip/arm_R0_root" parent_id_path=PackedInt32Array(1485594788, 1017477061) index="2" unique_id=1369200880]
+transform = Transform3D(0.56661665, 0.46121934, 0.68280464, 0.57248867, -0.8163497, 0.07635373, 0.5926232, 0.34763458, -0.7266002, 0.040381256, 0.05897161, 0.0052005835)
+
+[node name="leg_L1_upvcrv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/leg_L1_root/leg_L1_knee" parent_id_path=PackedInt32Array(1485594788, 1661931809) index="1" unique_id=984083737]
+transform = Transform3D(0.0018728275, 9.4289804e-05, 9.019369e-05, -9.195018e-05, 0.0018744405, -5.026726e-05, -9.2577706e-05, 4.5728175e-05, 0.0018745258, -0.13219528, -0.0034742365, 0.044074517)
+
+[node name="leg_L1_upv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/leg_L1_root" parent_id_path=PackedInt32Array(1485594788, 1017074955) index="2" unique_id=1495945448]
+transform = Transform3D(-0.05814014, -0.08696203, -0.9945136, 0.99516094, 0.07399571, -0.0646483, 0.07921169, -0.9934597, 0.08223909, -0.06420608, -0.101544276, -0.012387992)
+
+[node name="leg_R1_root" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root" index="4" unique_id=1247738249]
+transform = Transform3D(0.1146641, 0.04054712, 1.0223224, -0.03258151, 1.0283458, -0.037131656, 1.0226074, 0.028217822, -0.11581521, -0.012915397, -0.00090320606, 0.0051922603)
+
+[node name="leg_R1_upvcrv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/leg_R1_root/leg_R1_knee" parent_id_path=PackedInt32Array(1485594788, 1453134029) index="1" unique_id=120260436]
+transform = Transform3D(-0.0018131878, 0.00037454427, -0.0003107757, -0.00030894094, -0.0018120667, -0.00038142878, 0.00037605094, 0.00031723772, -0.0018118122, -0.13603097, -0.0024878897, 0.011254424)
+
+[node name="leg_R1_upv" parent="GDT_AnimationMaya/guide/root_C0_root/body_C0_root/spine_C0_root/leg_R1_root" index="2" unique_id=1995577566]
+transform = Transform3D(0.08294893, 0.13428997, -0.9874643, -0.98638815, 0.15223391, -0.062155515, 0.1419787, 0.9791787, 0.14508967, -0.06420608, -0.101544276, -0.012387992)
+
+[node name="legUI_R0_root" parent="GDT_AnimationMaya/guide" parent_id_path=PackedInt32Array(1485594788, 1958951931) index="3" unique_id=1731130862]
+transform = Transform3D(-2.3653104, -2.06782e-07, -9.038728e-15, 0, -1.03391e-07, 2.3653104, 2.06782e-07, -2.3653104, -1.03391e-07, -0.014884324, -0.00074605574, 0.75856733)
+
+[node name="armUI_R0_root" parent="GDT_AnimationMaya/guide" parent_id_path=PackedInt32Array(1485594788, 1958951931) index="4" unique_id=2019275208]
+transform = Transform3D(-2.3653104, -2.06782e-07, -9.038728e-15, 0, -1.03391e-07, 2.3653104, 2.06782e-07, -2.3653104, -1.03391e-07, -0.036522914, 0.00010895429, 0.7138045)
+
+[node name="body_C0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns" parent_id_path=PackedInt32Array(1485594788, 365570831) index="0" unique_id=128727119]
+transform = Transform3D(0.98793036, 0, -0.15489878, 0, 1, 0, 0.15489878, 0, 0.98793036, 0, -0.061152667, 0)
+
+[node name="spine_C0_ik1_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/Skeleton3D" parent_id_path=PackedInt32Array(1485594788, 965609417) index="0" unique_id=1721288044]
+transform = Transform3D(1.1920928e-07, 5.960464e-08, 1, 0.99722207, -0.07448434, -5.9604645e-08, 0.07448437, 0.99722207, 0, 1.5118744e-18, 0.036696624, -0.0023300457)
+bone_idx = 0
+
+[node name="spine_C0_ik1_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/Skeleton3D/spine_C0_ik1_npo/spine_C0_ik1_npo/spine_C0_ik1autoRot_lvl" parent_id_path=PackedInt32Array(1485594788, 1596585610) index="0" unique_id=1808605295]
+transform = Transform3D(0.9999801, 3.4847362e-05, -0.0063062576, -3.393208e-05, 1, 0.00014524593, 0.0063062627, -0.00014502904, 0.9999801, 0, 0, 0)
+
+[node name="spine_C0_pelvis_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_ik_off/spine_C0_ik0_npo/spine_C0_ik0_ctl/spine_C0_pelvis_npo" parent_id_path=PackedInt32Array(1485594788, 581846032) index="0" unique_id=639351823]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="spine_C0_tan_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_ik_off/spine_C0_ik0_npo/spine_C0_ik0_ctl/spine_C0_tan0_npo" parent_id_path=PackedInt32Array(1485594788, 167312809) index="1" unique_id=70112976]
+transform = Transform3D(0.99999505, 1.7309361e-05, -0.0031531448, -1.7080538e-05, 1, 7.2596216e-05, 0.003153146, -7.2542e-05, 0.99999505, -4.7857153e-05, 0.06926487, 0.009136843)
+
+[node name="spine_C0_0_rot_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="0" unique_id=1121056642]
+transform = Transform3D(0.98793036, 0, -0.15489878, 0, 1, 0, 0.15489878, 0, 0.98793036, 0, 0, 0)
+
+[node name="spine_C0_0_pos_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="1" unique_id=473782748]
+transform = Transform3D(0.9879303, 0.009815504, -0.15458745, -4.6566126e-10, 0.99799013, 0.06336721, 0.15489876, -0.06260239, 0.98594475, 0.009879303, -1.4210854e-16, 0.0015489878)
+
+[node name="spine_C0_1_rot_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="2" unique_id=1226160631]
+transform = Transform3D(0.98760253, 1.8867231e-05, -0.15697515, -1.1412457e-05, 1, 4.8391477e-05, 0.15697515, -4.6000074e-05, 0.98760253, 0, 0, 0)
+
+[node name="spine_C0_1_pos_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="3" unique_id=540009607]
+transform = Transform3D(0.9876025, 0.009965908, -0.15665849, -1.1412426e-05, 0.9979871, 0.063415505, 0.15697515, -0.062627524, 0.9856147, 0.009876025, -1.1412457e-07, 0.0015697517)
+
+[node name="spine_C0_2_rot_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="4" unique_id=897881409]
+transform = Transform3D(0.9872704, 3.7831138e-05, -0.15905084, -2.272318e-05, 1, 9.680689e-05, 0.15905084, -9.1960435e-05, 0.9872704, 0, 0, 0)
+
+[node name="spine_C0_2_pos_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="5" unique_id=920235045]
+transform = Transform3D(0.9872703, 0.010116363, -0.15872878, -2.2723338e-05, 0.997984, 0.063463815, 0.15905084, -0.062652335, 0.9852803, 0.009872704, -2.272318e-07, 0.0015905085)
+
+[node name="spine_C0_3_rot_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="6" unique_id=1750758573]
+transform = Transform3D(0.9869339, 5.68916e-05, -0.16112587, -3.3932083e-05, 1, 0.00014524593, 0.16112587, -0.0001378808, 0.9869339, 0, 0, 0)
+
+[node name="spine_C0_3_pos_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2059327610) index="7" unique_id=1087115972]
+transform = Transform3D(0.9869338, 0.010266873, -0.16079842, -3.3931803e-05, 0.99798095, 0.06351216, 0.16112584, -0.062676854, 0.9849416, 0.009869339, -3.3932082e-07, 0.0016112585)
+
+[node name="spine_C0_0_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2" parent_id_path=PackedInt32Array(1485594788, 2021545256) index="6" unique_id=2087515301]
+transform = Transform3D(0.98793036, 0, -0.15489878, 0, 1, 0, 0.15489878, 0, 0.98793036, 0.00036092126, 1.0374744, 0.02050674)
+
+[node name="spine_C0_1_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cns" index="0" unique_id=787574956]
+transform = Transform3D(0.9876009, -0.019248718, -0.15580104, 7.449277e-05, 0.99251163, -0.12214943, 0.1569856, 0.120623276, 0.9802069, -0.0023054348, 1.102532, 0.03731262)
+
+[node name="spine_C0_2_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cns/spine_C0_1_cns" index="0" unique_id=665001832]
+transform = Transform3D(0.9872707, -0.0022590049, -0.15903313, -0.00014042704, 0.9998863, -0.01507477, 0.15904912, 0.01490521, 0.9871582, -0.0030755969, 1.1757064, 0.04215712)
+
+[node name="spine_C0_3_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cns/spine_C0_1_cns/spine_C0_2_cns" index="0" unique_id=1362628784]
+transform = Transform3D(0.9869339, 5.689159e-05, -0.16112584, -3.3932083e-05, 1, 0.0001452459, 0.16112584, -0.00013788076, 0.9869339, -0.002226052, 1.261074, 0.03700622)
+
+[node name="spine_C0_fk0_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2" parent_id_path=PackedInt32Array(1485594788, 2021545256) index="7" unique_id=18115644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6909053e-10, 0.036696587, -0.0023300448)
+
+[node name="spine_C0_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_fk0_npo" index="0" unique_id=225522276]
+transform = Transform3D(0.9943254, 0.015865069, 0.10519089, 0.0007263738, 0.9877811, -0.15584496, -0.106378086, 0.15503702, 0.98216444, 0, 0, 0)
+
+[node name="spine_C0_fk1_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_fk0_npo/spine_C0_fk0_ctl" index="1" unique_id=1564294862]
+transform = Transform3D(0.9999978, -0.00033199534, -0.0020877481, 7.449213e-05, 0.9925116, -0.12214944, 0.0021126678, 0.12214901, 0.99250937, -3.096373e-05, 0.06505768, 0.017016055)
+
+[node name="spine_C0_fk2_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_fk0_npo/spine_C0_fk0_ctl/spine_C0_fk1_npo/spine_C0_fk1_ctl" parent_id_path=PackedInt32Array(1485594788, 1609470253) index="1" unique_id=544544398]
+transform = Transform3D(0.9999978, 0.00018339175, -0.0020927682, 4.195409e-05, 0.99424034, 0.107173584, 0.0021003692, -0.107173435, 0.99423814, 5.354958e-06, 0.073225595, -0.004069603)
+
+[node name="spine_C0_2_scl_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_fk0_npo/spine_C0_fk0_ctl/spine_C0_fk1_npo/spine_C0_fk1_ctl/spine_C0_fk2_npo/spine_C0_fk2_ctl" parent_id_path=PackedInt32Array(1485594788, 1392248658) index="0" unique_id=361997774]
+transform = Transform3D(0.9959622, 0, 0, 0, 1, 0, 0, 0, 0.9959622, 0, 0, 0)
+
+[node name="spine_C0_fk3_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_fk0_npo/spine_C0_fk0_ctl/spine_C0_fk1_npo/spine_C0_fk1_ctl/spine_C0_fk2_npo/spine_C0_fk2_ctl" parent_id_path=PackedInt32Array(1485594788, 1392248658) index="1" unique_id=741769345]
+transform = Transform3D(0.9999978, -0.00010618941, -0.002103876, 0.00013819773, 0.99988407, 0.015219668, 0.0021020165, -0.015219925, 0.99988186, 7.496746e-06, 0.085279115, -0.006506754)
+
+[node name="spine_C0_fk3_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_fk0_npo/spine_C0_fk0_ctl/spine_C0_fk1_npo/spine_C0_fk1_ctl/spine_C0_fk2_npo/spine_C0_fk2_ctl/spine_C0_fk3_npo" index="0" unique_id=947139176]
+transform = Transform3D(0.95811546, 0.0122074485, -0.28612182, -0.1291009, 0.910225, -0.393476, 0.25563186, 0.41393405, 0.8736767, 0, 0, 0)
+
+[node name="spine_C0_0_cnx" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2" parent_id_path=PackedInt32Array(1485594788, 2021545256) index="8" unique_id=449405526]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.842171e-16, 0)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="0" unique_id=162577611]
+bones/0/rotation = Quaternion(0.47905394, -0.43511778, -0.468318, 0.60154647)
+bones/2/rotation = Quaternion(0.39015412, -0.5101117, -0.3587519, 0.6773942)
+bones/3/rotation = Quaternion(0.003564349, 3.2311747e-27, -3.2254644e-18, 0.9999937)
+bones/4/rotation = Quaternion(0.0035643396, -8.037547e-26, -2.4190918e-18, 0.9999937)
+bones/6/rotation = Quaternion(0.39015406, -0.5101118, -0.35875168, 0.67739433)
+
+[node name="leg_L1_tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/Skeleton3D" index="0" unique_id=501779685]
+transform = Transform3D(0.18270159, 0.1465403, -0.97218645, -0.98031986, 0.10237117, -0.16879945, 0.074788004, 0.9838935, 0.16235973, 0, 0, 0)
+bone_idx = 0
+
+[node name="leg_L1_tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/Skeleton3D/leg_L1_tip_ref" index="0" unique_id=1946706028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9726509, -6.5725204e-16, 3.1974424e-16)
+
+[node name="leg_L1_int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/Skeleton3D" index="1" unique_id=1214706537]
+transform = Transform3D(0.18270159, 0.1465403, -0.97218645, -0.98031986, 0.10237117, -0.16879945, 0.074788004, 0.9838935, 0.16235973, 0, 0, 0)
+bone_idx = 0
+
+[node name="leg_L1_int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/Skeleton3D/leg_L1_int_lvl" index="0" unique_id=428693335]
+transform = Transform3D(1, -4.1633363e-17, -2.8753042e-16, 4.1633363e-17, 1, 3.694961e-16, 2.8753042e-16, -3.694961e-16, 1, 0.48632544, -1.4210854e-16, 7.105427e-17)
+
+[node name="leg_L1_ik_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="1" unique_id=608340092]
+transform = Transform3D(0.98793036, 0, 0.15489878, 0, 1, 0, -0.15489878, 0, 0.98793036, 0.07867811, -0.9535089, -0.12113691)
+
+[node name="leg_L1_ik_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl/leg_L1_ik_cns/leg_L1_ikcns_ctl" parent_id_path=PackedInt32Array(1485594788, 1971219449) index="0" unique_id=1209366708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06779985, 0, 0.20687862)
+
+[node name="leg_L1_0_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="2" unique_id=1885557550]
+transform = Transform3D(10.466648, 0.074135594, -0.97218627, -41.65046, 0.4357913, -0.16879943, 19.370308, 0.89698935, 0.1623597, 1.7763568e-17, -1.4210854e-16, 8.881784e-18)
+
+[node name="leg_L1_1_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="3" unique_id=1083586297]
+transform = Transform3D(7.303847, 0.19378546, -0.97218627, -53.70043, -0.19042084, -0.16879952, -12.09604, 0.9623862, 0.16235958, 0.10466647, -0.41650456, 0.19370306)
+
+[node name="leg_L1_eff_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="4" unique_id=1576871332]
+transform = Transform3D(0.98793036, -1.4354662e-15, 0.15489878, 1.4176032e-15, 1, 2.2577954e-16, -0.15489878, -3.469447e-18, 0.98793036, 0.17770489, -0.9535089, 0.07274265)
+
+[node name="leg_L1_div0_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="6" unique_id=1963049026]
+transform = Transform3D(0.22216621, 0.087988295, -0.97103053, -0.8840771, 0.438154, -0.16256917, 0.4111568, 0.89458317, 0.17513146, 6.9277914e-16, -1.278977e-15, 2.6201264e-15)
+
+[node name="leg_L1_div1_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="7" unique_id=1578541875]
+transform = Transform3D(0.2221661, 0.08106394, -0.971633, -0.8840772, 0.43698362, -0.16568847, 0.41115633, 0.895809, 0.16874975, 0.034888826, -0.13883486, 0.06456769)
+
+[node name="leg_L1_div2_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="8" unique_id=166203408]
+transform = Transform3D(0.22216624, 0.074135594, -0.97218627, -0.8840773, 0.4357913, -0.16879943, 0.4111563, 0.89698935, 0.1623597, 0.06977765, -0.27766973, 0.12913539)
+
+[node name="leg_L1_div3_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="9" unique_id=1995766846]
+transform = Transform3D(0.13153356, 0.19189446, -0.9725613, -0.96708155, -0.19074874, -0.16842878, -0.2178354, 0.9627001, 0.16048773, 0.10466647, -0.41650456, 0.19370306)
+
+[node name="leg_L1_div4_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="10" unique_id=2020438528]
+transform = Transform3D(0.13153356, 0.25375158, -0.95828444, -0.9670815, -0.17957707, -0.18029267, -0.21783544, 0.95045364, 0.22177806, 0.12901261, -0.595506, 0.15338293)
+
+[node name="leg_L1_div5_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="11" unique_id=1821108325]
+transform = Transform3D(0.1315336, 0.31456813, -0.94007754, -0.96708155, -0.16766876, -0.19141713, -0.21783537, 0.9343094, 0.28215897, 0.15335876, -0.7745075, 0.113062784)
+
+[node name="leg_L1_uplegBendyA_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_root_npo/leg_L1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1498574068) index="12" unique_id=2122562446]
+transform = Transform3D(0.22216623, 0.074135594, -0.9721862, -0.88407725, 0.4357913, -0.16879942, 0.41115627, 0.89698935, 0.16235968, 3.5527136e-17, 0, -1.3322676e-17)
+
+[node name="leg_L1_roll_ctl_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="2" unique_id=940757444]
+transform = Transform3D(0.18365952, 0.14533767, -0.97218627, -0.9796266, 0.10880421, -0.16879937, 0.08124504, 0.9833812, 0.16235958, 0.08885244, -0.47675446, 0.03637132)
+
+[node name="leg_L1_upv_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="3" unique_id=1199927333]
+transform = Transform3D(0.9955524, -0.089059934, -0.030719949, 0.092868306, 0.9825627, 0.16107719, 0.015838755, -0.16321369, 0.98646355, 0.21165945, -0.37216434, 0.8804605)
+
+[node name="leg_L1_knee_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="4" unique_id=206298665]
+transform = Transform3D(0.13153367, 0.19378546, -0.97218627, -0.9670815, -0.19042084, -0.16879952, -0.21783541, 0.9623862, 0.16235958, 0.10466647, -0.41650456, 0.19370306)
+
+[node name="leg_L1_ctrn_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="5" unique_id=1521387801]
+transform = Transform3D(0.1866947, 0.14141783, -0.9721862, -0.9771042, 0.12951478, -0.16879942, 0.10204124, 0.9814412, 0.16235968, 0.10466647, -0.41650456, 0.19370306)
+
+[node name="leg_L1_tws1A_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_ctrn_loc/leg_L1_mid_cns/leg_L1_mid_ctl" parent_id_path=PackedInt32Array(1485594788, 1457594516) index="0" unique_id=1501837742]
+transform = Transform3D(0.94726783, -0.3204429, 1.8712708e-08, 0.3204429, 0.94726783, 3.0793676e-09, -1.8712708e-08, 3.079368e-09, 1, 0, 2.220446e-18, 0)
+
+[node name="leg_L1_tws1B_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_ctrn_loc/leg_L1_mid_cns/leg_L1_mid_ctl" parent_id_path=PackedInt32Array(1485594788, 1457594516) index="1" unique_id=1040876171]
+transform = Transform3D(0.94726783, 0.3204429, -1.4340452e-08, -0.3204429, 0.94726783, 2.3598683e-09, 1.4340452e-08, 2.3598687e-09, 1, 0, 2.220446e-18, 0)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_ctrn_loc/leg_L1_mid_cns/leg_L1_mid_ctl" parent_id_path=PackedInt32Array(1485594788, 1457594516) index="2" unique_id=442090153]
+bones/0/rotation = Quaternion(0.00095945306, -0.00015789355, -0.1623763, 0.9867285)
+bones/1/rotation = Quaternion(-0.032019854, -1.8437727e-17, 0, 0.9994873)
+bones/2/rotation = Quaternion(-0.032019854, 3.0729545e-18, 1.2291818e-17, 0.9994873)
+
+[node name="leg_L1_tws2_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="6" unique_id=216042271]
+transform = Transform3D(0.98793036, 0, 0.15489878, 0, 1, 0, -0.15489878, 0, 0.98793036, 0.17770489, -0.9535089, 0.07274265)
+
+[node name="leg_L1_aux_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="7" unique_id=1916964062]
+transform = Transform3D(0.9984586, -0.054753114, 0.009072477, 0.05518074, 0.99686694, -0.056669153, -0.005941239, 0.057082437, 0.99835175, 0.028963707, 0.04757422, 0.2228918)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2/leg_L1_aux_npo" index="0" unique_id=1878851376]
+bones/0/rotation = Quaternion(0.47687972, -0.4304747, -0.5643587, 0.5184366)
+bones/1/rotation = Quaternion(-0.064006865, -2.12458e-17, 2.12458e-17, 0.9979495)
+bones/3/rotation = Quaternion(0.47687972, -0.4304747, -0.5643587, 0.5184366)
+
+[node name="leg_L1_divRoot_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="8" unique_id=583137286]
+transform = Transform3D(0.22216617, 0.07413551, -0.9721862, -0.88407695, 0.4357917, -0.16879933, 0.41115665, 0.89698905, 0.16235968, 2.3092638e-16, -2.9842794e-15, 6.6613384e-17)
+
+[node name="leg_L1_lowlegBendyB_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="9" unique_id=1902902257]
+transform = Transform3D(0.13153358, 0.19378534, -0.97218615, -0.9670814, -0.19042084, -0.16879942, -0.21783535, 0.9623862, 0.16235946, 0.17770489, -0.9535089, 0.07274265)
+
+[node name="leg_L1_matchFk0_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="10" unique_id=1933520748]
+transform = Transform3D(0.2221662, 0.07413552, -0.97218627, -0.8840771, 0.43579173, -0.16879934, 0.4111567, 0.8969891, 0.1623597, 5.3290704e-17, -1.4210854e-16, 0)
+
+[node name="leg_L1_matchFk1_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="11" unique_id=1476956007]
+transform = Transform3D(0.13153346, 0.1937856, -0.9721862, -0.96708137, -0.19042116, -0.16879939, -0.21783574, 0.962386, 0.16235968, 0.10466651, -0.4165046, 0.1937033)
+
+[node name="leg_L1_ikHandleLegChainUpvRef" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_L1_root2" parent_id_path=PackedInt32Array(1485594788, 160623356) index="12" unique_id=477388530]
+transform = Transform3D(0.09203291, 0.1709792, -0.98096687, -0.99170357, -0.073049545, -0.105772495, -0.08974415, 0.9825629, 0.16283768, 0.17770489, -0.9535089, 0.07274264)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="0" unique_id=608675052]
+bones/0/rotation = Quaternion(0.55067545, -0.5229664, -0.54023594, 0.36250225)
+bones/2/rotation = Quaternion(0.61479616, 0.4532706, -0.42047942, -0.4896617)
+bones/3/rotation = Quaternion(-0.0431275, 2.927032e-17, -4.8783857e-17, 0.99906963)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.0431275, -2.927032e-17, 2.927032e-17, 0.99906963)
+bones/4/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.4532704, -0.6147963, -0.48966157, 0.4204796)
+
+[node name="leg_R1_tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/Skeleton3D" index="0" unique_id=491707165]
+transform = Transform3D(-0.13069737, -0.18429604, -0.9741423, -0.967643, -0.19019663, 0.16580832, -0.21583638, 0.96429265, -0.15347457, 0, 0, 0)
+bone_idx = 0
+
+[node name="leg_R1_tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/Skeleton3D/leg_R1_tip_ref" index="0" unique_id=1150551003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98539335, -2.3092638e-16, 1.4210854e-16)
+
+[node name="leg_R1_int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/Skeleton3D" index="1" unique_id=1666817303]
+transform = Transform3D(-0.13069737, -0.18429604, -0.9741423, -0.967643, -0.19019663, 0.16580832, -0.21583638, 0.96429265, -0.15347457, 0, 0, 0)
+bone_idx = 0
+
+[node name="leg_R1_int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/Skeleton3D/leg_R1_int_lvl" index="0" unique_id=1900170809]
+transform = Transform3D(1, -1.110223e-16, -5.551115e-17, 1.110223e-16, 1, -5.5511157e-16, 5.551115e-17, 5.5511157e-16, 1, 0.49269667, 2.3092638e-16, -1.4210854e-16)
+
+[node name="leg_R1_upv_cns_leg_R1_legUpvRef0_jnt_space_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/Skeleton3D" index="2" unique_id=319717014]
+transform = Transform3D(-0.13069737, -0.18429604, -0.9741423, -0.967643, -0.19019663, 0.16580832, -0.21583638, 0.96429265, -0.15347457, 0, 0, 0)
+bone_idx = 0
+
+[node name="leg_R1_ik_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="1" unique_id=1650566675]
+transform = Transform3D(0.98793036, 0, 0.15489878, 0, 1, 0, -0.15489878, 0, 0.98793036, -0.104921125, -0.9535089, -0.060461618)
+
+[node name="leg_R1_ik_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl/leg_R1_ik_cns/leg_R1_ikcns_ctl" parent_id_path=PackedInt32Array(1485594788, 1976093454) index="0" unique_id=9494033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1540819)
+
+[node name="leg_R1_0_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="2" unique_id=809699898]
+transform = Transform3D(11.09415, 0.30838823, -0.92165244, 45.657127, -0.14585817, 0.19880998, -3.444807, -0.94001174, -0.33321375, -1.7763568e-17, 0, 0)
+
+[node name="leg_R1_1_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="3" unique_id=87737351]
+transform = Transform3D(1.784668, 0.3866835, -0.9216523, 49.693768, 0.39947686, 0.19881013, 24.713188, -0.8312004, -0.33321407, -0.11094154, -0.45657122, 0.03444806)
+
+[node name="leg_R1_eff_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="4" unique_id=687565287]
+transform = Transform3D(0.98793036, -2.8981768e-15, 0.15489878, 2.8631967e-15, 1, 4.48924e-16, -0.15489878, 0, 0.98793036, -0.12878822, -0.9535089, -0.2126838)
+
+[node name="leg_R1_div0_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="6" unique_id=373702334]
+transform = Transform3D(-0.2354859, -0.14555258, -0.9609166, -0.9691232, 0.10955502, 0.2209024, 0.07312034, 0.9832661, -0.16685703, -2.8954616e-15, -4.8316907e-15, 3.9168667e-15)
+
+[node name="leg_R1_div1_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="7" unique_id=2030605295]
+transform = Transform3D(0.23548564, 0.22781806, -0.9447992, 0.96912336, -0.1281831, 0.21063969, -0.07311977, -0.9652295, -0.25096908, -0.036980513, -0.15219043, 0.011482687)
+
+[node name="leg_R1_div2_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="8" unique_id=2043701083]
+transform = Transform3D(0.23548567, 0.3083882, -0.92165244, 0.9691233, -0.14585815, 0.19880998, -0.073119864, -0.9400117, -0.33321375, -0.07396103, -0.30438086, 0.022965373)
+
+[node name="leg_R1_div3_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="9" unique_id=185182054]
+transform = Transform3D(0.032139823, 0.385173, -0.9222845, 0.89492613, 0.39980203, 0.19815542, 0.44505534, -0.8317452, -0.33185178, -0.11094154, -0.45657122, 0.03444806)
+
+[node name="leg_R1_div4_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="10" unique_id=1092457282]
+transform = Transform3D(0.03213983, 0.20924482, -0.977335, 0.8949262, 0.42939314, 0.12136173, 0.44505525, -0.8785432, -0.17345805, -0.11689043, -0.6222171, -0.047929224)
+
+[node name="leg_R1_div5_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="11" unique_id=1829260545]
+transform = Transform3D(0.032139767, 0.026198924, -0.99913996, 0.8949262, 0.444378, 0.040439725, 0.44505525, -0.89545625, -0.009163898, -0.122839324, -0.7878631, -0.13030651)
+
+[node name="leg_R1_uplegBendyA_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_root_npo/leg_R1_root_ctl" parent_id_path=PackedInt32Array(1485594788, 1565891171) index="12" unique_id=1143259292]
+transform = Transform3D(0.23548563, -0.30838853, 0.9216523, 0.9691233, 0.1458582, -0.19880992, -0.07311985, 0.9400117, 0.333214, 1.7763568e-17, 1.4210854e-16, 8.881784e-18)
+
+[node name="leg_R1_roll_ctl_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="2" unique_id=2120926046]
+transform = Transform3D(0.13190413, 0.18343414, -0.97414225, 0.9688705, 0.18384062, 0.1658081, 0.20950177, -0.9656886, -0.15347458, -0.06439411, -0.47675446, -0.1063419)
+
+[node name="leg_R1_upv_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="3" unique_id=2008521977]
+transform = Transform3D(-0.99914056, 0.040038288, -0.010726003, 0.041077748, 0.9910467, -0.1270398, -0.0055435137, 0.1273712, 0.99183965, -0.21969038, -0.61758786, 0.72721255)
+
+[node name="leg_R1_upv_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_upv_cns" index="0" unique_id=1458195496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15981847, 0, -0.04004725)
+
+[node name="leg_R1_knee_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="4" unique_id=1824626442]
+transform = Transform3D(-0.032139834, -0.38668337, -0.92165226, -0.8949262, -0.39947662, 0.19881006, -0.44505507, 0.8312005, -0.33321396, -0.11094154, -0.45657122, 0.03444806)
+
+[node name="leg_R1_ctrn_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="5" unique_id=185614438]
+transform = Transform3D(0.13942155, 0.36210302, -0.92165226, 0.9710909, 0.13212456, 0.19881003, 0.19376265, -0.9227266, -0.33321396, -0.11094154, -0.45657122, 0.03444806)
+
+[node name="leg_R1_mid_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_ctrn_loc" index="0" unique_id=1831570210]
+transform = Transform3D(-1, 8.742278e-08, -5.433386e-33, -8.742278e-08, -1, 3.330669e-16, -2.9117632e-23, -3.330669e-16, -1, -3.5527137e-16, 0, -1.0658141e-16)
+
+[node name="leg_R1_tws1A_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_ctrn_loc/leg_R1_mid_cns/leg_R1_mid_ctl" parent_id_path=PackedInt32Array(1485594788, 1605582553) index="0" unique_id=1986930810]
+transform = Transform3D(-0.95977086, 0.2807845, 1.3328394e-08, -0.2807845, -0.95977086, -9.302723e-08, 1.33284e-08, 9.302723e-08, -1, -2.1316282e-16, 2.6645352e-17, 0)
+
+[node name="leg_R1_tws1B_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_ctrn_loc/leg_R1_mid_cns/leg_R1_mid_ctl" parent_id_path=PackedInt32Array(1485594788, 1605582553) index="1" unique_id=1867232413]
+transform = Transform3D(-0.95977086, -0.2807845, 4.9094012e-08, 0.2807845, -0.95977086, 3.426579e-07, 4.909402e-08, -3.426579e-07, -1, -2.1316282e-16, 2.6645352e-17, 0)
+
+[node name="leg_R1_tws1B_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_ctrn_loc/leg_R1_mid_cns/leg_R1_mid_ctl/leg_R1_tws1B_npo" index="0" unique_id=441531385]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -7.105427e-17, -4.440892e-18, -3.5527136e-17)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_ctrn_loc/leg_R1_mid_cns/leg_R1_mid_ctl/transform2" parent_id_path=PackedInt32Array(1485594788, 2093415685) index="0" unique_id=1769380154]
+bones/0/rotation = Quaternion(-0.46375644, -0.6046445, 0.33707708, 0.55291414)
+bones/1/rotation = Quaternion(0.092217706, -3.5400637e-17, 1.7700317e-17, 0.99573886)
+bones/1/scale = Vector3(0.86466867, 1, 1)
+bones/2/rotation = Quaternion(0.092217706, -8.850159e-18, -3.540064e-17, 0.99573886)
+bones/2/scale = Vector3(0.86466867, 1, 1)
+bones/3/scale = Vector3(0.86466867, 1, 1)
+
+[node name="leg_R1_tws2_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="6" unique_id=521942649]
+transform = Transform3D(0.98793036, 0, 0.15489878, 0, 1, 0, -0.15489878, 0, 0.98793036, -0.12878822, -0.9535089, -0.2126838)
+
+[node name="leg_R1_aux_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="7" unique_id=1476694760]
+transform = Transform3D(0.9752019, -0.009607777, -0.22110827, -0.0532817, 0.9594804, -0.276692, 0.21480744, 0.28161162, 0.9351752, -0.067010984, -0.010384552, 0.17915311)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2/leg_R1_aux_npo" index="0" unique_id=233925542]
+bones/0/rotation = Quaternion(0.47967067, -0.5931675, -0.42316768, 0.48887378)
+bones/1/rotation = Quaternion(-0.18364951, -4.571909e-17, 3.0479392e-17, 0.9829919)
+bones/3/rotation = Quaternion(0.47967067, -0.5931675, -0.42316768, 0.48887378)
+
+[node name="leg_R1_divRoot_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="8" unique_id=1993785838]
+transform = Transform3D(-0.23548594, -0.30838823, -0.9216524, -0.96912324, 0.14585865, 0.19881007, 0.073120296, 0.9400117, -0.33321387, -7.283063e-16, -6.6791017e-15, 1.3766766e-16)
+
+[node name="leg_R1_lowlegBendyB_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="9" unique_id=1015569534]
+transform = Transform3D(0.032139834, -0.38668343, 0.9216523, 0.89492613, -0.39947677, -0.19881013, 0.44505522, 0.8312005, 0.333214, -0.12878822, -0.9535089, -0.2126838)
+
+[node name="leg_R1_matchFk0_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="10" unique_id=1421616596]
+transform = Transform3D(0.23548566, 0.3083882, -0.9216526, 0.96912324, -0.14585866, 0.19880986, -0.07312036, -0.94001186, -0.3332138, -1.7763568e-17, 0, 1.7763568e-17)
+
+[node name="leg_R1_matchFk1_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="11" unique_id=1015382168]
+transform = Transform3D(0.03213975, 0.38668337, -0.92165226, 0.89492595, 0.399477, 0.19881019, 0.44505554, -0.8312001, -0.33321398, -0.11094162, -0.4565713, 0.03444826)
+
+[node name="leg_R1_ikHandleLegChainUpvRef" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_0_cnx/leg_R1_root2" parent_id_path=PackedInt32Array(1485594788, 215781642) index="12" unique_id=1139339491]
+transform = Transform3D(-0.09203292, -0.17097917, -0.98096675, -0.99170357, -0.07304952, 0.10577248, -0.08974406, 0.9825628, -0.1628377, -0.12878822, -0.9535089, -0.2126838)
+
+[node name="spine_C0_1_cnx" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2" parent_id_path=PackedInt32Array(1485594788, 2021545256) index="9" unique_id=525092551]
+transform = Transform3D(0.98640144, 0.16134405, -0.031306487, -0.15729499, 0.87153184, -0.46442467, -0.047647554, 0.46303353, 0.885059, 0.037385594, 0.42330873, 0.14633603)
+
+[node name="shoulder_L_0ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo" parent_id_path=PackedInt32Array(1485594788, 2070365743) index="0" unique_id=398034231]
+transform = Transform3D(0.99547625, 0, -0.09501098, 0, 1, 0, 0.09501098, 0, 0.99547625, 0, 0, 0)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="0" unique_id=810144875]
+bones/0/rotation = Quaternion(0.5266402, -0.48901567, 0.40008393, -0.5687238)
+bones/2/rotation = Quaternion(-0.4392153, 0.6435947, -0.13794394, 0.6114305)
+bones/3/rotation = Quaternion(0.06172491, -8.8613384e-17, -8.861338e-17, 0.9980932)
+bones/4/rotation = Quaternion(0.061724942, 5.790265e-24, 7.5321415e-16, 0.9980932)
+bones/6/rotation = Quaternion(-0.4392154, 0.64359474, -0.13794391, 0.6114305)
+
+[node name="arm_L_0tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/Skeleton3D" index="0" unique_id=414802378]
+transform = Transform3D(0.20159316, -0.059996128, 0.97763014, -0.970145, 0.12516606, 0.20773098, -0.13482916, -0.9903201, -0.032972217, 0, 0, 0)
+bone_idx = 0
+
+[node name="arm_L_0tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/Skeleton3D/arm_L_0tip_ref" index="0" unique_id=1880680794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4122576, 1.4210854e-16, -7.81597e-16)
+
+[node name="arm_L_0int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/Skeleton3D" index="1" unique_id=1228781703]
+transform = Transform3D(0.20159316, -0.059996128, 0.97763014, -0.970145, 0.12516606, 0.20773098, -0.13482916, -0.9903201, -0.032972217, 0, 0, 0)
+bone_idx = 0
+
+[node name="arm_L_0int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/Skeleton3D/arm_L_0int_lvl" index="0" unique_id=1525303881]
+transform = Transform3D(1, -3.4694473e-17, -4.8572257e-17, 3.4694473e-17, 1, -5.6421885e-15, 4.8572257e-17, 5.6421885e-15, 1, 0.2061288, 2.842171e-16, -1.4210854e-16)
+
+[node name="arm_L_0roll_ctl_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="2" unique_id=634438628]
+transform = Transform3D(0.20219949, -0.057919536, 0.97763014, -0.9713809, 0.11518151, 0.20773095, -0.1246366, -0.9916543, -0.032972295, 0.041554157, -0.19997483, -0.02779215)
+
+[node name="arm_L_0upv_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="3" unique_id=226676450]
+transform = Transform3D(0.769854, 0.63402474, 0.07305862, -0.62233704, 0.77113944, -0.13431513, -0.1414975, 0.057935946, 0.98824185, 0.029699726, -0.22467119, -0.5348673)
+
+[node name="arm_L_ik_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0ik_cns/arm_L_0ikcns_ctl" parent_id_path=PackedInt32Array(1485594788, 1720657950) index="0" unique_id=2025081926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32916665, -0.067115925, -0.061831538)
+
+[node name="arm_L_0ikRot_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="5" unique_id=460083519]
+transform = Transform3D(0.18496324, 0.100139454, 0.97763026, -0.7744527, -0.59755415, 0.20773095, 0.604989, -0.795551, -0.0329723, 0.08310832, -0.39994967, -0.0555843)
+
+[node name="arm_L_ikRot_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0ikRot_npo/arm_L_0ikRot_cns" parent_id_path=PackedInt32Array(1485594788, 597902993) index="0" unique_id=841237505]
+transform = Transform3D(0.60710496, 0.23771432, -0.75823176, -0.22628611, 0.96641576, 0.121798486, 0.7617205, 0.097632855, 0.64050734, -2.1316282e-16, -2.842171e-16, -1.3322676e-17)
+
+[node name="arm_L_00_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="6" unique_id=1982312854]
+transform = Transform3D(3.9648952, -0.16252112, 0.9776301, -21.798271, 0.6465553, 0.20773087, -19.773369, -0.7453544, -0.03297229, 3.5527136e-17, 0, 0)
+
+[node name="arm_L_01_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="7" unique_id=1805209636]
+transform = Transform3D(4.345934, 0.100139454, 0.97763026, -18.196697, -0.59755415, 0.20773095, 14.214944, -0.795551, -0.0329723, 0.039648965, -0.21798271, -0.19773373)
+
+[node name="arm_L_0elbow_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="8" unique_id=265007162]
+transform = Transform3D(0.18496315, 0.10013938, 0.97763026, -0.7744527, -0.59755415, 0.20773083, 0.604989, -0.795551, -0.0329723, 0.039648965, -0.21798271, -0.19773373)
+
+[node name="arm_L_0ctrn_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="9" unique_id=795891964]
+transform = Transform3D(0.20640916, -0.040430263, 0.97763014, -0.9776704, 0.03175816, 0.20773101, -0.03944635, -0.99867755, -0.032972295, 0.039648965, -0.21798271, -0.19773373)
+
+[node name="arm_L_0tws1A_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0ctrn_loc/arm_L_0mid_cns/arm_L_0mid_ctl" parent_id_path=PackedInt32Array(1485594788, 128810742) index="0" unique_id=1341140031]
+transform = Transform3D(0.77147275, -0.6362621, 9.07255e-09, 0.6362621, 0.77147275, 3.2585994e-09, -9.072549e-09, 3.2585987e-09, 1, 7.105427e-17, -8.881784e-18, -2.842171e-16)
+
+[node name="arm_L_0tws1B_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0ctrn_loc/arm_L_0mid_cns/arm_L_0mid_ctl" parent_id_path=PackedInt32Array(1485594788, 128810742) index="1" unique_id=482567343]
+transform = Transform3D(0.7714729, 0.6362622, 5.6238477e-08, -0.6362622, 0.7714729, -2.0199247e-08, -5.6238477e-08, -2.0199247e-08, 1, 7.105427e-17, -8.881784e-18, -2.842171e-16)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0ctrn_loc/arm_L_0mid_cns/arm_L_0mid_ctl" parent_id_path=PackedInt32Array(1485594788, 128810742) index="2" unique_id=1474108096]
+bones/0/rotation = Quaternion(1.2951951e-09, 2.941279e-08, -0.33802897, 0.9411357)
+bones/1/rotation = Quaternion(-0.0037593083, 3.4105275e-18, -1.3642109e-17, 0.999993)
+bones/2/rotation = Quaternion(-0.0037593083, -4.2631627e-18, 1.0339759e-25, 0.999993)
+
+[node name="arm_L_0matchFk0_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="10" unique_id=1581713121]
+transform = Transform3D(0.1335147, -0.16252112, 0.9776301, -0.73403955, 0.6465553, 0.20773087, -0.66585255, -0.7453544, -0.03297229, 6.0396133e-16, 4.2632563e-16, 1.4210854e-16)
+
+[node name="arm_L_0matchFk1_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="11" unique_id=346318499]
+transform = Transform3D(0.18496315, 0.10013938, 0.97763026, -0.7744527, -0.59755415, 0.20773083, 0.604989, -0.795551, -0.0329723, 0.039648965, -0.21798271, -0.19773373)
+
+[node name="arm_L_0eff_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="12" unique_id=703196066]
+transform = Transform3D(0.8236229, 0.2237483, 0.52113533, -0.21866311, -0.72256106, 0.65581375, 0.52328944, -0.65409625, -0.54619235, 0.08310832, -0.39994967, -0.0555843)
+
+[node name="thumb_L_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0eff_loc/thumb_L_0root/thumb_L_0fk0_npo" parent_id_path=PackedInt32Array(1485594788, 3296640) index="0" unique_id=900917416]
+transform = Transform3D(0.97651494, 0.21544938, 0, -0.21544938, 0.97651494, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Index_finger_L_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0eff_loc/meta_L_0root/meta_L_00_lvl/meta_L_00_npo/meta_L_00_loc/finger_L_0root/finger_L_0fk0_npo" parent_id_path=PackedInt32Array(1485594788, 519064877) index="0" unique_id=239405178]
+transform = Transform3D(0.89700645, 0.4420175, 0, -0.4420175, 0.89700645, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Middle_finger_L_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0eff_loc/meta_L_0root/meta_L_01_lvl/meta_L_01_npo/meta_L_01_loc/finger_L1_root2/finger_L1_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 14303289) index="0" unique_id=903046277]
+transform = Transform3D(0.81829023, 0.57480526, 0, -0.57480526, 0.81829023, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Ring_finger_L_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0eff_loc/meta_L_0root/meta_L_02_lvl/meta_L_02_npo/meta_L_02_loc/finger_L2_root2/finger_L2_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 1610520809) index="0" unique_id=532186683]
+transform = Transform3D(0.9342727, 0.35655922, 0, -0.35655922, 0.9342727, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Pinky_finger_L_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0eff_loc/meta_L_0root/meta_L_03_lvl/meta_L_03_npo/meta_L_03_loc/finger_L3_root2/finger_L3_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 1634442212) index="0" unique_id=18387141]
+transform = Transform3D(0.98429555, 0.1765285, 0, -0.1765285, 0.98429555, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="arm_L_0tws2_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="14" unique_id=1465336365]
+transform = Transform3D(0.8236229, 0.2237483, 0.52113533, -0.21866311, -0.72256106, 0.65581375, 0.52328944, -0.65409625, -0.54619235, 0.08310832, -0.39994967, -0.0555843)
+
+[node name="arm_L_0aux_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="15" unique_id=1528018739]
+transform = Transform3D(0.7661371, 0.63901454, -0.0685136, -0.52313, 0.68199706, 0.51109177, 0.3733212, -0.35572487, 0.856791, -0.019637175, 0.03952252, -0.33324513)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root/arm_L_0aux_npo" index="0" unique_id=2017778382]
+bones/0/rotation = Quaternion(-0.7411949, -0.16662419, -0.043129846, 0.64885)
+bones/1/rotation = Quaternion(-0.0075185634, -2.1197555e-17, 3.2301046e-17, 0.99997175)
+bones/3/rotation = Quaternion(-0.7411949, -0.16662419, -0.043129846, 0.64885)
+
+[node name="arm_L_0div0_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="16" unique_id=1317820784]
+transform = Transform3D(0.13351467, -0.39666694, 0.908201, -0.73403955, 0.5761227, 0.35953924, -0.6658526, -0.71465915, -0.2142484, -1.8189894e-14, 1.4281909e-13, 1.2235545e-13)
+
+[node name="arm_L_0divRoot_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="17" unique_id=1437827767]
+transform = Transform3D(0.1335147, -0.16252112, 0.9776301, -0.73403955, 0.6465553, 0.20773087, -0.66585255, -0.7453544, -0.03297229, -2.842171e-16, 0, -8.881784e-18)
+
+[node name="arm_L_0div1_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="18" unique_id=472312485]
+transform = Transform3D(0.13351472, -0.2817409, 0.9501556, -0.7340395, 0.6160332, 0.28581294, -0.6658526, -0.7356121, -0.12455944, 0.013216322, -0.0726609, -0.06591125)
+
+[node name="arm_L_0div2_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="19" unique_id=1311141886]
+transform = Transform3D(0.13351469, -0.162521, 0.9776301, -0.7340394, 0.6465554, 0.20773079, -0.66585267, -0.7453543, -0.032972176, 0.026432645, -0.1453218, -0.1318225)
+
+[node name="arm_L_0div3_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="20" unique_id=277609155]
+transform = Transform3D(0.18496323, 0.10013943, 0.97763, -0.77445257, -0.597554, 0.20773089, 0.60498893, -0.7955508, -0.03297229, 0.039648965, -0.21798271, -0.19773373)
+
+[node name="arm_L_0div4_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="21" unique_id=398052698]
+transform = Transform3D(0.18496323, 0.092786215, 0.97835535, -0.77445257, -0.5990991, 0.20323227, 0.604989, -0.7952803, -0.038952783, 0.05413542, -0.27863836, -0.15035059)
+
+[node name="arm_L_0div5_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="22" unique_id=1059841603]
+transform = Transform3D(0.18496327, 0.08542756, 0.97902524, -0.7744526, -0.60061014, 0.19872206, 0.604989, -0.794965, -0.044931218, 0.06862187, -0.33929402, -0.10296744)
+
+[node name="arm_L_0armBendyA_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="23" unique_id=1129195468]
+transform = Transform3D(0.13351472, -0.16252112, 0.97763014, -0.7340396, 0.6465553, 0.20773089, -0.6658526, -0.7453544, -0.032972295, -2.842171e-16, 0, -8.881784e-18)
+
+[node name="arm_L_0forearmBendyB_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="24" unique_id=574114369]
+transform = Transform3D(0.18496324, 0.10013943, 0.97762996, -0.7744527, -0.597554, 0.20773089, 0.604989, -0.7955508, -0.032972287, 0.08310832, -0.39994967, -0.0555843)
+
+[node name="arm_L_0ikHandleArmChainUpvRef" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_L_0root/shoulder_L_0ctl_npo/shoulder_L_0ctl/shoulder_L_0orbit_cns/shoulder_L_0orbit_npo/shoulder_L_0orbit_ctl/arm_L_0root" parent_id_path=PackedInt32Array(1485594788, 1671780392) index="25" unique_id=1486136236]
+transform = Transform3D(0.7780324, 0.01604423, 0.6280192, -0.6281135, 0.0011062622, 0.778121, 0.01178956, -0.99987066, 0.010938287, 0.08310831, -0.39994967, -0.0555843)
+
+[node name="neck_C0_0_rot_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2099663216) index="0" unique_id=1140938857]
+transform = Transform3D(0.98187655, 0.01681867, -0.18877378, -0.15729499, 0.62794244, -0.7621985, 0.105719894, 0.77807796, 0.6192075, 0, 0, 0)
+
+[node name="neck_C0_0_pos_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2099663216) index="1" unique_id=1877310954]
+transform = Transform3D(0.98187655, 0.016818656, -0.18877374, -0.15729496, 0.6279423, -0.76219857, 0.10571988, 0.778078, 0.6192074, -0.0018877377, -0.0076219845, 0.006192075)
+
+[node name="neck_C0_1_rot_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2099663216) index="2" unique_id=118560538]
+transform = Transform3D(0.9818765, 0.038097616, -0.18565284, -0.15729499, 0.71025294, -0.6861478, 0.105719894, 0.7029147, 0.70337325, 0, 0, 0)
+
+[node name="neck_C0_1_pos_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2099663216) index="3" unique_id=197200891]
+transform = Transform3D(0.98187655, 0.016818702, -0.18877375, -0.15729499, 0.6279425, -0.7621985, 0.105719864, 0.778078, 0.6192075, -0.0018877375, -0.0076219845, 0.006192075)
+
+[node name="neck_C0_2_rot_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2099663216) index="4" unique_id=538242036]
+transform = Transform3D(0.98187655, 0.05888597, -0.18014121, -0.15729499, 0.7834176, -0.6012615, 0.1057199, 0.61869997, 0.7784817, 0, 0, 0)
+
+[node name="neck_C0_2_pos_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_reference" parent_id_path=PackedInt32Array(1485594788, 2099663216) index="5" unique_id=1307520890]
+transform = Transform3D(0.98187655, 0.01681867, -0.18877378, -0.15729499, 0.62794244, -0.7621985, 0.105719894, 0.77807796, 0.6192075, -0.0018877377, -0.0076219845, 0.006192075)
+
+[node name="neck_C0_0_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2" parent_id_path=PackedInt32Array(1485594788, 968893527) index="6" unique_id=289394033]
+transform = Transform3D(0.9818766, 0.0062043667, -0.18941993, -0.15729497, 0.58420426, -0.79621834, 0.10571991, 0.8115829, 0.5745924, 0.0249263, 1.5283415, 0.22928715)
+
+[node name="neck_C0_1_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_0_cns" index="0" unique_id=1624775254]
+transform = Transform3D(0.98187655, 0.013751595, -0.18902194, -0.15729497, 0.61548483, -0.7722931, 0.10571988, 0.78802866, 0.60649323, 0.025317643, 1.5576658, 0.2692828)
+
+[node name="neck_C0_2_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_0_cns/neck_C0_1_cns" index="0" unique_id=517554911]
+transform = Transform3D(0.98187655, 0.05888597, -0.18014121, -0.15729499, 0.7834176, -0.6012615, 0.1057199, 0.61869997, 0.7784817, 0.026592113, 1.5905365, 0.30635232)
+
+[node name="neck_C0_fk1_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_0_scl_npo/neck_C0_fk0_npo/neck_C0_fk0_ctl/neck_C0_1_scl_npo/neck_C0_fk1_npo" parent_id_path=PackedInt32Array(1485594788, 1878653392) index="0" unique_id=1202246394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="neck_C0_head_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/neck_C0_root2/neck_C0_0_scl_npo/neck_C0_fk0_npo/neck_C0_fk0_ctl/neck_C0_1_scl_npo/neck_C0_fk1_npo/neck_C0_fk1_ctl/neck_C0_2_scl_npo/neck_C0_2_loc/neck_C0_head_cns" parent_id_path=PackedInt32Array(1485594788, 288142914) index="0" unique_id=1732570105]
+transform = Transform3D(0.9850369, 0.028157767, -0.1700272, 0.02814267, 0.9470404, 0.31987885, 0.1700297, -0.31987754, 0.9320773, 0, 0, 0)
+
+[node name="shoulder_R_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo" parent_id_path=PackedInt32Array(1485594788, 196778642) index="0" unique_id=1434549895]
+transform = Transform3D(0.99999994, 0, -0.00010500015, 0, 0.99999994, 0, 0.000105000145, 0, 1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="0" unique_id=1703446182]
+bones/0/rotation = Quaternion(-0.6172438, 0.46375203, -0.6139032, 0.16452023)
+bones/2/rotation = Quaternion(0.5327183, 0.50841135, 0.26144233, 0.6240008)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.07400322, 2.7917346e-24, -1.0624034e-16, 0.99725807)
+bones/4/rotation = Quaternion(0.074003175, 5.7902643e-24, -5.312014e-16, 0.99725807)
+bones/6/rotation = Quaternion(-0.5084114, 0.5327183, -0.6240008, 0.26144227)
+
+[node name="arm_R_tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/Skeleton3D" index="0" unique_id=599013381]
+transform = Transform3D(-0.18388641, -0.37049723, 0.9104492, -0.77449524, -0.51573443, -0.36629957, 0.6052628, -0.77249604, -0.19211185, 0, 0, 0)
+bone_idx = 0
+
+[node name="arm_R_tip_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/Skeleton3D/arm_R_tip_ref" index="0" unique_id=57396266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49893662, -1.3322677e-16, 1.563194e-15)
+
+[node name="arm_R_int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/Skeleton3D" index="1" unique_id=1896667724]
+transform = Transform3D(-0.18388641, -0.37049723, 0.9104492, -0.77449524, -0.51573443, -0.36629957, 0.6052628, -0.77249604, -0.19211185, 0, 0, 0)
+bone_idx = 0
+
+[node name="arm_R_int_lvl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/Skeleton3D/arm_R_int_lvl" index="0" unique_id=76970047]
+transform = Transform3D(1, 8.326673e-17, -2.7755576e-17, -8.326673e-17, 1, 2.7755578e-16, 2.7755576e-17, -2.7755578e-16, 1, 0.24946831, -3.5527136e-17, 5.684342e-16)
+
+[node name="arm_R_upv_cns_arm_R0_armUpvRef0_jnt_space_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/Skeleton3D" index="2" unique_id=84381321]
+transform = Transform3D(-0.18388641, -0.37049723, 0.9104492, -0.77449524, -0.51573443, -0.36629957, 0.6052628, -0.77249604, -0.19211185, 0, 0, 0)
+bone_idx = 0
+
+[node name="arm_R_roll_ctl_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="2" unique_id=1076417596]
+transform = Transform3D(0.18006618, 0.3723688, 0.9104491, 0.7691498, 0.5236726, -0.36629966, -0.6131758, 0.76623005, -0.1921117, -0.045873825, -0.19321199, 0.15099388)
+
+[node name="arm_R_upv_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="3" unique_id=1887295717]
+transform = Transform3D(-0.7207935, -0.59334797, 0.3583224, -0.3808136, 0.7709256, 0.5105435, 0.57916987, -0.2315424, 0.78163314, -0.23961216, -0.48705932, -0.2068852)
+
+[node name="arm_R_upv_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_upv_cns" index="0" unique_id=243549050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08570954, 0.20919856, 0)
+
+[node name="arm_R_ik_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_ik_cns/arm_R_ikcns_ctl" parent_id_path=PackedInt32Array(1485594788, 1840102119) index="0" unique_id=511985519]
+transform = Transform3D(0.9904614, 0.13779028, 0, -0.13779028, 0.9904614, 0, 0, 0, 1, -0.32052732, -0.05359023, 0.29574054)
+
+[node name="arm_R_ikRot_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="5" unique_id=1324023327]
+transform = Transform3D(-0.047241986, 0.5840034, 0.8103752, 0.5476276, 0.6936341, -0.46794832, -0.8353874, 0.42167708, -0.35258505, -0.091747664, -0.38642398, 0.30198777)
+
+[node name="arm_R_ikRot_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_ikRot_npo/arm_R_ikRot_cns" parent_id_path=PackedInt32Array(1485594788, 1979810603) index="0" unique_id=1760733961]
+transform = Transform3D(0.607105, 0.23771434, -0.7582318, -0.22628613, 0.9664158, 0.12179849, 0.76172054, 0.09763286, 0.6405074, 1.4210854e-16, 0, -4.440892e-18)
+
+[node name="arm_R_0_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="6" unique_id=328704021]
+transform = Transform3D(10.284771, 0.47259504, 0.81037545, 25.77523, 0.16634028, -0.46794814, -10.570346, 0.8654391, -0.35258496, 0, 0, 1.7763568e-17)
+
+[node name="arm_R_1_bone" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="7" unique_id=1416432933]
+transform = Transform3D(-1.1100072, 0.58400345, 0.8103753, 12.867168, 0.69363415, -0.46794835, -19.62843, 0.4216771, -0.35258508, -0.102847725, -0.2577523, 0.105703466)
+
+[node name="arm_R_elbow_ref" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="8" unique_id=1183485533]
+transform = Transform3D(0.047241893, -0.58400375, 0.81037533, -0.54762787, -0.6936341, -0.46794838, 0.83538723, -0.42167747, -0.3525853, -0.102847725, -0.2577523, 0.105703466)
+
+[node name="arm_R_ctrn_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="9" unique_id=548895303]
+transform = Transform3D(0.15958263, 0.56375986, 0.81037545, 0.7553026, 0.4588489, -0.46794838, -0.63565034, 0.686755, -0.35258502, -0.102847725, -0.2577523, 0.105703466)
+
+[node name="arm_R_mid_cns" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_ctrn_loc" index="0" unique_id=21139884]
+transform = Transform3D(-1, 8.742278e-08, 4.1633363e-16, -8.742278e-08, -1, -3.330669e-16, -4.163336e-16, 3.3306693e-16, -1, 7.105427e-17, 1.4210854e-16, -7.105427e-17)
+
+[node name="arm_R_tws1A_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_ctrn_loc/arm_R_mid_cns/arm_R_mid_ctl" parent_id_path=PackedInt32Array(1485594788, 2068765598) index="0" unique_id=1492867153]
+transform = Transform3D(-0.9371, 0.34906107, 1.062429e-07, -0.34906107, -0.9371, -5.895909e-07, 1.0624301e-07, 5.895909e-07, -1, 0, 8.881784e-18, -2.842171e-16)
+
+[node name="arm_R_tws1B_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_ctrn_loc/arm_R_mid_cns/arm_R_mid_ctl" parent_id_path=PackedInt32Array(1485594788, 2068765598) index="1" unique_id=2034845774]
+transform = Transform3D(-0.9371, -0.34906107, 2.1529598e-08, 0.34906107, -0.9371, 1.1947766e-07, 2.1529614e-08, -1.1947766e-07, -1, 0, 8.881784e-18, -2.842171e-16)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_ctrn_loc/arm_R_mid_cns/arm_R_mid_ctl/transform1" parent_id_path=PackedInt32Array(1485594788, 1044385823) index="0" unique_id=1120743349]
+bones/0/rotation = Quaternion(0.61383754, 0.3587096, 0.10523128, 0.6953109)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(-0.0037593641, -2.5579353e-18, -2.7284637e-17, 0.99999297)
+bones/2/rotation = Quaternion(-0.0037593641, 1.7052893e-18, 1.2278095e-16, 0.99999297)
+
+[node name="arm_R_matchFk0_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="10" unique_id=2047089398]
+transform = Transform3D(0.34633154, 0.47259504, 0.81037545, 0.8679605, 0.16634028, -0.46794814, -0.35594803, 0.8654391, -0.35258496, -5.684342e-16, 2.842171e-16, 1.5987212e-16)
+
+[node name="arm_R_matchFk1_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="11" unique_id=60146723]
+transform = Transform3D(-0.047241986, 0.5840034, 0.8103752, 0.5476276, 0.6936341, -0.4679483, -0.8353874, 0.42167708, -0.35258505, -0.102847725, -0.2577523, 0.105703466)
+
+[node name="arm_R_eff_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="12" unique_id=1258002534]
+transform = Transform3D(0.4529198, 0.63254493, 0.6282917, -0.13884895, 0.7461639, -0.6511224, -0.8806729, 0.20766857, 0.42578062, -0.091747664, -0.38642398, 0.30198777)
+
+[node name="thumb_R_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_eff_loc/thumb_R_root/thumb_R_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 1356880679) index="0" unique_id=28104615]
+transform = Transform3D(0.97651494, 0.21544938, 0, -0.21544938, 0.97651494, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Index_finger_R_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_eff_loc/meta_R_root/meta_R_0_lvl/meta_R_0_npo/meta_R_0_loc/finger_R_root/finger_R_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 1469184447) index="0" unique_id=303120840]
+transform = Transform3D(0.89700645, 0.4420175, 0, -0.4420175, 0.89700645, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Middle_finger_R_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_eff_loc/meta_R_root/meta_R_1_lvl/meta_R_1_npo/meta_R_1_loc/finger_R1_root2/finger_R1_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 1536875652) index="0" unique_id=1889335700]
+transform = Transform3D(0.81445754, 0.5802232, 0, -0.5802232, 0.81445754, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Ring_finger_R_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_eff_loc/meta_R_root/meta_R_2_lvl/meta_R_2_npo/meta_R_2_loc/finger_R2_root2/finger_R2_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 1436972834) index="0" unique_id=1811474247]
+transform = Transform3D(0.9342727, 0.35655922, 0, -0.35655922, 0.9342727, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Pinky_finger_R_fk0_ctl" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_eff_loc/meta_R_root/meta_R_3_lvl/meta_R_3_npo/meta_R_3_loc/finger_R3_root2/finger_R3_fk0_npo" parent_id_path=PackedInt32Array(1485594788, 1637861137) index="0" unique_id=1581894126]
+transform = Transform3D(0.98429555, 0.1765285, 0, -0.1765285, 0.98429555, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="arm_R_tws2_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="14" unique_id=1336276225]
+transform = Transform3D(0.4529198, 0.63254493, 0.6282917, -0.13884895, 0.7461639, -0.6511224, -0.8806729, 0.20766857, 0.42578062, -0.091747664, -0.38642398, 0.30198777)
+
+[node name="arm_R_aux_npo" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="15" unique_id=1834367762]
+transform = Transform3D(0.5263443, -0.62474823, 0.57675934, 0.19331083, 0.7484859, 0.6343499, -0.8280052, -0.22239263, 0.5147319, -0.086289555, -0.061568335, -0.116613455)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root/arm_R_aux_npo" index="0" unique_id=1150705031]
+bones/0/rotation = Quaternion(0.04312985, -0.64885, 0.7411949, 0.16662414)
+bones/1/rotation = Quaternion(0.0075186742, -8.075381e-18, 9.690463e-17, 0.9999718)
+bones/3/rotation = Quaternion(0.04312985, -0.64885, 0.7411949, 0.16662414)
+
+[node name="arm_R_div0_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="16" unique_id=653505335]
+transform = Transform3D(-0.34633148, -0.21539971, 0.91304845, -0.8679605, -0.2957182, -0.39899272, 0.35594794, -0.9306738, -0.08454193, -7.744916e-15, -9.97602e-14, 4.421352e-14)
+
+[node name="arm_R_divRoot_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="17" unique_id=328868045]
+transform = Transform3D(0.34633154, 0.47259504, 0.81037545, 0.8679605, 0.16634028, -0.46794814, -0.35594803, 0.8654391, -0.35258496, 0, 0, 0)
+
+[node name="arm_R_div1_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="18" unique_id=1484665625]
+transform = Transform3D(0.3463315, 0.34780702, 0.8712545, 0.8679604, 0.23358765, -0.4382708, -0.355948, 0.9080016, -0.22098397, -0.034282576, -0.085917436, 0.03523449)
+
+[node name="arm_R_div2_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="19" unique_id=287641273]
+transform = Transform3D(0.34633148, 0.47259504, 0.8103754, 0.86796045, 0.16634028, -0.46794808, -0.355948, 0.8654391, -0.35258493, -0.06856515, -0.17183487, 0.07046898)
+
+[node name="arm_R_div3_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="20" unique_id=789864527]
+transform = Transform3D(-0.047241982, 0.5840034, 0.8103752, 0.54762757, 0.6936341, -0.46794832, -0.83538735, 0.42167708, -0.35258505, -0.102847725, -0.2577523, 0.105703466)
+
+[node name="arm_R_div4_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="21" unique_id=2145591766]
+transform = Transform3D(-0.047241874, 0.5778939, 0.81474346, 0.5476277, 0.69713295, -0.46271983, -0.8353876, 0.4243163, -0.34940454, -0.09914771, -0.30064288, 0.17113157)
+
+[node name="arm_R_div5_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="22" unique_id=1067814180]
+transform = Transform3D(-0.047241956, 0.57175183, 0.81906533, 0.5476276, 0.7005922, -0.4574653, -0.83538747, 0.42693117, -0.3462045, -0.09544768, -0.34353343, 0.23655967)
+
+[node name="arm_R_armBendyA_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="23" unique_id=818526576]
+transform = Transform3D(0.34633148, -0.4725951, -0.8103754, 0.8679605, -0.16634025, 0.4679481, -0.35594803, -0.86543906, 0.35258505, 0, 0, 0)
+
+[node name="arm_R_forearmBendyB_loc" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="24" unique_id=461275645]
+transform = Transform3D(-0.047241956, -0.5840034, -0.81037533, 0.54762757, -0.6936342, 0.46794826, -0.83538747, -0.4216771, 0.35258502, -0.091747664, -0.38642398, 0.30198777)
+
+[node name="arm_R_ikHandleArmChainUpvRef" parent="GDT_AnimationMaya/rig/world_ctl/root_C0_root2/root_C0_ik_cns/root_C0_ctl/body_C0_root2/body_C0_ik_cns/body_C0_ctl/spine_C0_root2/spine_C0_1_cnx/shoulder_R_root/shoulder_R_ctl_npo/shoulder_R_ctl/shoulder_R_orbit_cns/shoulder_R_orbit_npo/shoulder_R_orbit_ctl/arm_R_root" parent_id_path=PackedInt32Array(1485594788, 2090490420) index="25" unique_id=124951715]
+transform = Transform3D(-0.7780324, -0.01604423, 0.6280192, -0.6281135, 0.0011062622, -0.778121, 0.01178956, -0.99987066, -0.010938287, -0.09174765, -0.38642398, 0.30198777)
+
+[node name="Skeleton3D" parent="GDT_AnimationMaya/rig/jnt_org" parent_id_path=PackedInt32Array(1485594788, 1113035413) index="0" unique_id=753021585]
+bones/1/position = Vector3(7.563395e-18, 1.0007777, 0.022808662)
+bones/1/rotation = Quaternion(0.5373311, 0.5373311, -0.45964694, -0.45964694)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/position = Vector3(0.036696587, 0.0023300448, -1.0820112e-10)
+bones/2/rotation = Quaternion(0.05313007, 0.0038016913, -0.07806995, 0.9955239)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(0, 0, 4.4408924e-18)
+bones/3/rotation = Quaternion(-5.169879e-26, 2.5849394e-26, 0, 1)
+bones/4/position = Vector3(0.06505768, -0.017016055, 3.0963893e-05)
+bones/4/rotation = Quaternion(0.009060694, -0.00072176, -0.06118514, 0.998085)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/position = Vector3(0, -2.4980018e-16, -2.6645352e-17)
+bones/5/rotation = Quaternion(1.0339758e-25, 2.5849394e-26, 6.938894e-18, 1)
+bones/6/position = Vector3(0.073225595, 0.004069603, -5.3548156e-06)
+bones/6/rotation = Quaternion(0.07452627, 0.0074771876, 0.008574401, 0.99715424)
+bones/6/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/7/position = Vector3(-2.220446e-16, -1.5265567e-16, 1.7763568e-17)
+bones/7/rotation = Quaternion(5.169879e-26, -6.4623485e-27, -5.2041704e-18, 1)
+bones/7/scale = Vector3(0.9959622, 1, 0.9959622)
+bones/8/position = Vector3(0.085279115, 0.0065067536, -7.4966088e-06)
+bones/8/rotation = Quaternion(-0.137928, 0.046703707, -0.12087275, 0.98192894)
+bones/9/position = Vector3(0, 0, -8.881785e-18)
+bones/9/rotation = Quaternion(5.169879e-26, 3.877409e-26, 0, 1)
+bones/10/position = Vector3(0.19439802, 0, -8.5687535e-10)
+bones/10/rotation = Quaternion(5.169879e-26, 1.2924697e-25, 3.469447e-17, 1)
+bones/11/position = Vector3(0, 2.7755576e-16, -6.106227e-17)
+bones/11/rotation = Quaternion(5.169879e-26, -3.877409e-26, 0, 1)
+bones/12/rotation = Quaternion(0.120776005, 0.6422413, -0.04054446, 0.755841)
+bones/12/scale = Vector3(1, 1, 0.99999994)
+bones/13/position = Vector3(0.17809525, -1.0559793e-09, -5.4015988e-08)
+bones/13/rotation = Quaternion(0.23700239, 0.6056101, 0.21599337, 0.7282947)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/position = Vector3(1.110223e-16, -2.9143354e-16, 0)
+bones/14/rotation = Quaternion(-8.673617e-18, -1.2500851e-16, 1.0408341e-17, 1)
+bones/15/position = Vector3(-1.89182e-13, -2.9143354e-15, 2.220446e-16)
+bones/15/rotation = Quaternion(-0.12321448, 9.366432e-16, 2.9109852e-16, 0.9923801)
+bones/16/position = Vector3(0.09898773, 0, -4.440892e-16)
+bones/16/rotation = Quaternion(-0.06172494, -4.762544e-08, -2.9452933e-09, 0.9980932)
+bones/17/position = Vector3(0.19797546, -1.3877788e-17, -4.440892e-16)
+bones/17/rotation = Quaternion(8.6736174e-19, -1.4013313e-17, 3.469447e-18, 1)
+bones/18/position = Vector3(0.29696319, 6.938894e-17, 4.440892e-16)
+bones/18/rotation = Quaternion(2.1445718e-08, -4.373424e-08, -0.6362623, 0.77147293)
+bones/18/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/19/position = Vector3(1.110223e-16, -2.8969882e-16, -8.881784e-16)
+bones/19/rotation = Quaternion(1.3444107e-17, -1.3828999e-16, -3.469447e-18, 1)
+bones/20/position = Vector3(0.07832067, -1.9081958e-17, -1.110223e-15)
+bones/20/rotation = Quaternion(-0.0037593076, 3.9927873e-16, -1.9315809e-17, 0.999993)
+bones/21/position = Vector3(0.15664133, -7.459311e-17, -8.881784e-16)
+bones/21/rotation = Quaternion(-0.007518561, 3.9934848e-16, -1.7814661e-17, 0.99997175)
+bones/22/position = Vector3(0.234962, -3.2959746e-17, 0)
+bones/22/rotation = Quaternion(-0.0012744549, -0.410047, -0.112814866, 0.9050595)
+bones/22/scale = Vector3(0.99999994, 1, 1)
+bones/23/position = Vector3(-5.551115e-17, -2.6714742e-16, -2.220446e-16)
+bones/23/rotation = Quaternion(-1.2143064e-17, 5.5538256e-17, 3.469447e-18, 1)
+bones/24/rotation = Quaternion(-0.13924706, 0.40212962, -0.38020775, 0.8211847)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/position = Vector3(0.0463448, 0, -1.110223e-16)
+bones/25/rotation = Quaternion(0.00015847174, -0.008121831, 0.37884092, 0.9254262)
+bones/25/scale = Vector3(1, 1, 1)
+bones/26/position = Vector3(0.03944451, -1.110223e-16, 1.110223e-16)
+bones/26/rotation = Quaternion(-2.1093181e-05, 0.00082634704, 0.38311917, 0.92369866)
+bones/28/rotation = Quaternion(0.58939236, 0.05910182, 0.80561, -0.010775119)
+bones/28/scale = Vector3(1, 1.0000001, 1)
+bones/29/position = Vector3(0.054160044, -4.440892e-16, -5.551115e-17)
+bones/29/rotation = Quaternion(0.16360076, 0.045217305, 0.33267027, 0.9276426)
+bones/29/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/30/position = Vector3(0.035209447, 0, -1.110223e-16)
+bones/30/rotation = Quaternion(-0.00028972587, -0.018292751, 0.3122977, 0.9498081)
+bones/32/rotation = Quaternion(0.68230945, 0.18242712, 0.7059905, 0.05245535)
+bones/32/scale = Vector3(1, 1.0000001, 1)
+bones/33/position = Vector3(0.06417369, 6.661338e-16, -4.7704896e-18)
+bones/33/rotation = Quaternion(0.00094750134, 0.005407771, 0.51307815, 0.8583244)
+bones/33/scale = Vector3(0.99999994, 1, 1)
+bones/34/position = Vector3(0.037342288, 0, 1.474515e-17)
+bones/34/rotation = Quaternion(0.07987724, 0.009459818, 0.32816467, 0.94118977)
+bones/34/scale = Vector3(0.99999994, 1, 0.99999994)
+bones/36/rotation = Quaternion(0.76423717, 0.044035226, 0.64342076, 0.0035098344)
+bones/36/scale = Vector3(1.0000001, 1.0000002, 1.0000001)
+bones/37/position = Vector3(0.059358597, -6.661338e-16, -1.3877788e-16)
+bones/37/rotation = Quaternion(0.00026383944, 0.00994543, 0.42124093, 0.90689427)
+bones/38/position = Vector3(0.035329852, 4.440892e-16, 8.326673e-17)
+bones/38/rotation = Quaternion(0.026284454, 0.013962093, 0.23702523, 0.9710476)
+bones/40/rotation = Quaternion(0.8639305, -0.06781747, 0.49642426, 0.0508705)
+bones/40/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/41/position = Vector3(0.04400578, 4.440892e-16, 0)
+bones/41/rotation = Quaternion(-0.00033150197, 0.011219328, 0.3926803, 0.9196066)
+bones/41/scale = Vector3(1, 0.99999994, 1)
+bones/42/position = Vector3(0.031886876, -5.551115e-16, 0)
+bones/42/rotation = Quaternion(-0.00036006328, 0.005780233, 0.2769991, 0.9608528)
+bones/42/scale = Vector3(1, 1, 1)
+bones/43/position = Vector3(0.11886933, 0.0014137075, -5.5437793e-10)
+bones/43/rotation = Quaternion(1.9087812e-08, 8.424247e-10, -0.22222257, 0.974996)
+bones/43/scale = Vector3(1, 1, 1)
+bones/44/position = Vector3(0, -8.881784e-16, 4.2188468e-17)
+bones/44/rotation = Quaternion(1.6543612e-24, -4.135903e-25, 0, 1)
+bones/45/position = Vector3(0.049593605, 0.00044151847, -1.3595809e-08)
+bones/45/rotation = Quaternion(6.5164395e-11, 5.097885e-09, 0.01993885, 0.9998012)
+bones/46/position = Vector3(-2.220446e-16, 1.6653345e-16, -5.3290687e-17)
+bones/46/rotation = Quaternion(-3.2352063e-16, -1.3259204e-08, -2.2557765e-08, 1)
+bones/47/position = Vector3(0.050628506, 0.0034340243, -1.3395737e-11)
+bones/47/rotation = Quaternion(-0.08585685, -0.010493096, 0.28080264, 0.9558601)
+bones/48/rotation = Quaternion(-0.6774238, 0.12256576, 0.72447664, 0.034760986)
+bones/48/scale = Vector3(1, 1, 0.99999994)
+bones/49/position = Vector3(-0.17809525, 1.0559794e-09, 5.4015988e-08)
+bones/49/rotation = Quaternion(0.058879606, 0.5229876, -0.32177508, 0.7870693)
+bones/49/scale = Vector3(1, 1, 1)
+bones/50/position = Vector3(0, -2.7755576e-16, 2.220446e-16)
+bones/50/rotation = Quaternion(-7.806256e-18, -1.3904893e-16, -1.3877788e-17, 1)
+bones/51/position = Vector3(-1.09245946e-13, -1.3877788e-15, 1.110223e-15)
+bones/51/rotation = Quaternion(-1.7616009e-16, 0.14760052, 0.98904705, -3.5621177e-17)
+bones/51/scale = Vector3(1, 1, 1)
+bones/52/position = Vector3(-0.09898773, -6.7495427e-09, -6.3284142e-09)
+bones/52/rotation = Quaternion(-0.074003175, -3.4400976e-08, 3.1633785e-08, 0.997258)
+bones/53/position = Vector3(-0.19797546, -1.3499085e-08, -1.2656828e-08)
+bones/53/rotation = Quaternion(2.2161092e-16, -7.535205e-18, -1.7347235e-17, 1)
+bones/54/position = Vector3(-0.29696319, -2.0248628e-08, -1.8985242e-08)
+bones/54/rotation = Quaternion(6.1774244e-08, -5.910002e-08, -0.34906134, 0.93709993)
+bones/55/position = Vector3(-1.110223e-16, 2.584738e-16, 4.440892e-16)
+bones/55/rotation = Quaternion(-3.903128e-18, -1.3552527e-17, 6.938894e-18, 1)
+bones/56/position = Vector3(-0.07832067, 3.5527136e-17, 4.2632563e-16)
+bones/56/rotation = Quaternion(-0.0037593648, 4.91088e-16, 1.572408e-17, 0.999993)
+bones/57/position = Vector3(-0.15664133, -8.881784e-17, 0)
+bones/57/rotation = Quaternion(-0.0075186756, 4.910254e-16, 1.7570145e-17, 0.99997175)
+bones/58/position = Vector3(-0.234962, 1.7763568e-17, 5.684342e-16)
+bones/58/rotation = Quaternion(-0.41004685, 0.0012744815, 0.90505946, 0.11281489)
+bones/58/scale = Vector3(0.9999999, 1, 1)
+bones/59/position = Vector3(2.7755576e-16, -1.3877788e-16, 4.440892e-16)
+bones/59/rotation = Quaternion(1.7347235e-18, -1.4175943e-17, 1.3877788e-17, 1)
+bones/60/rotation = Quaternion(-0.40212956, -0.13924706, 0.82118464, 0.38020775)
+bones/60/scale = Vector3(0.99999994, 0.9999999, 1)
+bones/61/position = Vector3(-0.0463448, -6.661338e-16, -2.220446e-16)
+bones/61/rotation = Quaternion(0.00015847174, -0.008121831, 0.37884092, 0.9254262)
+bones/61/scale = Vector3(1, 1, 1)
+bones/62/position = Vector3(-0.03944451, 4.440892e-16, 2.220446e-16)
+bones/62/rotation = Quaternion(-2.1093181e-05, 0.00082634704, 0.38311917, 0.92369866)
+bones/64/rotation = Quaternion(0.58939236, 0.05910182, 0.80561, -0.010775119)
+bones/64/scale = Vector3(1, 1.0000001, 1)
+bones/65/position = Vector3(-0.054160044, -4.440892e-16, 3.330669e-16)
+bones/65/rotation = Quaternion(0.16360076, 0.045217305, 0.33267027, 0.9276426)
+bones/65/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/66/position = Vector3(-0.035209447, 4.440892e-16, 5.551115e-17)
+bones/66/rotation = Quaternion(-0.00028972587, -0.018292751, 0.3122977, 0.9498081)
+bones/68/rotation = Quaternion(0.6817002, 0.18469024, 0.70581263, 0.05479777)
+bones/68/scale = Vector3(1, 1.0000001, 1)
+bones/69/position = Vector3(-0.06417369, -2.220446e-16, -4.943962e-17)
+bones/69/rotation = Quaternion(0.00094750134, 0.005407771, 0.51307815, 0.8583244)
+bones/69/scale = Vector3(0.99999994, 1, 1)
+bones/70/position = Vector3(-0.037342288, 4.440892e-16, 3.8163916e-17)
+bones/70/rotation = Quaternion(0.07987724, 0.009459818, 0.32816467, 0.94118977)
+bones/70/scale = Vector3(0.99999994, 1, 0.99999994)
+bones/72/rotation = Quaternion(0.76423717, 0.044035226, 0.64342076, 0.0035098344)
+bones/72/scale = Vector3(1.0000001, 1.0000002, 1.0000001)
+bones/73/position = Vector3(-0.059358597, -8.881784e-16, -2.220446e-16)
+bones/73/rotation = Quaternion(0.00026383944, 0.00994543, 0.42124093, 0.90689427)
+bones/74/position = Vector3(-0.035329852, 2.220446e-16, 5.551115e-17)
+bones/74/rotation = Quaternion(0.026284454, 0.013962093, 0.23702523, 0.9710476)
+bones/76/rotation = Quaternion(0.8639305, -0.06781747, 0.49642426, 0.0508705)
+bones/76/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/77/position = Vector3(-0.04400578, -4.440892e-16, 0)
+bones/77/rotation = Quaternion(-0.00033150197, 0.011219328, 0.3926803, 0.9196066)
+bones/77/scale = Vector3(1, 0.99999994, 1)
+bones/78/position = Vector3(-0.031886876, -1.110223e-16, 0)
+bones/78/rotation = Quaternion(-0.00036006328, 0.005780233, 0.2769991, 0.9608528)
+bones/78/scale = Vector3(1, 1, 1)
+bones/79/rotation = Quaternion(-0.10090311, -0.06103634, 0.96866566, -0.21858639)
+bones/79/scale = Vector3(1.0000001, 1.0000001, 1)
+bones/80/position = Vector3(0, -1.3877788e-17, 5.551115e-17)
+bones/80/rotation = Quaternion(-0.007128623, -1.5848724e-17, 2.5474838e-17, 0.9999746)
+bones/80/scale = Vector3(1, 1, 1)
+bones/81/position = Vector3(0, -1.4571677e-16, 0)
+bones/81/rotation = Quaternion(0, 1.3552527e-19, -2.1684043e-19, 1)
+bones/82/position = Vector3(0.15703928, -7.462713e-08, -1.110223e-16)
+bones/82/rotation = Quaternion(-0.0035643012, 4.2296044e-08, -2.2915123e-07, 0.99999374)
+bones/83/position = Vector3(0.31407857, -1.4925426e-07, -2.4980018e-16)
+bones/83/rotation = Quaternion(1.0408341e-16, -1.8800066e-16, -2.4119637e-07, 1)
+bones/84/position = Vector3(0.47111782, -2.2395662e-07, -2.220446e-16)
+bones/84/rotation = Quaternion(0.000921125, -0.00031151075, -0.32044297, 0.9472674)
+bones/84/scale = Vector3(1, 1, 1)
+bones/85/position = Vector3(2.220446e-16, -2.7755576e-17, 2.7755576e-17)
+bones/85/rotation = Quaternion(-6.938894e-18, -8.6736174e-19, 0, 1)
+bones/86/position = Vector3(0.18509449, 1.3289021e-09, -1.9328983e-13)
+bones/86/rotation = Quaternion(-0.03201984, 2.4628436e-11, 8.7006314e-13, 0.9994873)
+bones/87/position = Vector3(0.37018898, 2.6578042e-09, -3.8671844e-13)
+bones/87/rotation = Quaternion(-0.0640069, 4.864358e-11, 3.4449544e-12, 0.9979495)
+bones/88/position = Vector3(0.5552835, 3.9867083e-09, -5.7845395e-13)
+bones/88/rotation = Quaternion(-0.06932047, -0.09143049, 0.08999841, 0.9893106)
+bones/88/scale = Vector3(0.99999994, 1, 1)
+bones/89/position = Vector3(-8.326673e-17, -6.938894e-17, 0)
+bones/89/rotation = Quaternion(1.3877788e-17, 5.255133e-26, -5.135882e-27, 1)
+bones/91/rotation = Quaternion(-0.16390485, 0.11094603, 0.055940717, 0.9786199)
+bones/92/position = Vector3(0, -2.0816682e-17, -1.110223e-16)
+bones/92/rotation = Quaternion(0.08617475, -9.114845e-09, 3.624555e-08, 0.99628013)
+bones/93/position = Vector3(0, -1.3877788e-16, -2.7755576e-17)
+bones/93/rotation = Quaternion(6.938894e-18, 7.047314e-18, 9.62965e-35, 1)
+bones/94/position = Vector3(-0.15703928, 6.468934e-08, -5.6048384e-09)
+bones/94/rotation = Quaternion(0.04312749, -7.184198e-08, -2.1975069e-07, 0.9990696)
+bones/94/scale = Vector3(1, 1, 1)
+bones/95/position = Vector3(-0.31407857, 1.2937868e-07, -1.1209677e-08)
+bones/95/rotation = Quaternion(-1.0536713e-08, 2.461681e-15, -2.4299126e-07, 1)
+bones/96/position = Vector3(-0.47111782, 1.878482e-07, -9.531903e-09)
+bones/96/rotation = Quaternion(0.0007860943, -0.00022997736, -0.28078485, 0.9597704)
+bones/96/scale = Vector3(1, 1, 1)
+bones/97/position = Vector3(0, -1.9428903e-16, 8.326673e-17)
+bones/97/rotation = Quaternion(0, 6.071532e-18, 2.0816682e-17, 1)
+bones/98/position = Vector3(-0.18509449, -2.2737183e-09, -7.961692e-09)
+bones/98/rotation = Quaternion(0.092217706, 2.4544906e-11, -2.1918797e-12, 0.9957389)
+bones/99/position = Vector3(-0.370189, -1.9798671e-08, -2.3482414e-08)
+bones/99/rotation = Quaternion(0.18364953, 4.7993193e-11, -8.636634e-12, 0.9829919)
+bones/99/scale = Vector3(1, 1, 1)
+bones/100/position = Vector3(-0.5552834, 8.137306e-09, -2.6704031e-08)
+bones/100/rotation = Quaternion(0.18339424, -0.061271086, 0.22086824, 0.9559444)
+bones/100/scale = Vector3(0.99999994, 1, 1)
+bones/101/position = Vector3(-1.3877788e-17, -4.1633363e-17, 2.7755576e-17)
+bones/101/rotation = Quaternion(0, -5.278585e-26, 6.548661e-27, 1)
+
+[node name="Hitboxes" type="Node3D" parent="." unique_id=1615517146]
+
+[node name="AISequencer" type="Node" parent="." unique_id=484713317]
+script = ExtResource("4_210r2")
+debug_sequencer = true
+metadata/_custom_type_script = "uid://dfa7rfencxl2f"
+
+[node name="Idle" type="Node" parent="AISequencer" unique_id=1616526090]
+script = ExtResource("5_oy07j")
+custom_interrupts = Dictionary[int, String]({
+0: "StartWalk",
+10: "StartWalk"
+})
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="Idle" type="Node" parent="AISequencer/Idle" unique_id=576840941]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_Idle"
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Walking" type="Node" parent="AISequencer" unique_id=1922140495]
+
+[node name="StartWalk" type="Node" parent="AISequencer/Walking" unique_id=1833114745]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="StartWalk" type="Node" parent="AISequencer/Walking/StartWalk" unique_id=622614746]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_WalkStart"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_csmbi")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Walk" type="Node" parent="AISequencer/Walking" unique_id=1361176200]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="WalkL1" type="Node" parent="AISequencer/Walking/Walk" unique_id=1196969489]
+script = ExtResource("6_fnwbb")
+speed_multiplier = 2.0
+animation = "GDT_Infected_Walk_L"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_5hi1v")])
+behaviours = Array[ExtResource("9_s2n2p")]([SubResource("Resource_buxye"), SubResource("Resource_inoo4")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="WalkR1" type="Node" parent="AISequencer/Walking/Walk" unique_id=1600050396]
+script = ExtResource("6_fnwbb")
+speed_multiplier = 2.0
+animation = "GDT_Infected_Walk_R"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_5hi1v"), SubResource("Resource_moq73"), SubResource("Resource_fkjs5")])
+behaviours = Array[ExtResource("9_s2n2p")]([SubResource("Resource_buxye"), SubResource("Resource_inoo4")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="WalkAlt" type="Node" parent="AISequencer/Walking" unique_id=907629475]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="WalkL2" type="Node" parent="AISequencer/Walking/WalkAlt" unique_id=1273540179]
+script = ExtResource("6_fnwbb")
+speed_multiplier = 2.0
+animation = "GDT_Infected_Walk_LV2"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_s2n2p")])
+behaviours = Array[ExtResource("9_s2n2p")]([SubResource("Resource_buxye"), SubResource("Resource_inoo4")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="WalkR2" type="Node" parent="AISequencer/Walking/WalkAlt" unique_id=812391648]
+script = ExtResource("6_fnwbb")
+speed_multiplier = 2.0
+animation = "GDT_Infected_Walk_RV2"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_5hi1v"), SubResource("Resource_moq73"), SubResource("Resource_fkjs5")])
+behaviours = Array[ExtResource("9_s2n2p")]([SubResource("Resource_buxye"), SubResource("Resource_inoo4")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Running" type="Node" parent="AISequencer" unique_id=934209563]
+
+[node name="StartRun" type="Node" parent="AISequencer/Running" unique_id=157667872]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="StartRun" type="Node" parent="AISequencer/Running/StartRun" unique_id=1953980460]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_StartRun"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_ydmoe")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Run" type="Node" parent="AISequencer/Running" unique_id=2062463291]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="RunL" type="Node" parent="AISequencer/Running/Run" unique_id=253592505]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_Run_L"
+behaviours = Array[ExtResource("9_s2n2p")]([SubResource("Resource_a6snv"), SubResource("Resource_fdbbv")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="RunR" type="Node" parent="AISequencer/Running/Run" unique_id=564920036]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_Run_R"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_42sqg"), SubResource("Resource_em4by")])
+behaviours = Array[ExtResource("9_s2n2p")]([SubResource("Resource_a6snv"), SubResource("Resource_fdbbv")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Attacks" type="Node" parent="AISequencer" unique_id=967765207]
+
+[node name="AttackLeft" type="Node" parent="AISequencer/Attacks" unique_id=1719319937]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="Anticipation" type="Node" parent="AISequencer/Attacks/AttackLeft" unique_id=1159319516]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_L_Anticipation"
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Attack" type="Node" parent="AISequencer/Attacks/AttackLeft" unique_id=1391141498]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_L_Hit"
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Recovery" type="Node" parent="AISequencer/Attacks/AttackLeft" unique_id=1198749288]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_L_Recovery"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_y7gj2")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="AttackRight" type="Node" parent="AISequencer/Attacks" unique_id=96485609]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="Anticipation" type="Node" parent="AISequencer/Attacks/AttackRight" unique_id=361190951]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_R_Anticipation"
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Attack" type="Node" parent="AISequencer/Attacks/AttackRight" unique_id=1477731644]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_R_Hit"
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Recovery" type="Node" parent="AISequencer/Attacks/AttackRight" unique_id=692943182]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_R_Recovery"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_y7gj2")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="Flinches" type="Node" parent="AISequencer" unique_id=1725768321]
+
+[node name="FlinchL" type="Node" parent="AISequencer/Flinches" unique_id=1040511099]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="FlinchL" type="Node" parent="AISequencer/Flinches/FlinchL" unique_id=284339463]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_Flinch_L"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_5l2qt")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="FlinchR" type="Node" parent="AISequencer/Flinches" unique_id=1255135765]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="FlinchR" type="Node" parent="AISequencer/Flinches/FlinchR" unique_id=38106721]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_Flinch_R"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_5l2qt")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[node name="FlinchCenter" type="Node" parent="AISequencer/Flinches" unique_id=2110099231]
+script = ExtResource("5_oy07j")
+metadata/_custom_type_script = "uid://dgd4ar1camccu"
+
+[node name="FlinchCenter" type="Node" parent="AISequencer/Flinches/FlinchCenter" unique_id=284824406]
+script = ExtResource("6_fnwbb")
+animation = "GDT_Infected_Flinch_Center"
+conditions = Array[ExtResource("8_fnwbb")]([SubResource("Resource_5l2qt")])
+metadata/_custom_type_script = "uid://cvuwcbckasb21"
+
+[editable path="GDT_AnimationMaya"]

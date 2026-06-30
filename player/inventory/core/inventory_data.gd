@@ -79,7 +79,7 @@ func __print_item_list(list_name, item_list):
 	print(items_str)
 
 func get_entity_state():
-	print("[DATA] - Collecting inventory data")
+	#print("[DATA] - Collecting inventory data")
 	var state = {}
 	var all_items = get_items_from_category(ITEM_CATEGORY.ALL)
 	for item in all_items:
@@ -97,7 +97,7 @@ func get_entity_state():
 	return state
 	
 func set_entity_state(state_dict: Dictionary):
-	print("[DATA] - Restoring inventory data")
+	#print("[DATA] - Restoring inventory data")
 	var old_item_ids = stored_items.keys()
 	var new_item_ids = state_dict.keys()
 	
@@ -113,6 +113,7 @@ func set_entity_state(state_dict: Dictionary):
 		existing_item.set_item_state(state_dict[existing_id])
 	
 	for new_id in items_to_add:
+
 		var item_state = state_dict[new_id]
 		var new_item: ItemData
 		if item_state["item_is_dynamic"]:

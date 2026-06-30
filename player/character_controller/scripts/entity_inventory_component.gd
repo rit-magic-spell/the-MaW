@@ -32,7 +32,7 @@ func _handle_debug():
 		debug_handled = true
 
 func add_item(item_data: ItemData):
-	print("[INVENTORY] - Adding item [%s]" % item_data.item_name)
+	#print("[INVENTORY] - Adding item [%s]" % item_data.item_name)
 	entity_inventory_data.add_item(item_data)
 	if item_data is WeaponData:
 		_try_equip_weapon(item_data)
@@ -52,9 +52,9 @@ func has_item(item_data: ItemData, check_equipped_items = true):
 func _try_equip_weapon(weapon_data: WeaponData) -> bool:
 	var next_empty_slot = entity_loadout_component.get_empty_slot()
 	if next_empty_slot == EntityLoadoutComponent.INVALID_SLOT:
-		print("[INVENTORY] - Failed to equip weapon [%s], full inventory!" % [weapon_data.item_name])
+		#print("[INVENTORY] - Failed to equip weapon [%s], full inventory!" % [weapon_data.item_name])
 		return false
-	print("[INVENTORY] - Equipping weapon [%s] in slot [%s]" % [weapon_data.item_name, next_empty_slot])
+	#print("[INVENTORY] - Equipping weapon [%s] in slot [%s]" % [weapon_data.item_name, next_empty_slot])
 	entity_loadout_component.equip_weapon(weapon_data, next_empty_slot)
 	return true
 
@@ -93,7 +93,7 @@ func dec_weapon():
 #endregion
 
 func get_entity_state() -> Dictionary:
-	print("[INVENTORY] - Collecting inventory state")
+	#print("[INVENTORY] - Collecting inventory state")
 	var state = {}
 	state["loadout"] = entity_loadout_component.get_entity_state()
 	state["data"] = entity_inventory_data.get_entity_state()
